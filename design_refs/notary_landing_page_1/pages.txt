@@ -1,0 +1,403 @@
+--- PAGE 1 ---
+
+Login / Signup page
+
+--- PAGE 2 ---
+
+Welcome Back!
+To login, enter your Username
+Email
+Username
+Password
+Enter password
+Forgot Password?
+Login
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 3 ---
+
+Welcome
+To get started, tell us a little about who you are...
+I REQUIRE SIGNING SERVICES
+For Title Companies and Businesses
+I AM A NOTARY OR ATTORNEY
+For Notaries and Signing Agents
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 4 ---
+
+Home
+Services
+About
+Contact
+Login
+Sing Up
+Built for Title & Escrow Teams
+A Modern Platform 
+for managing 
+Closing Orders
+Streamline your entire closing process with a 
+centralized platform designed to manage 
+signing orders, coordinate with notaries, and 
+maintain full visibility from start to finish
+Get Started
+ Platform Capabilities
+Efficient Notary Assignment
+Real-Time Order Tracking
+Secure Document Handling
+Centralized Workflow Management
+Built for High-Volume Closings
+ Engineered for Reliability and Performance
+ Our platform is designed to support the demands of modern closing workflows delivering consistent performance, 
+secure document handling, and dependable coordination between title companies and notaries.
+Secure Document
+Management
+Securely store and manage closing 
+documents with encrypted access 
+and controlled permissions
+Efficient Notary 
+Assignment
+Connect title companies with 
+qualified notaries while helping 
+notaries receive consistent, 
+relevant assignments
+Real-Time Order
+Tracking
+Provide full visibility for all 
+parties with live updates 
+throughout the closing process
+High-Volume Document 
+Handling
+Handle large closing packages 
+efficiently for both title teams 
+and signing professionals
+The closing workflow, Simplified
+A structured process designed to improve coordination, reduce delays, and 
+provide full visibility from order placement to completion
+1
+Notary assignment
+ Enter closing details and securely 
+upload required documents.
+2
+Signing Completion
+The notary completes the signing in 
+accordance with closing requirements
+3
+Scanback Review
+Documents are reviewed and approved prior 
+to shipment to reduce errors and delays.
+4
+Secure Upload
+Signed documents are uploaded
+through the portal.
+For Title Companies
+Submit orders in under 60 seconds
+Live tracking of signing status
+Instant download of scanbacks
+Register Company
+For Notaries
+Receive premium local assignments
+Mobile-friendly task completion
+Simplified scanback uploading
+Join Notary Pool
+Security is Our Foundation
+replace subtext to   Closing Engage is built on enterprise-grade 
+infrastructure to protect sensitive closing data, ensure compliance, 
+and maintain secure document handling at every stage of the 
+transaction
+SSL Encryption
+256-bit bank-level encryption
+Secure Cloud Storage
+SOC 2-compliant infrastructure for 
+secure document storage
+Enterprise Grade
+Role-Based Access Control
+Granular permissions to 
+protect sensitive information
+ Activity Tracking
+Full visibility into every action for 
+compliance and accountability
+"Closing Engage has completely redefined how we manage our
+settlement workflows. The transparency and efficiency provided by
+the platform are unmatched in the industry."
+Sarah J. Miller
+COO, Elite Title & Escrow
+Ready to streamline your closing 
+workflow?
+Get Started
+Request Demo
+Closing Engage
+The Digital Notary Standard. Redefining
+how closings happen in the digital age.
+Platform
+Home
+How It Works
+Services
+Company
+About
+Contact
+Privacy Policy
+Newsletter
+Stay updated with the latest in legal-tech.
+Email
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 5 ---
+
+Home
+Services
+About
+Contact
+Login
+Sing Up
+Our Services
+Closing Engage provides professional-grade tools to manage closing orders
+and document workflows securely, connecting title companies and notaries in
+one unified environment.
+Closing Order Management
+Streamline the creation and tracking of every
+closing order with precision and ease.
+Notary Assignment System
+Efficiently match and assign vetted notaries to
+orders based on location and availability.
+Secure Document Upload
+End-to-end encrypted uploads for sensitive
+closing packets, ensuring total privacy.
+Scanback Review & Approval
+Real-time review and feedback loops for
+uploaded documents to catch errors instantly.
+Real-Time Order Tracking
+Monitor every stage of the closing process from
+a single, high-clarity dashboard.
+Email Notifications
+Automated alerts for all stakeholders throughout
+the order lifecycle to keep everyone informed.
+Built for Performance
+Large File Upload Support
+Handle 150+ page PDFs with ease, optimized for high-volume
+document environments.
+Secure Cloud Document Storage
+Redundant, encrypted storage that meets rigorous legal and
+financial security standards.
+Role-Based Access Control
+Granular permissions for teams, ensuring individuals only see the
+data they need.
+Audit Logs for Transparency
+Complete history of every action taken on an order, providing a
+bulletproof audit trail.
+99.9%
+Engineered for Efficiency
+Closing Engage eliminates the friction inherent in traditional real
+estate transactions. By centralizing communication, we remove the
+need for manual emails and constant phone tag.
+Our platform replaces disparate spreadsheets with a single source
+of truth, creating a direct and secure line between title agents and
+notaries. This architectural approach ensures data integrity while
+accelerating closing times by up to 40%.
+Start Managing Closing Orders with Confidence
+Get Started
+Request Demo
+Closing Engage
+The Digital Notary Standard. Redefining
+how closings happen in the digital age.
+Platform
+Home
+Services
+Company
+About
+Contact
+Privacy Policy
+Newsletter
+Stay updated with the latest in legal-tech.
+Email
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 6 ---
+
+Home
+Services
+About
+Contact
+Login
+Sing Up
+About Closing Engage
+Learn more about our mission to simplify closing order workflows
+between title companies and notaries.
+OUR JOURNEY
+Our Story
+Closing Engage was created to address the inefficiencies in 
+managing closing orders between title companies and notaries.((
+Many closing workflows still rely on fragmented communication, 
+manual coordination, and limited visibility into order status. These 
+gaps often lead to delays, errors, and unnecessary back-and-forth.((
+Closing Engage was built to bring structure to this process
+providing a centralized system to manage assignments, track 
+progress, and handle documents with consistency and control.((
+Today, the platform supports a more organized and reliable closing 
+experience by reducing friction and improving coordination across 
+every transaction
+Our Team
+Dyarramo
+Founder & CEO
+Sarah Miller
+COO
+Marcus Thorne
+CTO
+Elena Rodriguez
+Head of Product
+Former real estate attorney
+passionate about digital
+transformation in the legal
+industry.
+Operations expert with 15 years
+experience scaling fintech
+platforms across North America.
+Cybersecurity specialist focused
+on building unbreakable document
+workflow environments.
+Driving user-centric design that
+simplifies complex legal
+compliance tasks.
+Join Closing Engage Today
+Experience the future of closing order management. Secure, professional, and
+built for modern teams.
+Get Started
+Closing Engage
+The Digital Notary Standard. Redefining
+how closings happen in the digital age.
+Platform
+Home
+Services
+Company
+About
+Contact
+Privacy Policy
+Newsletter
+Stay updated with the latest in legal-tech.
+Email
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 7 ---
+
+Home
+Services
+About
+Contact
+Login
+Sing Up
+Contact Us
+Have questions about Closing Engage or need help getting 
+started? Reach out and our team will assist you.
+Contact Information
+Full Name
+Email
+John Doe
+john@company.com
+Company
+Subject
+Acme Corp
+General Inquiry
+Message
+How can we help you?
+Email
+hello@closingengage.com
+Phone
++1 (555) 123-4567
+Address
+101 Financial District, Suite 500
+New York, NY 10005
+Send Message
+Ready to Simplify Your
+Closing Workflow?
+Get Started
+Closing Engage
+The Digital Notary Standard. Redefining
+how closings happen in the digital age.
+Platform
+Home
+Services
+Company
+About
+Contact
+Privacy Policy
+Newsletter
+Stay updated with the latest in legal-tech.
+Email
+© 2026 Closing Engage. The Digital Notary Standard.
+
+--- PAGE 8 ---
+
+Home
+Services
+About
+Contact
+Login
+Sing Up
+Privacy Policy
+Learn how Closing Engage collects, uses, and protects your
+information. Our architecture is built on the foundation of
+trust and technical transparency.
+Security Protocol 402.b
+Active Encryption Layers: AES-256
+Introduction
+At Closing Engage, your privacy is not an afterthought; it is our primary engineering requirement. We are committed to
+maintaining the highest standards of data integrity and protection, ensuring that your sensitive legal and financial
+information remains confidential and secure throughout the closing process.
+Personal Information
+Name, contact details, and identifiers required
+for legal verification.
+Account Info
+Login credentials and profile settings necessary
+for your secure workspace.
+Documents
+Financial records and legal contracts processed
+through our secure vault.
+Usage Data
+Technical metadata to improve performance and
+ensure platform security.
+How We Use Information
+01
+02
+03
+Account Management
+Facilitating access to your closing dashboard and secure files.
+Processing Orders
+Executing transactions and legal filings on your behalf.
+Communication
+Sending critical updates, security alerts, and support responses.
+Data Security Architecture
+We employ bank-grade security protocols to ensure your data is
+never compromised.
+Cloud Storage
+SSL Encryption
+Role-based Access
+Data Sharing
+We share information only with trusted third-party
+partners necessary for operations (e.g., payment
+processors, legal filing systems) or when legally
+mandated by government authorities.
+User Rights
+Access your personal data records
+Request correction of inaccuracies
+Request deletion of non-legal records
+Periodic Updates
+Our privacy policy is reviewed quarterly. Users will
+be notified via email regarding any significant
+material changes.
+Contact Privacy Team
+privacy@closingengage.com
+Response time: within 24 business hours.
+Closing Engage
+The Digital Notary Standard. Redefining
+how closings happen in the digital age.
+Platform
+Home
+Services
+Company
+About
+Contact
+Privacy Policy
+Newsletter
+Stay updated with the latest in legal-tech.
+Email
+© 2026 Closing Engage. The Digital Notary Standard.

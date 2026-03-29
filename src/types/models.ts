@@ -1,0 +1,71 @@
+import type { LucideIcon } from "lucide-react";
+
+export interface NavItem {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+}
+
+export interface MetricCard {
+  title: string;
+  value: string;
+  tone?: "brand" | "warning" | "success";
+  helper?: string;
+}
+
+export interface Order {
+  id: string;
+  clientName: string;
+  propertyAddress: string;
+  notary: string;
+  status:
+    | "Received"
+    | "Assigned"
+    | "Under Review"
+    | "Approved"
+    | "Completed"
+    | "In Progress"
+    | "Pending Upload"
+    | "Submitted";
+  date: string;
+  time?: string;
+  location?: string;
+}
+
+export interface DocumentRecord {
+  id: string;
+  name: string;
+  orderId: string;
+  uploadDate: string;
+  size: string;
+  status: "Approved" | "Submitted" | "Pending" | "Verified";
+  uploadedBy?: string;
+}
+
+export interface ActivityItem {
+  title: string;
+  description: string;
+  time: string;
+}
+
+export interface TeamMember {
+  name: string;
+  email: string;
+  role: "Admin" | "Member";
+  status: "Active" | "Pending Invite";
+  joinedDate: string;
+}
+
+export interface CredentialRecord {
+  documentName: string;
+  issuer: string;
+  uploadDate: string;
+  action: string;
+}
+
+export interface ChatMessage {
+  sender: string;
+  role: "admin" | "you";
+  time: string;
+  body: string;
+}

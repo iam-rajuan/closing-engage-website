@@ -1,0 +1,826 @@
+--- PAGE 1 ---
+
+Signing Company Dashboard
+
+--- PAGE 2 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+Total Orders
+1,248
+Recent Orders
+Order ID
+#89210
+Client Name
+John Smith
+Active Orders
+342
+Notary
+Robert Wilson
+Pending Review
+56
+Status
+Assigned
+Date
+Mar 24, 2026
+Completed Orders
+850
+View All Orders
+Action
+View
+#89209
+Sarah Jones
+Emily Davis
+Under Review
+Mar 23, 2026
+View
+#89208
+Michael Brown
+David Clark
+Completed
+Mar 22, 2026
+View
+Create New Order
+Order Status Overview
+Received
+Assigned
+Under Review
+Approved
+Completed
+Monthly Progress
+100%
+85%
+60%
+45%
+30%
+Recent Activities
+Order assigned to notary
+Robert Wilson took #89210
+2 mins ago
+Status updated for #89210
+Moved to 'Under Review'
+45 mins ago
+Document approved by client
+Sarah Jones verified all files
+2 hours ago
+Clear Notifications
+
+--- PAGE 3 ---
+
+Administrator
+Alex Sterling
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+Orders
+Manage and track all your closing orders
+Search by Order ID or Client Name
+Status: All
+Date: Any time
+Create New Order
+Total Orders
+1,248
+Pending Review
+56
+Completed Today
+850
+Order ID
+#ORD-92831
+#ORD-92830
+#ORD-92829
+#ORD-92828
+#ORD-92827
+Client Name
+Sarah Jenkins
+Michael Chen
+Emily Rodriguez
+Jordan Smith
+Laura Palmer
+Property Address
+742 Evergreen Terrace, Springfield
+1200 Market St, Philadelphia
+45 Pine Ave, Long Beach
+880 Oak Lane, Denver
+704 Twin Peaks Dr, Snoqualmie
+Notary
+--
+David Miller
+Robert Vance
+Elena Wright
+Gordon Cole
+Status
+Received
+Assigned
+Under Review
+Approved
+Completed
+Date
+Mar 20, 2026
+Feb 23, 2026
+Feb 22, 2026
+Feb 22, 2026
+Feb 21, 2026
+Actions
+View
+View
+View
+View
+View
+Showing 1-10 of 248 orders
+1
+2
+3
+...
+25
+
+--- PAGE 4 ---
+
+Orders
+Create New Order
+Create New Order
+Fill in the details below to initiate a new title closing process.
+Order Information
+Order Title *
+e.g. 452 Oak Street Refinance
+Client Name *
+Property Address *
+Full legal name
+Street address
+City
+State
+ZIP
+Select State
+Signing Date & Time
+mm/dd/yyyy
+Loan Details
+Loan Type
+Select a loan type
+Requirements
+Scan Backs Required
+Yes, required
+No
+Instructions
+Preferred Notary (Optional)
+No preference
+Leave empty to auto-assign the best available notary in the area.
+Special Instructions
+Enter any specific requirements, gate codes, or client 
+preferences...
+Order Priority
+Normal Processing
+Urgent Request
+Guaranteed 4-hour assignment
+Supporting Documents
+Drag & drop files here
+Accepts PDF, DOCX up to 25MB
+OR BROWSE FILES
+Closing_Statement_V1.pdf
+1.2 MB " Uploaded 2 mins ago
+Cancel
+Submit Order
+
+--- PAGE 5 ---
+
+Orders
+Order Details
+Order #CE-9421
+Approved
+Order Information
+Edit Info
+Client Name
+Signing Date & Time
+Mila Waters
+Mar 18, 2026, 2:45 PM
+Property Address
+442 Prospect St, Dallas TX 75201
+Assigned Notary
+Sarah Jenkins
+4.9
+(124 Closings)
+(555) 012-3456
+Available
+View Full Profile
+Phone
+Status
+Special Instructions
+"Client requested an evening signing. Please confirm notary availability for late pickup."
+Documents
+closing_statement.pdf
+Uploaded Oct 23 "  2.4 MB
+closing_statement.pdf
+Uploaded Oct 23 "  2.4 MB
+2 Files Total
+Order Status
+Received
+Feb 21, 2023
+Assigned
+Feb 23, 2023
+Under Review
+Feb 24, 2023
+Approved
+Current Stage
+Completed
+Es timated Oct 26
+Activity Log
+Review completed
+Today, 2:45 PM
+Final review by Compliance Team finished.
+Documents uploaded
+Yesterday, 10:15 AM
+New version of Title Insurance form added.
+Notary assigned
+Oct 23, 9:00 AM
+Sarah Parker has been assigned to this order.
+
+--- PAGE 6 ---
+
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+Search orders, notaries, or documents...
+Documents
+Access and d ownload your app
+roved files
+Filter by order
+Filter by date
+File type
+All Orders
+mm/dd/yyyy
+PDF Only
+Clear
+File Name
+Closing_Disclosure_Final.pdf
+Order ID
+ORD-99281
+Uploaded Date
+Mar 18, 2026
+File Size
+2.4 MB
+Status
+Approved
+Administrator
+Alex Sterling
+Actions
+Title_Commitment_Schedule_A.pdf
+ORD-99281
+Mar 17, 2026
+1.1 MB
+Approved
+Wire_Instructions_Verified.pdf
+ORD-88210
+Mar 16, 2026
+450 KB
+Approved
+Wire_Instructions_Verified.pdf
+ORD-88210
+Mar 16, 2026
+450 KB
+Approved
+Wire_Instructions_Verified.pdf
+ORD-88210
+Mar 16, 2026
+450 KB
+Approved
+Warranty_Deed_Draft.pdf
+ORD-99281
+Mar 15, 2026
+3.2 MB
+Approved
+Showing 4 of 24 documents
+1
+2
+3
+
+--- PAGE 7 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+CONFIDENTIAL
+Back to Documents
+Closing_Disclosure_Final.pdf
+Order ID: ORD-99281-TX
+Approved
+100%
+Page€
+1
+ of 5
+File Details
+File Name
+Closing_Disclosure_Final.pdf
+Size
+Status
+2.4 MB
+Approved
+Upload Date
+Feb 24, 2026
+Uploaded By
+Notary Sarah Jones
+SJ
+Order Information
+Client Name
+Robert & Martha Henderson
+Property Address
+123 Blue Oak Lane,
+Austin, TX 78701
+Recent Activity
+Approved by Admin
+Oct 25, 2023 " 10:15 AM
+Uploaded by Notary
+Oct 24, 2023 " 04:30 PM
+This document is available only after admin
+approval. Securely encrypted and stored
+according to industry standards.
+Print
+Download
+
+--- PAGE 8 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+Team Management
+Manage your company team members and roles
+Search by name or email
+Role: All
+Status: All
++ Add Member
+Name
+John Doe
+Email
+john.doe@closingengage.com
+Role
+Admin
+Status
+Active
+Joined Date
+Feb 12, 2026
+Actions
+Sarah Chen
+s.chen@legalpartners.com
+Member
+Pending Invite
+
+Marcus Bell
+m.bell@titlepro.net
+Member
+Active
+Feb 05, 2026
+Showing 3 of 12 team members
+1
+
+--- PAGE 9 ---
+
+Add New Member
+Invite a team member to your company account
+Full Name
+Phone Number (optional)
+John Doe
++1 (555) 000-0000
+Email Address
+john.doe@company.com
+Role Selection
+Admin
+Full access to all company settings and orders
+Member
+Limited access to assigned orders and 
+documents
+Permissions
+Create Orders
+View Orders
+Download Documents
+Send invitation email to this user
+Cancel
+Add Member
+
+--- PAGE 10 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Orders
+Documents
+Team Management
+Settings
+Personal Information
+Full Name
+Email Address
+Alex Thompson
+alex.t@estateflux.com
+Phone Number
++1 (555) 902-4412
+Company Information
+Company Name
+Company Email
+Estate Flux Title
+ops@estateflux.com
+Contact Number
+Business Address
++1 (555) 200-1100
+782 Commerce Blvd, Austin TX
+Alex Thompson
+alex.t@estateflux.com
+Estate Flux Title
+Security Settings
+Current Password
+""""""""
+New Password
+""""""""
+Confirm New Password
+""""""""
+Update Password
+Notification Preferences
+Email Notifications
+Receive global summary emails
+Edit Profile
+Order Updates
+Real-time alerts for escrow changes
+Document Updates
+Alerts when new documents are signed
+Cancel
+Save Changes
+
+--- PAGE 11 ---
+
+Notary User Dashboard
+
+--- PAGE 12 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Assigned Workload
+Manage your active signing appointments and document verifications from a
+central atrium.
+24
+Total Assigned Orders
+Global
+08
+In Progress
+Active
+13
+Completed
+Upload Documents
+History
+Assigned Orders
+Order ID
+#CE-94012
+Client Name
+Jonathan Harker
+JH
+Location
+Denver, CO
+Date & Time
+Mar 22, 2026
+02:30 PM MDT
+Status
+In Progress
+Live Updates
+Action
+View
+#CE-93882
+MS
+Mina Stewart
+Boulder, CO
+Feb 25, 2026
+10:00 AM MDT
+Assigned
+View
+#CE-93551
+AV
+Abraham Van Helsing
+Aurora, CO
+Feb 23, 2026
+09:15 AM MDT
+Pending Upload
+View
+#CE-92119
+Showing 4 of 24 results
+LC
+Lucy Crawford
+Lakewood, CO
+Feb 22, 2026
+04:45 PM MDT
+Completed
+View
+Previous
+Next
+©  2 0 2 6  C l o s i n g  E n g a g e  S y s t e m
+P r i va c y  P o l i c y
+
+--- PAGE 13 ---
+
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Search orders, notaries, or documents...
+Quick Search
+Status
+Date Range
+All Statuses
+mm/dd/yyyy
+Order ID or Client Name
+Order ID
+#ORD-88219
+#ORD-88242
+#ORD-88190
+Client Name
+Eleanor Pemberton
+Refinance - Single Family
+Marcus Thorne
+Seller Signing - HELOC
+Sarah Jennings
+Buyer - Conventional
+Signing location
+San Francisco, CA
+Oakland, CA
+Palo Alto, CA
+Signing Date
+Oct 24, 2023
+2:30 PM PDT
+Oct 25, 2023
+10:00 AM PDT
+Oct 22, 2023
+Completed
+Status
+Assigned
+In Progress
+Submitted
+More Filters
+Export CSV
+Administrator
+Alex Sterling
+Actions
+Showing 1-3 of 24 assigned orders
+Status: Assigned
+Order has been dispatched but you haven't
+started the document package review yet.
+Status: In Progress
+You have opened the signing package or
+marked yourself en route to the client.
+Status: Submitted
+The signing is complete and the executed
+documents have been uploaded for review.
+©  2 0 2 6  C l o s i n g  E n g a g e  S y s t e m
+P r i va c y  P o l i c y
+
+--- PAGE 14 ---
+
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Search orders, notaries, or documents...
+Back to Orders
+Order ID #ORD-88219
+Assigned
+Order Lifecycle
+Docs Ready to Print
+Completed
+Docs Printed by Notary
+Confirm
+Mark as In Progress
+Scanbacks Uploaded
+Confirm
+Mark as Completed
+Administrator
+Alex Sterling
+Order Information
+Client
+Jonathan Aris
+Property Address
+123 Oak St, Austin, TX 78701
+Signing Date & Time
+Oct 24, 2023 at 2:00 PM
+Property Address
+San Francisco, CA
+Upload Scanbacks
+Drag and drop scanbacks here
+Supports PDF up to 50MB
+Browse Files
+Special Instructions
+Please ensure all signatures are in blue ink. Scan and upload the full package
+once completed.
+Scanback_Part1.pdf
+2.4 MB " Uploaded just now
+Provided Documents
+Closing_Instructions.pdf
+1.2 MB
+Notary Notes
+Add any specific details about the signing here...
+Signature_Package.pdf
+5.4 MB
+©  2 0 2 6  C l o s i n g  E n g a g e  S y s t e m
+Submit Documents
+Required fields must be completed before submission
+P r i va c y  P o l i c y
+
+--- PAGE 15 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Upload Documents
+Upload scanback documents for your assigned orders. Ensure all pages are legible and
+included in a single PDF file where possible.
+Select Assigned Order
+#CE-90210 - Jonathan Harker 
+Drag & Drop Scanbacks
+Drop your PDF files here or click to browse your
+computer.
+Browse Files
+Submission Guide
+Legibility
+Ensure all text is sharp and readable for
+the title officer.
+Order of Pages
+Keep the stack in the original order
+provided in the packet.
+Full Stack
+Include all pages, even if they only
+contain boilerplate text.
+scanback_signed_final.pdf
+4.2 MB " Ready to Submit
+Verification Complete
+100%
+All systems operational
+Upload & Submit
+©  2 0 2 6  C l o s i n g  E n g a g e  S y s t e m
+P r i va c y  P o l i c y
+
+--- PAGE 16 ---
+
+Search orders, notaries, or documents...
+Administrator
+Alex Sterling
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Personal Information
+Full Name
+Phone Number
+Sarah Miller
++1 (512) 555-0123
+Email Address
+sarah.miller@title-experts.com
+Professional Details
+License Number
+Commission Expiry
+TX-992031-NM
+08/14/2026
+Service Area
+Austin, TX & surrounding Travis County
+Sarah Miller
+Verified Notary
+sarah.miller@title-experts.com
+Edit Profile
+Security Settings
+Current Password
+""""""""
+New Password
+""""""""
+Confirm New Password
+""""""""
+Update Password
+Notification Preferences
+Email Notifications
+Receive global summary emails
+Order Updates
+Real-time alerts for escrow changes
+Document Updates
+Alerts when new documents are signed
+©  2 0 2 6  C l o s i n g  E n g a g e  S y s t e m
+P r i va c y  P o l i c y
+
+--- PAGE 17 ---
+
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+Search orders, notaries, or documents...
+Notary Credentials
+View your license and verification details
+Verified
+Primary Commission
+California Secretary of State
+License Number
+CA-8829-2024
+Credential History
+Document Name
+NNA Certification
+Commission Expiry
+Nov 14, 2027
+E&O Coverage
+$100,000.00
+Issuer
+Nat. Notary Assoc.
+Upload Date
+Oct 24, 2024
+Federal Ledger
+Sep 12, 2024
+Identity Verification
+Load More Ledger Entries
+Administrator
+Alex Sterling
+Update information
+Upload new credential
+Pending
+Background Screening
+Under review by the compliance department.
+Estimated completion: 48 hours.
+Filter
+Action
+Verification
+Auto-Verified
+Manual Review
+
+--- PAGE 18 ---
+
+Dashboard
+Assigned Orders
+Upload Documents
+Settings
+Notary Credentials
+Communications
+New Chat
+Administrator
+Alex Sterling
+Search orders, notaries, or documents...
+Active File Context
+Communication Center
+Chat with Closing Engage team regarding active files.
+File Number
+CE-99283-SL
+Live Support
+Online
+Principal Signer
+Robert J. Smith
+Today
+Current Status
+Pending Review
+VIEW FULL DOSSIER
+AD
+Admin Team
+10:45 AM
+Hello! We've received the uploaded documents for the Smith-Livingston closing. Could you
+please verify the witness signature on page 4?
+You (Notary)10:48 AM
+Confirmed. I'm looking at it now. The witness was present and signed in the presence of the
+signers. Let me send a high-res crop of that specific section for your confirmation.
+ME
+AD
+AD
+Sarah Johnson
+10:50 AM
+Perfect, that would be helpful. Once verified, we can move this to the "Ready for Recording"
+stage. Thanks for the quick response!
+Sarah Johnson
+10:52 AM
+Also, do you have the tracking number for the physical copies yet?
+Sarah is typing...
+Type a message...
+Your messages are encrypted end-to-end.
