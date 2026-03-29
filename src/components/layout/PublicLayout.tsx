@@ -5,7 +5,7 @@ export function PublicLayout() {
   return (
     <div className="min-h-screen">
       <PublicHeader />
-      <main className="pb-20">
+      <main>
         <Outlet />
       </main>
       <FooterBandSection />

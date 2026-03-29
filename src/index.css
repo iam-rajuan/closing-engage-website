@@ -1,33 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Manrope", sans-serif;
-  --color-brand-50: #edf4ff;
-  --color-brand-100: #dbe9ff;
-  --color-brand-200: #bfd8ff;
-  --color-brand-400: #4c8ef7;
-  --color-brand-500: #2f6ad6;
+  --font-sans: "Outfit", sans-serif;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
   --color-brand-600: #185abc;
-  --color-brand-700: #0f4592;
-  --color-ink-50: #f7f8fc;
-  --color-ink-100: #edf1f7;
-  --color-ink-200: #d7deea;
-  --color-ink-300: #aeb8ca;
-  --color-ink-500: #667085;
-  --color-ink-700: #344054;
-  --color-ink-900: #1d2433;
-  --color-success-100: #dff6e8;
-  --color-success-600: #2e9f58;
-  --color-warning-100: #fff2dc;
-  --color-warning-600: #d9822b;
-  --color-danger-100: #ffe3df;
-  --color-danger-600: #d45d53;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #f1f5f9;
+  --color-ink-200: #e2e8f0;
+  --color-ink-300: #cbd5e1;
+  --color-ink-400: #94a3b8;
+  --color-ink-500: #64748b;
+  --color-ink-600: #475569;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e293b;
+  --color-ink-900: #0f172a;
+
+  --color-success-100: #dcfce7;
+  --color-success-600: #16a34a;
 }
 
 :root {
-  color: #1d2433;
-  background: #f7f8fc;
+  color: #0f172a;
+  background: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -38,9 +42,8 @@ body {
   margin: 0;
   min-width: 320px;
   font-family: var(--font-sans);
-  background:
-    radial-gradient(circle at top, rgba(47, 106, 214, 0.08), transparent 28%),
-    #f7f8fc;
+  background: #ffffff;
+  overflow-x: hidden;
 }
 
 a {
@@ -59,10 +62,11 @@ textarea {
   min-height: 100vh;
 }
 
-.page-shell {
-  @apply mx-auto w-full max-w-[1180px] px-5 md:px-8;
+.container-custom {
+  @apply mx-auto w-full max-w-[1280px] px-5 md:px-8 xl:px-12;
 }
 
 .surface {
-  @apply rounded-[24px] border border-white/70 bg-white shadow-[0_16px_38px_rgba(20,48,112,0.08)];
+  @apply rounded-[16px] border border-white/70 bg-white shadow-[0_8px_30px_rgba(20,48,112,0.06)];
 }
+

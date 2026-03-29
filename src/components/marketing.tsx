@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ArrowRight, CheckCircle2, ChevronRight, Lock, Mail, ShieldCheck } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
+import clsx from "clsx";
 import { BrandMark, Button, Input, SectionTitle, Surface } from "@/components/common";
 import { publicNav, reliabilityCards, serviceCards } from "@/data/mock-data";
 import { placeholderAction } from "@/lib/utils";
@@ -8,24 +9,35 @@ import { themeTokens } from "@/theme/tokens";
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-30 border-b border-white/70 bg-white/90 backdrop-blur">
-      <div className="page-shell flex items-center justify-between py-4">
-        <BrandMark />
-        <nav className="hidden items-center gap-7 text-sm font-semibold text-ink-500 md:flex">
-          {publicNav.map((item) => (
-            <NavLink key={item.href} to={item.href} className={({ isActive }) => (isActive ? "text-brand-600" : "hover:text-ink-900")}>
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
-        <div className="flex items-center gap-3">
-          <Link to="/login">
-            <Button variant="outline" className="px-6 py-2.5 text-xs">
-              Login
-            </Button>
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/80 backdrop-blur-md">
+      <div className="container-custom flex items-center justify-between py-4">
+        <div className="flex items-center gap-12">
+          <BrandMark />
+          <nav className="hidden items-center gap-8 text-[14px] font-medium text-ink-500 md:flex">
+            {publicNav.map((item) => (
+              <NavLink
+                key={item.href}
+                to={item.href}
+                className={({ isActive }) =>
+                  clsx(
+                    "transition-colors hover:text-brand-600",
+                    isActive ? "font-semibold text-brand-600" : "text-ink-600"
+                  )
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </nav>
+        </div>
+        <div className="flex items-center gap-4">
+          <Link to="/login" className="text-[14px] font-semibold text-ink-700 hover:text-brand-600">
+            Login
           </Link>
           <Link to="/signup/role-selection">
-            <Button className="px-6 py-2.5 text-xs">Sing Up</Button>
+            <Button className="h-10 rounded-lg bg-brand-600 px-6 text-[14px] font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg">
+              Register
+            </Button>
           </Link>
         </div>
       </div>
@@ -36,16 +48,24 @@ export function PublicHeader() {
 export function HeroSection() {
   return (
     <section className="page-shell pt-8 md:pt-10">
-      <div className="overflow-hidden rounded-[32px] bg-[linear-gradient(120deg,#10264b_0%,#193968_35%,#4d78c1_100%)] px-6 py-8 text-white shadow-[0_16px_38px_rgba(20,48,112,0.08)] md:px-10 md:py-10">
-        <div className="grid gap-8 lg:grid-cols-[1.3fr_0.9fr] lg:items-center">
+      <div
+        className="overflow-hidden rounded-[34px] px-6 py-10 text-white shadow-[0_16px_38px_rgba(20,48,112,0.08)] md:px-10 md:py-14 xl:min-h-[700px] xl:px-14"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(7, 22, 46, 0.88) 0%, rgba(10, 31, 66, 0.76) 38%, rgba(22, 52, 104, 0.38) 68%, rgba(22, 52, 104, 0.18) 100%), url('/branding/closing-engage-bg.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="grid gap-8 xl:min-h-[560px] lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div>
-            <div className="mb-4 inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand-100">
+            <div className="mb-6 inline-flex rounded-full border border-white/12 bg-black/25 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white">
               Built for Title & Escrow Teams
             </div>
-            <h1 className="max-w-xl text-5xl font-extrabold leading-[0.95] tracking-[-0.05em] md:text-6xl">
+            <h1 className="max-w-[680px] text-5xl font-extrabold leading-[0.92] tracking-[-0.05em] md:text-6xl xl:text-7xl">
               A Modern Platform for managing Closing Orders
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-7 text-white/80">
+            <p className="mt-6 max-w-[560px] text-base leading-7 text-white/82 xl:text-lg">
               Streamline your entire closing process with a centralized platform designed to manage signing orders, coordinate with notaries, and maintain full visibility from start to finish
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -53,7 +73,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          <Surface className="border-white/20 bg-white/88 p-6 text-ink-900">
+          <Surface className="border-white/20 bg-white/90 p-6 text-ink-900 backdrop-blur md:p-7">
             <div className="mb-4 text-xs font-extrabold uppercase tracking-[0.18em] text-brand-600">Platform Capabilities</div>
             <ul className="space-y-4 text-sm font-semibold">
               {[
@@ -208,12 +228,19 @@ export function TestimonialSection() {
 
 export function FooterBandSection() {
   return (
-    <section className="page-shell pb-12">
-      <div className="overflow-hidden rounded-[32px] bg-brand-600 px-6 py-10 text-center text-white md:px-10">
-        <div className="text-4xl font-extrabold tracking-[-0.04em]">Ready to streamline your closing workflow?</div>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button variant="secondary">Get Started</Button>
-          <Button variant="outline" className="border-white/20 bg-white/10 text-white hover:bg-white/15">
+    <section className="bg-brand-600 py-20">
+      <div className="container-custom text-center text-white">
+        <h2 className="mx-auto max-w-2xl text-4xl font-bold tracking-tight md:text-5xl">
+          Ready to streamline your closing workflow?
+        </h2>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <Button className="h-12 rounded-lg bg-white px-8 text-base font-bold text-brand-600 hover:bg-ink-50">
+            Get Started
+          </Button>
+          <Button
+            variant="outline"
+            className="h-12 rounded-lg border-white/40 bg-white/10 px-8 text-base font-bold text-white backdrop-blur-sm hover:bg-white/20"
+          >
             Request Demo
           </Button>
         </div>
@@ -224,29 +251,34 @@ export function FooterBandSection() {
 
 export function PublicFooter() {
   return (
-    <footer className="border-t border-white/80 bg-[#eff3ff] py-12">
-      <div className="page-shell grid gap-10 md:grid-cols-[1.2fr_0.7fr_0.7fr_1fr]">
-        <div>
-          <BrandMark />
-          <p className="mt-4 max-w-xs text-sm leading-6 text-ink-500">
-            The Digital Notary Standard. Redefining how closings happen in the digital age.
-          </p>
-        </div>
-        <FooterList title="Platform" items={["Home", "Services", "How It Works"]} />
-        <FooterList title="Company" items={["About", "Contact", "Privacy Policy"]} />
-        <div>
-          <div className="text-xs font-extrabold uppercase tracking-[0.18em] text-ink-500">Newsletter</div>
-          <p className="mt-3 text-sm leading-6 text-ink-500">Stay updated with the latest in legal-tech.</p>
-          <div className="mt-4 flex items-center overflow-hidden rounded-xl border border-white/70 bg-white">
-            <input className="h-12 flex-1 px-4 outline-none" placeholder="Email" />
-            <button className="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
-              <ArrowRight className="h-4 w-4" />
-            </button>
+    <footer className="bg-white pb-12 pt-20">
+      <div className="container-custom">
+        <div className="grid gap-12 lg:grid-cols-4">
+          <div className="col-span-1 lg:col-span-1">
+            <BrandMark />
+            <p className="mt-6 text-base leading-relaxed text-ink-500">
+              The Digital Notary Standard. Redefining how closings happen in the digital age.
+            </p>
+          </div>
+          <FooterList title="Platform" items={["Home", "Services", "How It Works"]} />
+          <FooterList title="Company" items={["About", "Contact", "Privacy Policy"]} />
+          <div>
+            <h4 className="text-sm font-bold uppercase tracking-wider text-ink-900">Newsletter</h4>
+            <p className="mt-4 text-base text-ink-500">Stay updated with the latest in legal-tech.</p>
+            <div className="mt-6 flex max-w-md items-center rounded-lg border border-ink-200 bg-white p-1">
+              <input
+                className="flex-1 px-4 py-2 text-sm outline-none"
+                placeholder="Enter your email"
+              />
+              <button className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-600 text-white transition-colors hover:bg-brand-700">
+                <ArrowRight className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="page-shell mt-8 border-t border-white/80 pt-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-ink-300">
-        {themeTokens.footer}
+        <div className="mt-20 border-t border-ink-100 pt-8 text-center text-sm font-medium uppercase tracking-widest text-ink-400">
+          {themeTokens.footer}
+        </div>
       </div>
     </footer>
   );
@@ -255,8 +287,8 @@ export function PublicFooter() {
 function FooterList({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <div className="text-xs font-extrabold uppercase tracking-[0.18em] text-ink-500">{title}</div>
-      <div className="mt-4 space-y-3 text-sm text-ink-500">
+      <div className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-ink-500">{title}</div>
+      <div className="mt-4 space-y-2.5 text-[11px] text-ink-500">
         {items.map((item) => (
           <div key={item}>{item}</div>
         ))}

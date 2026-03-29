@@ -7,19 +7,14 @@ import type { MetricCard, NavItem } from "@/types/models";
 export function BrandMark({ light = false }: { light?: boolean }) {
   return (
     <div className="flex items-center gap-3">
-      <div
+      <img
+        src="/branding/closing-engage-logo.svg"
+        alt="Closing Engage"
         className={cn(
-          "flex h-11 w-11 items-center justify-center rounded-full border text-lg font-extrabold",
-          light
-            ? "border-white/25 bg-white/10 text-white"
-            : "border-brand-200 bg-brand-50 text-brand-600",
+          "h-4 w-auto object-contain md:h-5",
+          light && "brightness-0 invert",
         )}
-      >
-        CE
-      </div>
-      <div className={cn("text-[15px] font-extrabold", light ? "text-white" : "text-ink-900")}>
-        Closing Engage
-      </div>
+      />
     </div>
   );
 }
@@ -36,8 +31,8 @@ export function Button({
     <button
       className={cn(
         "inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold transition hover:-translate-y-0.5",
-        variant === "primary" && "bg-brand-600 text-white shadow-[0_10px_24px_rgba(24,90,188,0.25)] hover:bg-brand-700",
-        variant === "secondary" && "bg-white text-brand-600 shadow-[0_16px_38px_rgba(20,48,112,0.08)] hover:bg-brand-50",
+        variant === "primary" && "bg-brand-600 text-white shadow-[0_10px_24px_rgba(24,90,188,0.18)] hover:bg-brand-700",
+        variant === "secondary" && "bg-white text-brand-600 shadow-[0_10px_24px_rgba(20,48,112,0.08)] hover:bg-brand-50",
         variant === "outline" && "border border-ink-200 bg-white text-ink-900 hover:border-brand-200",
         variant === "ghost" && "bg-transparent text-brand-600 hover:bg-brand-50",
         className,
