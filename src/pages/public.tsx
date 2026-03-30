@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Lock, Shield } from "lucide-react";
+import { ArrowRight, CheckCircle2, Lock, Mail, MapPin, Phone, Shield } from "lucide-react";
 import {
   HomeAudienceSection,
   HomeCTASection,
@@ -10,7 +10,6 @@ import {
 } from "@/components/homepage";
 import {
   AuthShell,
-  ContactBand,
   LoginForm,
   PrivacyArchitectureCard,
   RoleCard,
@@ -181,50 +180,150 @@ export function AboutPage() {
 
   return (
     <>
-      <section className="py-18">
-        <div className="container-custom">
-          <SectionTitle
-            title="About Closing Engage"
-            subtitle="Learn more about our mission to simplify closing order workflows between title companies and notaries."
-          />
-          <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-            <div className="rounded-[28px] bg-[linear-gradient(135deg,#dfe9ff,#eef4ff)] p-8">
-              <div className="text-xs font-extrabold uppercase tracking-[0.24em] text-brand-600">OUR JOURNEY</div>
-              <div className="mt-4 text-4xl font-extrabold tracking-[-0.04em] text-ink-900">Our Story</div>
-            </div>
-            <div className="space-y-5 text-sm leading-7 text-ink-500">
-              <p>Closing Engage was created to address the inefficiencies in managing closing orders between title companies and notaries.</p>
-              <p>Many closing workflows still rely on fragmented communication, manual coordination, and limited visibility into order status. These gaps often lead to delays, errors, and unnecessary back-and-forth.</p>
-              <p>Closing Engage was built to bring structure to this process, providing a centralized system to manage assignments, track progress, and handle documents with consistency and control.</p>
-              <p>Today, the platform supports a more organized and reliable closing experience by reducing friction and improving coordination across every transaction</p>
+      <section className="relative overflow-hidden">
+        <div
+          className="relative min-h-[340px] bg-cover bg-center bg-no-repeat md:min-h-[420px]"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, rgba(13,20,36,0.62) 0%, rgba(13,20,36,0.48) 28%, rgba(13,20,36,0.18) 100%), url('/branding/about-hero.png')",
+          }}
+        >
+          <div className="mx-auto flex min-h-[340px] w-full max-w-[1440px] items-center px-6 lg:px-10 md:min-h-[420px]">
+            <div className="max-w-[700px] text-white">
+              <h1 className="text-[44px] font-extrabold leading-[1.05] tracking-[-0.045em] md:text-[64px]">
+                About Closing Engage
+              </h1>
+              <p className="mt-5 max-w-[560px] text-[18px] leading-[1.8] text-white/82">
+                Learn more about our mission to simplify closing order workflows
+                between title companies and notaries.
+              </p>
             </div>
           </div>
         </div>
       </section>
-      <section className="pb-20">
-        <div className="container-custom">
-          <SectionTitle title="Our Team" />
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {team.map(([name, role, body]) => (
-              <Surface key={name} className="p-6">
-                <div className="mb-5 h-56 rounded-[24px] bg-[linear-gradient(135deg,#dce6fb,#f3f5fb)]" />
-                <div className="text-2xl font-extrabold tracking-[-0.03em] text-ink-900">{name}</div>
-                <div className="mt-1 text-sm font-semibold text-brand-600">{role}</div>
-                <p className="mt-4 text-sm leading-6 text-ink-500">{body}</p>
+      <section className="bg-[#f7f7fd] py-20 md:py-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="max-w-[620px]">
+              <div className="inline-flex rounded-full bg-[#edf4ff] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.24em] text-brand-600">
+                Our Journey
+              </div>
+              <h2 className="mt-5 text-[38px] font-extrabold leading-[1.08] tracking-[-0.04em] text-ink-900">
+                Our Story
+              </h2>
+              <div className="mt-6 space-y-5 text-[15px] leading-[1.85] text-ink-500">
+                <p>Closing Engage was created to address the inefficiencies in managing closing orders between title companies and notaries.</p>
+                <p>Many closing workflows still rely on fragmented communication, manual coordination, and limited visibility into order status. These gaps often lead to delays, errors, and unnecessary back-and-forth.</p>
+                <p>Closing Engage was built to bring structure to this process, providing a centralized system to manage assignments, track progress, and handle documents with consistency and control.</p>
+                <p>Today, the platform supports a more organized and reliable closing experience by reducing friction and improving coordination across every transaction.</p>
+              </div>
+            </div>
+            <div className="max-w-[560px] justify-self-end rounded-[24px] bg-white p-4 shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
+              <img
+                src="/branding/about-story-meeting.png"
+                alt="Closing Engage team meeting"
+                className="block w-full rounded-[20px] object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-white py-20 md:py-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="text-center">
+            <h2 className="text-[34px] font-extrabold leading-[1.1] tracking-[-0.035em] text-ink-900">
+              Our Team
+            </h2>
+            <div className="mx-auto mt-3 h-[3px] w-16 rounded-full bg-brand-600" />
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              ["Dyarramo", "Founder & CEO", "Former real estate attorney passionate about digital transformation in the legal industry.", "/branding/team-dyarramo.png"],
+              ["Sarah Miller", "COO", "Operations expert with 15 years experience scaling fintech platforms across North America.", "/branding/team-sarah-miller.png"],
+              ["Marcus Thorne", "CTO", "Cybersecurity specialist focused on building unbreakable document workflow environments.", "/branding/team-marcus-thorne.png"],
+              ["Elena Rodriguez", "Head of Product", "Driving user-centric design that simplifies complex legal compliance tasks.", "/branding/team-elena-rodriguez.png"],
+            ].map(([name, role, body, imageSrc]) => (
+              <Surface
+                key={name}
+                className="rounded-[22px] border border-[#dbe3f0] bg-white p-5 shadow-[0_10px_28px_rgba(20,48,112,0.05)]"
+              >
+                <div className="mb-5 overflow-hidden rounded-[14px] bg-[linear-gradient(180deg,#d9dde7,#f3f5fa)]">
+                  <img
+                    src={imageSrc}
+                    alt={name}
+                    className="block h-[270px] w-full object-cover"
+                  />
+                </div>
+                <div className="text-[20px] font-extrabold tracking-[-0.025em] text-ink-900">{name}</div>
+                <div className="mt-1 text-[14px] font-semibold text-brand-600">{role}</div>
+                <p className="mt-5 text-[14px] leading-[1.75] text-ink-500">{body}</p>
               </Surface>
             ))}
           </div>
         </div>
       </section>
-      <section className="py-18">
-        <div className="container-custom">
-          <SectionTitle
-            title="Contact Us"
-            subtitle="Have questions about Closing Engage or need help getting started? Reach out and our team will assist you."
+      <section className="w-full overflow-hidden pb-24">
+        <div className="relative">
+          <img
+            src="/branding/about-cta-fullwidth.png"
+            alt="About page call to action background"
+            className="block h-auto w-full"
           />
-          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <Surface className="p-8">
-              <div className="mb-6 text-sm font-extrabold uppercase tracking-[0.18em] text-ink-500">Contact Information</div>
+          <div className="absolute inset-0 flex items-center justify-center px-6">
+            <div className="text-center text-white">
+              <h2 className="text-[34px] font-extrabold leading-[1.12] tracking-[-0.04em] md:text-[56px]">
+                Join Closing Engage Today
+              </h2>
+              <p className="mx-auto mt-5 max-w-[680px] text-[16px] leading-[1.8] text-white/80">
+                Experience the future of closing order management. Secure, professional,
+                and built for modern teams.
+              </p>
+              <div className="mt-8 flex justify-center">
+                <Button
+                  className="min-w-[150px] rounded-xl bg-white px-8 py-3.5 text-[15px] font-bold text-brand-600 hover:bg-[#f4f7ff]"
+                  onClick={() => window.location.assign("/signup/role-selection")}
+                >
+                  Get Started
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+export function ContactPage() {
+  return (
+    <>
+      <section className="overflow-hidden bg-white pt-0">
+        <div
+          className="relative w-full overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(circle at 100% 36%, rgba(220,232,249,0.95) 0%, rgba(236,243,252,0.86) 20%, rgba(247,250,255,0.46) 38%, rgba(255,255,255,0) 58%)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-10">
+            <div className="mx-auto max-w-[1440px] py-18 md:py-22">
+              <div className="max-w-[680px]">
+                <h1 className="text-[52px] font-extrabold leading-[1.04] tracking-[-0.045em] text-ink-900 md:text-[68px]">
+                  Contact Us
+                </h1>
+                <p className="mt-6 text-[18px] leading-[1.8] text-ink-600">
+                  Have questions about Closing Engage or need help getting started?
+                  Reach out and our team will assist you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-[#f7f7fd] py-16 md:py-18">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+            <Surface className="rounded-[20px] border border-[#dbe3f0] bg-white p-8 shadow-[0_8px_24px_rgba(20,48,112,0.05)]">
               <div className="grid gap-5 md:grid-cols-2">
                 <Input label="Full Name" placeholder="John Doe" />
                 <Input label="Email" placeholder="john@company.com" />
@@ -234,63 +333,58 @@ export function AboutPage() {
               <div className="mt-5">
                 <Textarea label="Message" placeholder="How can we help you?" />
               </div>
-              <Button className="mt-6">Send Message</Button>
+              <Button className="mt-6 rounded-lg px-7">Send Message</Button>
             </Surface>
-            <Surface className="flex flex-col justify-between p-8">
-              <div className="space-y-6 text-sm leading-6 text-ink-500">
-                <div><strong className="block text-ink-900">Email</strong>hello@closingengage.com</div>
-                <div><strong className="block text-ink-900">Phone</strong>+1 (555) 123-4567</div>
-                <div><strong className="block text-ink-900">Address</strong>101 Financial District, Suite 500<br />New York, NY 10005</div>
+            <div className="px-2 pt-1 lg:px-6">
+              <h2 className="text-[26px] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink-900">
+                Contact Information
+              </h2>
+              <div className="mt-8 space-y-7">
+                {[
+                  { icon: Mail, title: "Email", body: "hello@closingengage.com" },
+                  { icon: Phone, title: "Phone", body: "+1 (555) 123-4567" },
+                  { icon: MapPin, title: "Address", body: "101 Financial District, Suite 500\nNew York, NY 10005" },
+                ].map(({ icon: Icon, title, body }) => (
+                  <div key={title} className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-[16px] font-bold text-ink-900">{title}</div>
+                      <div className="mt-1 whitespace-pre-line text-[14px] leading-[1.7] text-ink-500">{body}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="rounded-[24px] bg-[linear-gradient(135deg,#eff3ff,#f6f8fc)] p-8">
-                <div className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Ready to Simplify Your Closing Workflow?</div>
-                <Button className="mt-6">Get Started</Button>
-              </div>
-            </Surface>
+            </div>
           </div>
         </div>
       </section>
-      <ContactBand />
-    </>
-  );
-}
-
-export function ContactPage() {
-  return (
-    <>
-      <section className="page-shell py-18">
-        <SectionTitle
-          title="Contact Us"
-          subtitle="Have questions about Closing Engage or need help getting started? Reach out and our team will assist you."
-        />
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <Surface className="p-8">
-            <div className="mb-6 text-sm font-extrabold uppercase tracking-[0.18em] text-ink-500">Contact Information</div>
-            <div className="grid gap-5 md:grid-cols-2">
-              <Input label="Full Name" placeholder="John Doe" />
-              <Input label="Email" placeholder="john@company.com" />
-              <Input label="Company" placeholder="Acme Corp" />
-              <Input label="Subject" placeholder="General Inquiry" />
+      <section className="pb-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div
+            className="relative overflow-hidden rounded-[34px] px-8 py-14 text-center text-white shadow-[0_20px_50px_rgba(24,90,188,0.18)] md:px-12 md:py-16"
+            style={{
+              backgroundImage: "url('/branding/services-cta-bg.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <h2 className="mx-auto max-w-[780px] text-[34px] font-extrabold leading-[1.18] tracking-[-0.035em] text-white md:text-[50px]">
+              Ready to Simplify Your Closing Workflow?
+            </h2>
+            <div className="mt-8 flex justify-center">
+              <Button
+                className="min-w-[150px] rounded-xl bg-white px-8 py-3.5 text-[15px] font-bold text-brand-600 hover:bg-[#f4f7ff]"
+                onClick={() => window.location.assign("/signup/role-selection")}
+              >
+                Get Started
+              </Button>
             </div>
-            <div className="mt-5">
-              <Textarea label="Message" placeholder="How can we help you?" />
-            </div>
-            <Button className="mt-6">Send Message</Button>
-          </Surface>
-          <Surface className="flex flex-col justify-between p-8">
-            <div className="space-y-6 text-sm leading-6 text-ink-500">
-              <div><strong className="block text-ink-900">Email</strong>hello@closingengage.com</div>
-              <div><strong className="block text-ink-900">Phone</strong>+1 (555) 123-4567</div>
-              <div><strong className="block text-ink-900">Address</strong>101 Financial District, Suite 500<br />New York, NY 10005</div>
-            </div>
-            <div className="rounded-[24px] bg-[linear-gradient(135deg,#eff3ff,#f6f8fc)] p-8">
-              <div className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Ready to Simplify Your Closing Workflow?</div>
-              <Button className="mt-6">Get Started</Button>
-            </div>
-          </Surface>
+          </div>
         </div>
       </section>
-      <ContactBand />
     </>
   );
 }
