@@ -325,7 +325,7 @@ export function HomeSecuritySection() {
   return (
     <section className="w-full bg-[#f8fafc] py-24">
       <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-12">
-        <div className="grid gap-16 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
+        <div className="grid gap-14 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
           {/* LEFT */}
           <div>
             <h2 className="text-[30px] font-extrabold tracking-[-0.02em] text-[#0f172a] md:text-[34px]">
@@ -337,20 +337,18 @@ export function HomeSecuritySection() {
               secure document handling at every stage of the transaction.
             </p>
 
-            {/* 2×2 grid of mini feature cards */}
-            <div className="mt-10 grid gap-4 md:grid-cols-2">
+            <div className="mt-10 grid gap-x-10 gap-y-6 md:grid-cols-2">
               {securityFeatures.map((feat) => {
                 const Icon = feat.icon;
                 return (
-                  <div
-                    key={feat.title}
-                    className="rounded-xl border border-[#e8edf5] bg-white p-5 shadow-[0_2px_8px_rgba(20,48,112,0.06)]"
-                  >
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-[#eff6ff] text-[#185abc]">
+                  <div key={feat.title} className="flex items-start gap-3">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#eef4ff] text-[#185abc]">
                       <Icon className="h-4.5 w-4.5" />
                     </div>
-                    <h4 className="text-[13.5px] font-bold text-[#0f172a]">{feat.title}</h4>
-                    <p className="mt-1.5 text-[12.5px] leading-[1.65] text-[#64748b]">{feat.body}</p>
+                    <div>
+                      <h4 className="text-[14px] font-bold leading-snug text-[#0f172a]">{feat.title}</h4>
+                      <p className="mt-1 text-[12.5px] leading-[1.55] text-[#64748b]">{feat.body}</p>
+                    </div>
                   </div>
                 );
               })}
@@ -358,21 +356,20 @@ export function HomeSecuritySection() {
           </div>
 
           {/* RIGHT – Enterprise Grade card */}
-          <div className="flex justify-end">
+          <div className="flex h-full items-end justify-end lg:self-end">
             <div
-              className="flex h-full w-full items-center justify-center rounded-2xl border border-[#e2e8f0]"
+              className="flex w-full items-center justify-center rounded-[18px] border border-[#dbe3f0] bg-[#eef2f8]"
               style={{
-                background: "linear-gradient(145deg, #f0f4ff 0%, #f8fafc 60%, #eef2f8 100%)",
-                minHeight: "340px",
+                minHeight: "230px",
               }}
             >
-              <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(20,48,112,0.12)]">
-                  <Lock className="h-9 w-9 text-[#94a3b8]" />
+              <div className="flex flex-col items-center justify-center px-8 py-10 text-center">
+                <div className="flex h-18 w-18 items-center justify-center rounded-full bg-white text-[#6f95cf] shadow-[0_10px_30px_rgba(76,109,158,0.12)]">
+                  <ShieldCheck className="h-9 w-9" />
                 </div>
-                <span className="mt-6 block text-[11px] font-bold uppercase tracking-[0.3em] text-[#94a3b8]">
+                <div className="mt-5 text-[11px] font-bold uppercase tracking-[0.28em] text-[#b0b7c6]">
                   Enterprise Grade
-                </span>
+                </div>
               </div>
             </div>
           </div>
