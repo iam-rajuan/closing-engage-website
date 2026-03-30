@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { FooterBandSection, PublicFooter, PublicHeader } from "@/components/marketing";
+import { PublicFooter, PublicHeader } from "@/components/marketing";
 
 export function PublicLayout() {
   return (
@@ -8,7 +8,6 @@ export function PublicLayout() {
       <main>
         <Outlet />
       </main>
-      <FooterBandSection />
       <PublicFooter />
     </div>
   );

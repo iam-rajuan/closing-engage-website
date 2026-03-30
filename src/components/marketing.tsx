@@ -9,35 +9,49 @@ import { themeTokens } from "@/theme/tokens";
 
 export function PublicHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/80 backdrop-blur-md">
-      <div className="container-custom flex items-center justify-between py-4">
-        <div className="flex items-center gap-12">
-          <BrandMark />
-          <nav className="hidden items-center gap-8 text-[14px] font-medium text-ink-500 md:flex">
-            {publicNav.map((item) => (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                className={({ isActive }) =>
-                  clsx(
-                    "transition-colors hover:text-brand-600",
-                    isActive ? "font-semibold text-brand-600" : "text-ink-600"
-                  )
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
-        <div className="flex items-center gap-4">
-          <Link to="/login" className="text-[14px] font-semibold text-ink-700 hover:text-brand-600">
+    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-6 py-6 lg:px-12">
+        {/* LEFT: Logo (Icon only) */}
+        <Link to="/" className="flex items-center">
+          <div className="h-14 w-14 overflow-hidden rounded-lg">
+            <img
+              src="/branding/closing-engage-logo.svg"
+              alt="Closing Engage logo"
+              className="h-14 w-auto min-w-[300px] object-contain object-left"
+            />
+          </div>
+        </Link>
+
+        {/* CENTER: Nav links */}
+        <nav className="hidden items-center gap-7 text-[13.5px] font-medium md:flex">
+          {publicNav.map((item) => (
+            <NavLink
+              key={item.href}
+              to={item.href}
+              className={({ isActive }) =>
+                clsx(
+                  "transition-colors hover:text-brand-600",
+                  isActive ? "font-semibold text-brand-600" : "text-ink-600",
+                )
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* RIGHT: Login + Sign Up */}
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="hidden rounded-lg border border-ink-200 px-5 py-2 text-[13px] font-semibold text-ink-700 transition-all hover:border-brand-300 hover:text-brand-600 sm:inline-flex"
+          >
             Login
           </Link>
           <Link to="/signup/role-selection">
-            <Button className="h-10 rounded-lg bg-brand-600 px-6 text-[14px] font-semibold text-white shadow-md transition-all hover:bg-brand-700 hover:shadow-lg">
-              Register
-            </Button>
+            <button className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-5 py-2 text-[13px] font-semibold text-white shadow-sm transition-all hover:bg-brand-700 hover:shadow-md">
+              Sign Up
+            </button>
           </Link>
         </div>
       </div>
@@ -251,32 +265,66 @@ export function FooterBandSection() {
 
 export function PublicFooter() {
   return (
-    <footer className="bg-white pb-12 pt-20">
-      <div className="container-custom">
+    <footer className="w-full bg-white pb-12 pt-20">
+      <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-4">
-          <div className="col-span-1 lg:col-span-1">
-            <BrandMark />
-            <p className="mt-6 text-base leading-relaxed text-ink-500">
+          {/* Col 1: Logo + description */}
+          <div>
+            <div className="flex items-center">
+              <div className="h-10 w-10 overflow-hidden">
+                <img
+                  src="/branding/closing-engage-logo.svg"
+                  alt="Closing Engage"
+                  className="h-10 w-auto min-w-[200px] object-contain object-left"
+                />
+              </div>
+            </div>
+            <p className="mt-5 text-sm leading-relaxed text-ink-500">
               The Digital Notary Standard. Redefining how closings happen in the digital age.
             </p>
           </div>
-          <FooterList title="Platform" items={["Home", "Services", "How It Works"]} />
-          <FooterList title="Company" items={["About", "Contact", "Privacy Policy"]} />
+
+          {/* Col 2: Platform links */}
+          <FooterList
+            title="Platform"
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Services", href: "/services" },
+              { label: "How It Works", href: "/" },
+              { label: "Pricing", href: "/" },
+            ]}
+          />
+
+          {/* Col 3: Company links */}
+          <FooterList
+            title="Company"
+            items={[
+              { label: "About", href: "/about" },
+              { label: "Contact", href: "/contact" },
+              { label: "Privacy Policy", href: "/privacy-policy" },
+            ]}
+          />
+
+          {/* Col 4: Newsletter */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider text-ink-900">Newsletter</h4>
-            <p className="mt-4 text-base text-ink-500">Stay updated with the latest in legal-tech.</p>
-            <div className="mt-6 flex max-w-md items-center rounded-lg border border-ink-200 bg-white p-1">
+            <h4 className="text-sm font-bold text-ink-900">Newsletter</h4>
+            <p className="mt-3 text-sm text-ink-500">
+              Stay updated with the latest in legal-tech.
+            </p>
+            <div className="mt-5 flex items-center overflow-hidden rounded-lg border border-ink-200 bg-white">
               <input
-                className="flex-1 px-4 py-2 text-sm outline-none"
+                className="flex-1 px-4 py-2.5 text-sm text-ink-700 outline-none placeholder:text-ink-300"
                 placeholder="Enter your email"
               />
-              <button className="flex h-10 w-10 items-center justify-center rounded-md bg-brand-600 text-white transition-colors hover:bg-brand-700">
-                <ArrowRight className="h-5 w-5" />
+              <button className="flex h-10 w-10 shrink-0 items-center justify-center bg-brand-600 text-white transition-colors hover:bg-brand-700">
+                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </div>
         </div>
-        <div className="mt-20 border-t border-ink-100 pt-8 text-center text-sm font-medium uppercase tracking-widest text-ink-400">
+
+        {/* Bottom copyright */}
+        <div className="mt-16 border-t border-ink-100 pt-8 text-center text-xs font-medium text-ink-400">
           {themeTokens.footer}
         </div>
       </div>
@@ -284,15 +332,28 @@ export function PublicFooter() {
   );
 }
 
-function FooterList({ title, items }: { title: string; items: string[] }) {
+function FooterList({
+  title,
+  items,
+}: {
+  title: string;
+  items: { label: string; href: string }[];
+}) {
   return (
     <div>
-      <div className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-ink-500">{title}</div>
-      <div className="mt-4 space-y-2.5 text-[11px] text-ink-500">
+      <h4 className="text-sm font-bold text-ink-900">{title}</h4>
+      <ul className="mt-4 space-y-2.5">
         {items.map((item) => (
-          <div key={item}>{item}</div>
+          <li key={item.label}>
+            <Link
+              to={item.href}
+              className="text-sm text-ink-500 transition-colors hover:text-brand-600"
+            >
+              {item.label}
+            </Link>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }

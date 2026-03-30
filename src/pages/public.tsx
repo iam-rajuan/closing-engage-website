@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, Lock, Shield } from "lucide-react";
 import {
   HomeAudienceSection,
+  HomeCTASection,
   HomeFeatureCards,
   HomeHeroSection,
   HomeSecuritySection,
@@ -26,6 +27,7 @@ export function HomePage() {
       <HomeAudienceSection />
       <HomeSecuritySection />
       <HomeTestimonialSection />
+      <HomeCTASection />
     </div>
   );
 }
