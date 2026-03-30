@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { ArrowRight, CheckCircle2, ChevronRight, Lock, Mail, ShieldCheck } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import clsx from "clsx";
 import { BrandMark, Button, Input, SectionTitle, Surface } from "@/components/common";
 import { publicNav, reliabilityCards, serviceCards } from "@/data/mock-data";
@@ -8,22 +8,33 @@ import { placeholderAction } from "@/lib/utils";
 import { themeTokens } from "@/theme/tokens";
 
 export function PublicHeader() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    navigate("/");
+  };
+
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
-      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-6 py-6 lg:px-12">
-        {/* LEFT: Logo (Icon only) */}
-        <Link to="/" className="flex items-center">
-          <div className="h-14 w-14 overflow-hidden rounded-lg">
-            <img
-              src="/branding/closing-engage-logo.svg"
-              alt="Closing Engage logo"
-              className="h-14 w-auto min-w-[300px] object-contain object-left"
-            />
-          </div>
+    <header className="sticky top-0 z-50 border-b border-ink-100 bg-white/95 backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between px-6 py-3 lg:px-12">
+        <Link to="/" className="flex items-center" onClick={handleLogoClick}>
+          <img
+            src="/branding/closing-engage-logo.svg"
+            alt="Closing Engage logo"
+            className="h-11 w-auto object-contain"
+          />
         </Link>
 
         {/* CENTER: Nav links */}
-        <nav className="hidden items-center gap-7 text-[13.5px] font-medium md:flex">
+        <nav className="hidden items-center gap-8 text-[15px] font-semibold md:flex">
           {publicNav.map((item) => (
             <NavLink
               key={item.href}
@@ -264,21 +275,33 @@ export function FooterBandSection() {
 }
 
 export function PublicFooter() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogoClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    navigate("/");
+  };
+
   return (
     <footer className="w-full bg-white pb-12 pt-20">
       <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-12">
         <div className="grid gap-12 lg:grid-cols-4">
           {/* Col 1: Logo + description */}
           <div>
-            <div className="flex items-center">
-              <div className="h-10 w-10 overflow-hidden">
-                <img
-                  src="/branding/closing-engage-logo.svg"
-                  alt="Closing Engage"
-                  className="h-10 w-auto min-w-[200px] object-contain object-left"
-                />
-              </div>
-            </div>
+            <Link to="/" className="flex items-center" onClick={handleLogoClick}>
+              <img
+                src="/branding/closing-engage-logo.svg"
+                alt="Closing Engage"
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
             <p className="mt-5 text-sm leading-relaxed text-ink-500">
               The Digital Notary Standard. Redefining how closings happen in the digital age.
             </p>

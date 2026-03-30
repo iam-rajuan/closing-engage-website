@@ -100,53 +100,59 @@ export function HomeHeroSection() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          height: "100vh",
+          height: "calc(100vh - 68px)",
         }}
       >
         <div className="relative mx-auto w-full max-w-[1600px] px-6 pt-32 pb-20 lg:px-12">
-          <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
+          <div className="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             {/* LEFT: Text content */}
             <div>
-              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/85 backdrop-blur-sm">
+              <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
                 Built for Title &amp; Escrow Teams
               </div>
-              <h1 className="text-[52px] font-extrabold leading-[1.06] tracking-[-0.02em] text-white md:text-[60px] lg:text-[64px]">
+              <h1 className="text-[52px] font-extrabold leading-[1.02] tracking-[-0.03em] text-white md:text-[68px] lg:text-[76px]">
                 A Modern Platform
                 <br />
                 for managing
                 <br />
                 Closing Orders
               </h1>
-              <p className="mt-7 max-w-[500px] text-[15px] leading-[1.75] text-white/75">
+              <p className="mt-8 max-w-[580px] text-[18px] leading-[1.65] text-white">
                 Streamline your entire closing process with a centralized
                 platform designed to manage signing orders, coordinate with
                 notaries, and maintain full visibility from start to finish.
               </p>
-              <div className="mt-9">
-                <button className="inline-flex items-center justify-center rounded-xl border border-white/25 bg-white/12 px-8 py-3.5 text-[14px] font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/40 hover:shadow-lg hover:shadow-black/20">
+              <div className="mt-10">
+                <button className="inline-flex items-center justify-center rounded-[12px] bg-white px-10 h-[56px] text-[15px] font-bold text-[#185abc] shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition-all hover:bg-white/95 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)]">
                   Get Started
                 </button>
               </div>
             </div>
 
             {/* RIGHT: Platform Capabilities card */}
-            <div className="flex justify-end">
+            <div className="flex justify-end lg:pr-4">
               <div
-                className="w-full max-w-[330px] rounded-2xl p-7 shadow-2xl"
+                className="w-full max-w-[500px] rounded-[32px] px-12 py-11 shadow-2xl"
                 style={{
-                  background: "rgba(255,255,255,0.96)",
-                  backdropFilter: "blur(20px)",
-                  border: "1px solid rgba(255,255,255,0.4)",
+                  background: "rgba(255, 255, 255, 0.42)",
+                  backdropFilter: "blur(44px) saturate(190%)",
+                  WebkitBackdropFilter: "blur(44px) saturate(190%)",
+                  border: "1px solid rgba(255, 255, 255, 0.45)",
+                  boxShadow: "0 24px 80px rgba(0, 0, 0, 0.12)",
                 }}
               >
-                <p className="mb-5 text-[10px] font-extrabold uppercase tracking-[0.24em] text-[#185abc]">
+                <p className="mb-8 text-[11px] font-extrabold uppercase tracking-[0.4em] text-[#185abc]">
                   Platform Capabilities
                 </p>
-                <ul className="space-y-3.5">
+                <ul className="space-y-5">
                   {capabilityItems.map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-[13px] font-medium text-[#1e293b]">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-[#185abc]" />
-                      {item}
+                    <li key={item} className="flex items-center gap-6 text-[15.5px] font-semibold text-[#0f172a]">
+                      <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#185abc]/15 text-[#185abc]">
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 5L5 9L13 1" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <span className="leading-tight">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -319,7 +325,7 @@ export function HomeSecuritySection() {
   return (
     <section className="w-full bg-[#f8fafc] py-24">
       <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-12">
-        <div className="grid gap-16 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+        <div className="grid gap-16 lg:grid-cols-[1fr_0.9fr] lg:items-stretch">
           {/* LEFT */}
           <div>
             <h2 className="text-[30px] font-extrabold tracking-[-0.02em] text-[#0f172a] md:text-[34px]">
@@ -352,9 +358,9 @@ export function HomeSecuritySection() {
           </div>
 
           {/* RIGHT – Enterprise Grade card */}
-          <div className="flex items-start justify-end pt-2">
+          <div className="flex justify-end">
             <div
-              className="flex w-full items-center justify-center rounded-2xl border border-[#e2e8f0]"
+              className="flex h-full w-full items-center justify-center rounded-2xl border border-[#e2e8f0]"
               style={{
                 background: "linear-gradient(145deg, #f0f4ff 0%, #f8fafc 60%, #eef2f8 100%)",
                 minHeight: "340px",
