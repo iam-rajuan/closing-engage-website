@@ -7,6 +7,7 @@ import {
   Users,
   Zap,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
@@ -123,9 +124,12 @@ export function HomeHeroSection() {
                 notaries, and maintain full visibility from start to finish.
               </p>
               <div className="mt-10">
-                <button className="inline-flex items-center justify-center rounded-[12px] bg-white px-10 h-[56px] text-[15px] font-bold text-[#185abc] shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition-all hover:bg-white/95 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)]">
+                <Link
+                  to="/signup/role-selection"
+                  className="inline-flex h-[56px] items-center justify-center rounded-[12px] bg-white px-10 text-[15px] font-bold text-[#185abc] shadow-[0_4px_14px_rgba(0,0,0,0.15)] transition-all hover:bg-white/95 hover:shadow-[0_8px_25px_rgba(0,0,0,0.2)]"
+                >
                   Get Started
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -429,7 +433,10 @@ export function HomeCTASection() {
     <section
       className="w-full py-24"
       style={{
-        background: "linear-gradient(135deg, #1345a0 0%, #185abc 45%, #1d6fca 100%)",
+        backgroundImage: "url('/branding/cta-section-bg.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
       <div className="mx-auto w-full max-w-[1600px] px-6 text-center lg:px-12">
@@ -437,9 +444,12 @@ export function HomeCTASection() {
           Ready to streamline your closing workflow?
         </h2>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <button className="inline-flex items-center justify-center rounded-xl bg-white px-9 py-3.5 text-[14px] font-bold text-[#185abc] shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-all hover:bg-[#f0f5ff] hover:shadow-[0_8px_30px_rgba(0,0,0,0.24)]">
+          <Link
+            to="/signup/role-selection"
+            className="inline-flex items-center justify-center rounded-xl bg-white px-9 py-3.5 text-[14px] font-bold text-[#185abc] shadow-[0_4px_20px_rgba(0,0,0,0.18)] transition-all hover:bg-[#f0f5ff] hover:shadow-[0_8px_30px_rgba(0,0,0,0.24)]"
+          >
             Get Started
-          </button>
+          </Link>
           <button className="inline-flex items-center justify-center rounded-xl border border-white/30 bg-white/10 px-9 py-3.5 text-[14px] font-bold text-white backdrop-blur-sm transition-all hover:bg-white/18 hover:border-white/50">
             Request Demo
           </button>
