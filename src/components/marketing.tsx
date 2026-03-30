@@ -34,15 +34,17 @@ export function PublicHeader() {
         </Link>
 
         {/* CENTER: Nav links */}
-        <nav className="hidden items-center gap-8 text-[15px] font-semibold md:flex">
+        <nav className="hidden items-center gap-3 text-[15px] font-semibold md:flex">
           {publicNav.map((item) => (
             <NavLink
               key={item.href}
               to={item.href}
               className={({ isActive }) =>
                 clsx(
-                  "transition-colors hover:text-brand-600",
-                  isActive ? "font-semibold text-brand-600" : "text-ink-600",
+                  "relative inline-flex items-center rounded-full px-4 py-2.5 transition-all duration-200",
+                  isActive
+                    ? "bg-white text-brand-700 shadow-[0_8px_24px_rgba(20,48,112,0.08)] ring-1 ring-brand-100"
+                    : "text-ink-600 hover:bg-white/80 hover:text-ink-900",
                 )
               }
             >
