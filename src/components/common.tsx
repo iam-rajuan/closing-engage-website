@@ -204,7 +204,11 @@ export function SearchField({ placeholder = "Search orders, notaries, or documen
   return (
     <div className="flex h-[46px] w-full items-center gap-3 rounded-[16px] border border-[#e7ecf4] bg-white px-4 shadow-[0_10px_26px_rgba(20,48,112,0.04)] md:h-[50px] md:px-5">
       <Search className="h-4 w-4 shrink-0 text-ink-300" />
-      <span className="truncate text-sm text-ink-300 md:text-[15px]">{placeholder}</span>
+      <input
+        type="search"
+        placeholder={placeholder}
+        className="h-full w-full bg-transparent text-sm text-ink-700 outline-none placeholder:text-ink-300 md:text-[15px]"
+      />
     </div>
   );
 }

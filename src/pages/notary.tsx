@@ -1,70 +1,290 @@
-import { ChevronLeft, Download, Eye, Search } from "lucide-react";
+import { useRef, useState } from "react";
+import { CalendarDays, Camera, CheckCircle2, ChevronLeft, ChevronRight, CloudUpload, Download, Eye, FileBadge2, FileText, Filter, Flame, Info, MapPin, Paperclip, Pencil, Plus, Printer, Search, SendHorizontal, ShieldCheck, SlidersHorizontal, Trash2, UserRound, X } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Badge, Button, FooterBand, Input, MetricCards, SectionTitle, Select, Surface, Table, Textarea, UploadZone } from "@/components/common";
-import { chatMessages, credentialHistory, notaryAssignedOrders, notaryMetrics, notaryOrders } from "@/data/mock-data";
+import { Badge, Button, FooterBand, Input, Surface, Textarea } from "@/components/common";
+import { chatMessages, credentialHistory, notaryAssignedOrders, notaryOrders } from "@/data/mock-data";
 
 export function NotaryDashboardPage() {
+  const stats = [
+    { title: "Total Assigned Orders", value: "24", helper: "Global", icon: FileText, tone: "brand" },
+    { title: "In Progress", value: "08", helper: "Active", icon: Flame, tone: "warning" },
+    { title: "Completed", value: "13", helper: "History", icon: CheckCircle2, tone: "success" },
+  ] as const;
+
   return (
-    <div className="space-y-6">
-      <SectionTitle
-        title="Assigned Workload"
-        subtitle="Manage your active signing appointments and document verifications from a central atrium."
-        action={<Link to="/notary/upload-documents"><Button>Upload Documents</Button></Link>}
-      />
-      <MetricCards items={notaryMetrics} />
-      <Table
-        headers={["Order ID", "Client Name", "Location", "Date & Time", "Status", "Action"]}
-        footer={<div className="flex items-center justify-between text-sm text-ink-500"><span>Showing 4 of 24 results</span><div className="flex gap-4"><span>Previous</span><span>Next</span></div></div>}
-      >
-        {notaryOrders.map((order) => (
-          <tr key={order.id} className="border-t border-ink-100">
-            <td className="px-6 py-5 font-bold text-brand-600">{order.id}</td>
-            <td className="px-6 py-5 font-semibold text-ink-900">{order.clientName}</td>
-            <td className="px-6 py-5">{order.location}</td>
-            <td className="px-6 py-5 font-semibold text-ink-900">{order.date}<br /><span className="text-xs font-normal text-ink-400">{order.time}</span></td>
-            <td className="px-6 py-5"><Badge status={order.status} /></td>
-            <td className="px-6 py-5"><Link to="/notary/orders/ord-88219" className="font-semibold text-brand-600">View</Link></td>
-          </tr>
+    <div className="space-y-7">
+      <div className="flex flex-wrap items-start justify-between gap-5">
+        <div>
+          <h1 className="text-[44px] font-extrabold leading-[1.02] tracking-[-0.045em] text-ink-900">
+            Assigned Workload
+          </h1>
+          <p className="mt-2 max-w-[680px] text-[18px] leading-[1.7] text-ink-500">
+            Manage your active signing appointments and document verifications from a central atrium.
+          </p>
+        </div>
+        <Link to="/notary/upload-documents">
+          <Button className="h-[48px] rounded-[14px] px-5 text-[15px] font-semibold shadow-[0_14px_32px_rgba(24,90,188,0.18)]">
+            <FileText className="mr-2 h-4 w-4" />
+            Upload Documents
+          </Button>
+        </Link>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-3">
+        {stats.map(({ title, value, helper, icon: Icon, tone }) => (
+          <Surface
+            key={title}
+            className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]"
+          >
+            <div className="mb-8 flex items-start justify-between">
+              <div
+                className={`flex h-12 w-12 items-center justify-center rounded-[14px] ${
+                  tone === "warning"
+                    ? "bg-[#fff5e8] text-[#f08e24]"
+                    : tone === "success"
+                      ? "bg-[#edf9f2] text-[#38b36b]"
+                      : "bg-[#eef4ff] text-brand-600"
+                }`}
+              >
+                <Icon className="h-5 w-5" />
+              </div>
+              <div className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink-300">
+                {helper}
+              </div>
+            </div>
+            <div className="text-[46px] font-extrabold leading-none tracking-[-0.05em] text-ink-900">
+              {value}
+            </div>
+            <div className="mt-2 text-[14px] font-semibold text-ink-500">{title}</div>
+          </Surface>
         ))}
-      </Table>
+      </div>
+
+      <Surface className="overflow-hidden rounded-[18px] border border-[#e4ebf5] bg-white shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="flex items-center justify-between px-6 py-5">
+          <div className="text-[30px] font-extrabold tracking-[-0.04em] text-ink-900">Assigned Orders</div>
+          <div className="inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-brand-600">
+            <span className="h-2 w-2 rounded-full bg-brand-600" />
+            Live Updates
+          </div>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-left">
+            <thead>
+              <tr className="bg-[#fbfcff] text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-300">
+                {["Order ID", "Client Name", "Location", "Date & Time", "Status", "Action"].map((header) => (
+                  <th key={header} className="px-6 py-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {notaryOrders.map((order) => (
+                <tr key={order.id} className="border-t border-[#edf1f7]">
+                  <td className="px-6 py-5 text-[15px] font-bold text-brand-600">{order.id}</td>
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#eef2f8] text-[10px] font-bold text-ink-500">
+                        {order.clientName.split(" ").map((part) => part[0]).join("").slice(0, 2)}
+                      </div>
+                      <span className="text-[15px] font-semibold text-ink-900">{order.clientName}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-5 text-[15px] text-ink-500">{order.location}</td>
+                  <td className="px-6 py-5">
+                    <div className="text-[15px] font-semibold text-ink-900">{order.date}</div>
+                    <div className="mt-1 text-[12px] text-ink-400">{order.time}</div>
+                  </td>
+                  <td className="px-6 py-5">
+                    <Badge status={order.status} />
+                  </td>
+                  <td className="px-6 py-5">
+                    <Link to="/notary/orders/ord-88219" className="inline-flex items-center gap-2 text-[15px] font-semibold text-brand-600">
+                      View
+                      <ChevronRight className="h-4 w-4" />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex items-center justify-between border-t border-[#edf1f7] px-6 py-5 text-sm text-ink-500">
+          <span>Showing 4 of 24 results</span>
+          <div className="flex items-center gap-5">
+            <span className="text-ink-300">Previous</span>
+            <span className="text-ink-500">Next</span>
+          </div>
+        </div>
+      </Surface>
       <FooterBand />
     </div>
   );
 }
 
 export function NotaryOrdersPage() {
+  const [searchValue, setSearchValue] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"All" | "Assigned" | "In Progress" | "Submitted">("All");
+  const [dateFilter, setDateFilter] = useState("");
+  const [showMoreFilters, setShowMoreFilters] = useState(false);
+
+  const filteredOrders = notaryAssignedOrders.filter((order) => {
+    const matchesSearch =
+      searchValue.trim() === "" ||
+      order.id.toLowerCase().includes(searchValue.toLowerCase()) ||
+      order.clientName.toLowerCase().includes(searchValue.toLowerCase());
+    const matchesStatus = statusFilter === "All" || order.status === statusFilter;
+    const matchesDate = dateFilter.trim() === "" || order.date.toLowerCase().includes(dateFilter.toLowerCase());
+
+    return matchesSearch && matchesStatus && matchesDate;
+  });
+
   return (
-    <div className="space-y-6">
-      <Surface className="p-5">
-        <div className="grid gap-4 xl:grid-cols-[1fr_0.3fr_0.3fr_auto_auto]">
-          <Input icon={<Search className="h-4 w-4 text-ink-300" />} placeholder="Order ID or Client Name" />
-          <Select options={["All Statuses"]} />
-          <Input placeholder="mm/dd/yyyy" />
-          <Button variant="outline">More Filters</Button>
-          <Button variant="ghost">Export CSV</Button>
+    <div className="space-y-7">
+      <div className="grid gap-4 xl:grid-cols-[1.25fr_0.56fr_0.7fr_auto_auto] xl:items-end">
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            Quick Search
+          </div>
+          <div className="flex h-[48px] items-center gap-3 rounded-[12px] border border-[#dfe6f2] bg-white px-4 text-[15px] text-ink-400">
+            <Search className="h-4 w-4" />
+            <input
+              value={searchValue}
+              onChange={(event) => setSearchValue(event.target.value)}
+              placeholder="Order ID or Client Name"
+              className="h-full w-full bg-transparent text-ink-700 outline-none placeholder:text-ink-400"
+            />
+          </div>
+        </div>
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            Status
+          </div>
+          <label className="flex h-[48px] items-center rounded-[12px] border border-[#dfe6f2] bg-white px-4">
+            <select
+              value={statusFilter}
+              onChange={(event) => setStatusFilter(event.target.value as "All" | "Assigned" | "In Progress" | "Submitted")}
+              className="h-full w-full bg-transparent text-[15px] text-ink-700 outline-none"
+            >
+              <option value="All">All Statuses</option>
+              <option value="Assigned">Assigned</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Submitted">Submitted</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            Date Range
+          </div>
+          <div className="flex h-[48px] items-center gap-3 rounded-[12px] border border-[#dfe6f2] bg-white px-4 text-[15px] text-ink-500">
+            <CalendarDays className="h-4 w-4 text-ink-400" />
+            <input
+              value={dateFilter}
+              onChange={(event) => setDateFilter(event.target.value)}
+              placeholder="mm/dd/yyyy"
+              className="h-full w-full bg-transparent text-ink-700 outline-none placeholder:text-ink-400"
+            />
+          </div>
+        </div>
+        <Button
+          variant="outline"
+          className="h-[48px] rounded-[12px] border-[#dfe6f2] px-5 text-[15px] font-semibold text-brand-600"
+          onClick={() => setShowMoreFilters((current) => !current)}
+        >
+          <SlidersHorizontal className="mr-2 h-4 w-4" />
+          More Filters
+        </Button>
+        <Button variant="outline" className="h-[48px] rounded-[12px] border-[#dfe6f2] px-5 text-[15px] font-semibold text-ink-700">
+          Export CSV
+        </Button>
+      </div>
+
+      {showMoreFilters ? (
+        <Surface className="rounded-[16px] border border-[#e4ebf5] bg-[#f9fbff] p-4 text-[14px] leading-[1.7] text-ink-500 shadow-[0_10px_24px_rgba(20,48,112,0.04)]">
+          Additional filters can be added here for county, product type, or signing priority. Current implementation supports quick search, status, and date filtering.
+        </Surface>
+      ) : null}
+
+      <Surface className="overflow-hidden rounded-[18px] border border-[#e4ebf5] bg-white shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-left">
+            <thead>
+              <tr className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-300">
+                {["Order ID", "Client Name", "Signing Location", "Signing Date", "Status", "Actions"].map((header) => (
+                  <th key={header} className="px-6 py-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredOrders.map((order) => (
+                <tr key={order.id} className="border-t border-[#edf1f7]">
+                  <td className="px-6 py-5 text-[15px] font-bold text-brand-600">{order.id}</td>
+                  <td className="px-6 py-5">
+                    <div className="text-[16px] font-semibold text-ink-900">{order.clientName}</div>
+                    <div className="mt-1 text-[13px] text-ink-500">{order.notary}</div>
+                  </td>
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-2 text-[15px] text-ink-500">
+                      <MapPin className="h-4 w-4 text-ink-400" />
+                      {order.location}
+                    </div>
+                  </td>
+                  <td className="px-6 py-5">
+                    <div className="text-[15px] font-semibold text-ink-900">{order.date}</div>
+                    <div className="mt-1 text-[13px] text-ink-500">{order.time}</div>
+                  </td>
+                  <td className="px-6 py-5">
+                    <Badge status={order.status} />
+                  </td>
+                  <td className="px-6 py-5">
+                    <Link to="/notary/orders/ord-88219" className="text-brand-600" aria-label={`View ${order.id}`}>
+                      <Eye className="h-5 w-5" />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex items-center justify-between border-t border-[#edf1f7] px-6 py-5 text-sm text-ink-500">
+          <span>Showing {filteredOrders.length} of {notaryAssignedOrders.length} assigned orders</span>
+          <div className="flex items-center gap-3">
+            <button className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#e4ebf5] text-ink-400">
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <button className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#e4ebf5] text-ink-700">
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </Surface>
-      <Table headers={["Order ID", "Client Name", "Signing location", "Signing Date", "Status", "Actions"]} footer={<div className="text-sm text-ink-500">Showing 1-3 of 24 assigned orders</div>}>
-        {notaryAssignedOrders.map((order) => (
-          <tr key={order.id} className="border-t border-ink-100">
-            <td className="px-6 py-5 font-bold text-ink-900">{order.id}</td>
-            <td className="px-6 py-5"><div className="font-semibold text-ink-900">{order.clientName}</div><div className="text-sm text-ink-500">{order.notary}</div></td>
-            <td className="px-6 py-5">{order.location}</td>
-            <td className="px-6 py-5">{order.date}<br />{order.time}</td>
-            <td className="px-6 py-5"><Badge status={order.status} /></td>
-            <td className="px-6 py-5 text-brand-600">View</td>
-          </tr>
-        ))}
-      </Table>
+
       <div className="grid gap-5 md:grid-cols-3">
         {[
-          ["Status: Assigned", "Order has been dispatched but you haven't started the document package review yet."],
-          ["Status: In Progress", "You have opened the signing package or marked yourself en route to the client."],
-          ["Status: Submitted", "The signing is complete and the executed documents have been uploaded for review."],
-        ].map(([title, body]) => (
-          <Surface key={title} className="p-6">
-            <div className="font-extrabold text-ink-900">{title}</div>
-            <div className="mt-3 text-sm leading-6 text-ink-500">{body}</div>
+          ["Status: Assigned", "Order has been dispatched but you haven't started the document package review yet.", "brand"],
+          ["Status: In Progress", "You have opened the signing package or marked yourself en route to the client.", "warning"],
+          ["Status: Submitted", "The signing is complete and the executed documents have been uploaded for review.", "success"],
+        ].map(([title, body, tone]) => (
+          <Surface key={title} className="rounded-[18px] border border-[#e4ebf5] bg-white p-5 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="flex items-start gap-4">
+              <div className={`flex h-10 w-10 items-center justify-center rounded-[12px] ${
+                tone === "warning"
+                  ? "bg-[#fff5e8] text-[#f08e24]"
+                  : tone === "success"
+                    ? "bg-[#edf9f2] text-[#38b36b]"
+                    : "bg-[#eef4ff] text-brand-600"
+              }`}>
+                {tone === "warning" ? <Flame className="h-4 w-4" /> : tone === "success" ? <ShieldCheck className="h-4 w-4" /> : <Info className="h-4 w-4" />}
+              </div>
+              <div>
+                <div className="text-[18px] font-extrabold text-ink-900">{title}</div>
+                <div className="mt-2 text-[14px] leading-[1.7] text-ink-500">{body}</div>
+              </div>
+            </div>
           </Surface>
         ))}
       </div>
@@ -74,84 +294,217 @@ export function NotaryOrdersPage() {
 }
 
 export function NotaryOrderDetailPage() {
+  const [orderStatus, setOrderStatus] = useState<"Assigned" | "In Progress" | "Completed">("Assigned");
+  const [printedConfirmed, setPrintedConfirmed] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([
+    new File(["temporary"], "Scanback_Part1.pdf", { type: "application/pdf" }),
+  ]);
+  const [notaryNotes, setNotaryNotes] = useState("");
+  const [isDragActive, setIsDragActive] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const appendFiles = (files: FileList | File[]) => {
+    const accepted = Array.from(files).filter((file) => file.name.toLowerCase().endsWith(".pdf"));
+    if (accepted.length === 0) return;
+    setUploadedFiles((current) => [...current, ...accepted]);
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragActive(false);
+    if (event.dataTransfer.files?.length) appendFiles(event.dataTransfer.files);
+  };
+
   return (
-    <div className="space-y-6">
-      <Link to="/notary/orders" className="inline-flex items-center gap-2 text-sm font-semibold text-brand-600"><ChevronLeft className="h-4 w-4" />Back to Orders</Link>
+    <div className="space-y-7">
+      <Link to="/notary/orders" className="inline-flex items-center gap-2 text-[15px] font-semibold text-brand-600">
+        <ChevronLeft className="h-4 w-4" />
+        Back to Orders
+      </Link>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-3">
-          <h1 className="text-4xl font-extrabold tracking-[-0.04em] text-ink-900">Order ID #ORD-88219</h1>
-          <Badge status="Assigned" />
+        <div className="flex items-center gap-4">
+          <h1 className="text-[46px] font-extrabold tracking-[-0.045em] text-ink-900">Order ID #ORD-88219</h1>
+          <Badge status={orderStatus === "Completed" ? "Submitted" : orderStatus} />
         </div>
         <div className="flex gap-3">
-          <Button variant="outline">Mark as In Progress</Button>
-          <Button>Mark as Completed</Button>
+          <Button
+            variant="outline"
+            className="h-[44px] rounded-[12px] border-[#dfe6f2] px-5 text-[14px] font-semibold"
+            onClick={() => setOrderStatus("In Progress")}
+          >
+            Mark as In Progress
+          </Button>
+          <Button
+            className="h-[44px] rounded-[12px] px-5 text-[14px] font-semibold"
+            onClick={() => setOrderStatus("Completed")}
+          >
+            Mark as Completed
+          </Button>
         </div>
       </div>
-      <Surface className="p-8">
-        <div className="text-sm font-extrabold uppercase tracking-[0.18em] text-ink-500">Order Lifecycle</div>
-        <div className="mt-6 grid gap-5 md:grid-cols-3 text-center">
-          {[
-            ["Docs Ready to Print", "Completed", true],
-            ["Docs Printed by Notary", "Confirm", true],
-            ["Scanbacks Uploaded", "Confirm", false],
-          ].map(([title, body, active]) => (
-            <div key={`${title}`} className="rounded-[24px] bg-ink-50 px-4 py-6">
-              <div className={`mx-auto h-11 w-11 rounded-2xl ${active ? "bg-brand-600" : "bg-ink-200"}`} />
-              <div className="mt-4 font-semibold text-ink-900">{title}</div>
-              <button className={`mt-4 rounded-full px-4 py-2 text-xs font-semibold ${active ? "border border-brand-600 text-brand-600" : "bg-ink-100 text-ink-300"}`}>{body}</button>
+
+      <Surface className="rounded-[18px] border border-[#e4ebf5] bg-[#f4f8ff] p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="text-[14px] font-extrabold uppercase tracking-[0.16em] text-ink-500">Order Lifecycle</div>
+        <div className="mt-8 grid gap-8 md:grid-cols-3 text-center">
+          <div>
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-[14px] bg-brand-600 text-white">
+              <CheckCircle2 className="h-5 w-5" />
             </div>
-          ))}
+            <div className="mt-4 text-[16px] font-semibold text-ink-900">Docs Ready to Print</div>
+            <div className="mt-2 text-[13px] font-semibold text-brand-600">Completed</div>
+          </div>
+          <div>
+            <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-[14px] border-2 border-brand-600 bg-white text-brand-600">
+              <Printer className="h-5 w-5" />
+            </div>
+            <div className="mt-4 text-[16px] font-semibold text-ink-900">Docs Printed by Notary</div>
+            <button
+              type="button"
+              onClick={() => setPrintedConfirmed((current) => !current)}
+              className={`mt-4 rounded-full px-5 py-2 text-[13px] font-semibold ${
+                printedConfirmed
+                  ? "bg-brand-600 text-white"
+                  : "border border-brand-600 bg-white text-brand-600"
+              }`}
+            >
+              {printedConfirmed ? "Confirmed" : "Confirm"}
+            </button>
+          </div>
+          <div>
+            <div className={`mx-auto flex h-11 w-11 items-center justify-center rounded-[14px] ${uploadedFiles.length > 0 ? "border-2 border-[#cfd8e6] bg-white text-ink-400" : "border-2 border-[#d8dee9] bg-white text-ink-300"}`}>
+              <CloudUpload className="h-5 w-5" />
+            </div>
+            <div className={`mt-4 text-[16px] font-semibold ${uploadedFiles.length > 0 ? "text-ink-700" : "text-ink-400"}`}>Scanbacks Uploaded</div>
+            <button
+              type="button"
+              disabled={uploadedFiles.length === 0}
+              className={`mt-4 rounded-full px-5 py-2 text-[13px] font-semibold ${
+                uploadedFiles.length > 0
+                  ? "border border-[#d0d8e5] bg-white text-ink-500"
+                  : "bg-[#eef2f7] text-ink-300"
+              }`}
+            >
+              Confirm
+            </button>
+          </div>
         </div>
       </Surface>
-      <div className="grid gap-6 xl:grid-cols-[1fr_0.75fr]">
+
+      <div className="grid gap-6 xl:grid-cols-[1fr_0.68fr]">
         <div className="space-y-6">
-          <Surface className="p-8">
-            <div className="mb-5 text-lg font-extrabold text-ink-900">Order Information</div>
-            <div className="grid gap-5 md:grid-cols-2 text-sm">
-              <div><div className="text-ink-400">Client</div><div className="mt-2 font-semibold text-ink-900">Jonathan Aris</div></div>
-              <div><div className="text-ink-400">Signing Date & Time</div><div className="mt-2 font-semibold text-ink-900">Oct 24, 2023 at 2:00 PM</div></div>
-              <div><div className="text-ink-400">Property Address</div><div className="mt-2 font-semibold text-ink-900">123 Oak St, Austin, TX 78701</div></div>
-              <div><div className="text-ink-400">Property Address</div><div className="mt-2 font-semibold text-ink-900">San Francisco, CA</div></div>
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <Info className="h-5 w-5 text-brand-600" />
+              <div className="text-[16px] font-extrabold uppercase tracking-[0.16em] text-ink-700">Order Information</div>
+            </div>
+            <div className="grid gap-8 md:grid-cols-2">
+              <div><div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">Client</div><div className="mt-3 text-[16px] font-semibold text-ink-900">Jonathan Aris</div></div>
+              <div><div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">Signing Date & Time</div><div className="mt-3 text-[16px] font-semibold text-ink-900">Oct 24, 2023 at 2:00 PM</div></div>
+              <div><div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">Property Address</div><div className="mt-3 text-[16px] font-semibold text-ink-900">123 Oak St, Austin, TX 78701</div></div>
+              <div><div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">Property Address</div><div className="mt-3 text-[16px] font-semibold text-ink-900">San Francisco, CA</div></div>
             </div>
           </Surface>
-          <Surface className="p-8">
-            <div className="text-lg font-extrabold text-ink-900">Special Instructions</div>
-            <p className="mt-4 text-sm leading-6 text-ink-500">Please ensure all signatures are in blue ink. Scan and upload the full package once completed.</p>
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-[#f5f7fb] p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[16px] font-extrabold uppercase tracking-[0.16em] text-ink-700">Special Instructions</div>
+            <p className="mt-5 text-[15px] leading-[1.8] text-ink-700">Please ensure all signatures are in blue ink. Scan and upload the full package once completed.</p>
           </Surface>
-          <Surface className="p-8">
-            <div className="text-lg font-extrabold text-ink-900">Provided Documents</div>
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[16px] font-extrabold uppercase tracking-[0.16em] text-ink-700">Provided Documents</div>
             <div className="mt-5 space-y-4">
               {[
                 ["Closing_Instructions.pdf", "1.2 MB"],
                 ["Signature_Package.pdf", "5.4 MB"],
               ].map(([name, size]) => (
-                <div key={name} className="flex items-center justify-between rounded-2xl border border-ink-100 px-4 py-4">
-                  <div><div className="font-semibold text-ink-900">{name}</div><div className="text-sm text-ink-400">{size}</div></div>
-                  <div className="flex gap-4 text-brand-600"><Eye className="h-4 w-4" /><Download className="h-4 w-4" /></div>
+                <div key={name} className="flex items-center justify-between rounded-[14px] bg-[#f7f9fd] px-4 py-4">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#fff3f3] text-danger-600">
+                      <FileText className="h-4 w-4" />
+                    </div>
+                    <div><div className="font-semibold text-ink-900">{name}</div><div className="text-sm text-ink-400">{size}</div></div>
+                  </div>
+                  <div className="flex gap-5 text-brand-600"><Eye className="h-4 w-4" /><Download className="h-4 w-4" /></div>
                 </div>
               ))}
             </div>
           </Surface>
         </div>
         <div className="space-y-6">
-          <Surface className="p-6">
-            <div className="mb-5 text-lg font-extrabold text-ink-900">Upload Scanbacks</div>
-            <UploadZone title="Drag and drop scanbacks here" subtitle="Supports PDF up to 50MB" />
-            <div className="mt-5 rounded-2xl bg-[#fff7f6] px-4 py-4 text-sm">
-              <div className="font-semibold text-ink-900">Scanback_Part1.pdf</div>
-              <div className="text-ink-400">2.4 MB • Uploaded just now</div>
+          <Surface className="rounded-[18px] border border-dashed border-[#d8e0ec] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[16px] font-extrabold uppercase tracking-[0.16em] text-ink-700">Upload Scanbacks</div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,application/pdf"
+              multiple
+              className="hidden"
+              onChange={(event) => {
+                if (event.target.files?.length) appendFiles(event.target.files);
+                event.target.value = "";
+              }}
+            />
+            <div
+              className={`mt-5 rounded-[16px] border border-dashed px-6 py-10 text-center transition-colors ${
+                isDragActive ? "border-brand-300 bg-[#f5f9ff]" : "border-[#d8e0ec] bg-[#fcfdff]"
+              }`}
+              onDragOver={(event) => {
+                event.preventDefault();
+                setIsDragActive(true);
+              }}
+              onDragLeave={(event) => {
+                event.preventDefault();
+                setIsDragActive(false);
+              }}
+              onDrop={handleDrop}
+            >
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#eaf0ff] text-brand-600">
+                <CloudUpload className="h-7 w-7" />
+              </div>
+              <div className="mt-5 text-[18px] font-semibold text-ink-900">Drag and drop scanbacks here</div>
+              <div className="mt-2 text-[14px] text-ink-400">Supports PDF up to 50MB</div>
+              <Button
+                type="button"
+                variant="outline"
+                className="mt-6 h-[40px] rounded-[10px] border-[#dfe6f2] px-5 text-[14px] font-semibold"
+                onClick={() => fileInputRef.current?.click()}
+              >
+                Browse Files
+              </Button>
             </div>
+            {uploadedFiles.map((file, index) => (
+              <div key={`${file.name}-${index}`} className="mt-5 flex items-center justify-between rounded-[14px] bg-[#f3f4f7] px-4 py-4 text-sm">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#fff3f3] text-danger-600">
+                    <FileText className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-ink-900">{file.name}</div>
+                    <div className="text-ink-400">2.4 MB • Uploaded just now</div>
+                  </div>
+                </div>
+                <button type="button" onClick={() => setUploadedFiles((current) => current.filter((_, itemIndex) => itemIndex !== index))}>
+                  <Trash2 className="h-4 w-4 text-danger-600" />
+                </button>
+              </div>
+            ))}
           </Surface>
-          <Surface className="p-8">
-            <div className="text-lg font-extrabold text-ink-900">Notary Notes</div>
-            <Textarea className="mt-4" placeholder="Add any specific details about the signing here..." />
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[16px] font-extrabold uppercase tracking-[0.16em] text-ink-700">Notary Notes</div>
+            <Textarea
+              className="mt-5 min-h-[160px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 py-3 text-[14px]"
+              placeholder="Add any specific details about the signing here..."
+              value={notaryNotes}
+              onChange={(event) => setNotaryNotes(event.target.value)}
+            />
           </Surface>
         </div>
       </div>
       <div className="flex justify-end">
-        <div className="w-full max-w-[420px]">
-          <Button className="w-full">Submit Documents</Button>
-          <div className="mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-300">Required fields must be completed before submission</div>
+        <div className="w-full max-w-[520px]">
+          <Button className="h-[52px] w-full rounded-[12px] text-[18px] font-semibold">
+            Submit Documents
+            <ChevronRight className="ml-2 h-5 w-5" />
+          </Button>
+          <div className="mt-4 text-center text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">Required fields must be completed before submission</div>
         </div>
       </div>
       <FooterBand />
@@ -160,40 +513,166 @@ export function NotaryOrderDetailPage() {
 }
 
 export function NotaryUploadDocumentsPage() {
+  const [selectedOrder, setSelectedOrder] = useState("#CE-90210 - Jonathan Harker");
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([
+    new File(["temporary"], "scanback_signed_final.pdf", { type: "application/pdf" }),
+  ]);
+  const [isDragActive, setIsDragActive] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const appendFiles = (files: FileList | File[]) => {
+    const accepted = Array.from(files).filter((file) => file.name.toLowerCase().endsWith(".pdf"));
+    if (accepted.length === 0) return;
+    setUploadedFiles((current) => [...current, ...accepted]);
+  };
+
+  const removeFile = (indexToRemove: number) => {
+    setUploadedFiles((current) => current.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    setIsDragActive(false);
+    if (event.dataTransfer.files?.length) appendFiles(event.dataTransfer.files);
+  };
+
   return (
-    <div className="space-y-6">
-      <SectionTitle
-        title="Upload Documents"
-        subtitle="Upload scanback documents for your assigned orders. Ensure all pages are legible and included in a single PDF file where possible."
-      />
-      <div className="grid gap-6 xl:grid-cols-[1fr_280px]">
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-[44px] font-extrabold leading-[1.02] tracking-[-0.045em] text-ink-900">
+          Upload Documents
+        </h1>
+        <p className="mt-2 max-w-[760px] text-[18px] leading-[1.7] text-ink-500">
+          Upload scanback documents for your assigned orders. Ensure all pages are legible and included in a single PDF file where possible.
+        </p>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[1fr_280px] xl:items-start">
         <div className="space-y-6">
-          <Select label="Select Assigned Order" options={["#CE-90210 - Jonathan Harker"]} />
-          <UploadZone />
-          <Surface className="p-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="font-semibold text-ink-900">scanback_signed_final.pdf</div>
-                <div className="text-sm text-ink-500">4.2 MB • Ready to Submit</div>
-              </div>
-              <button className="text-ink-400">×</button>
+          <div>
+            <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+              Select Assigned Order
             </div>
-            <div className="mt-5 h-2 rounded-full bg-ink-100"><div className="h-2 w-full rounded-full bg-emerald-500" /></div>
-            <div className="mt-3 flex justify-between text-xs font-semibold text-emerald-600"><span>Verification Complete</span><span>100%</span></div>
-          </Surface>
+            <label className="flex h-[50px] items-center rounded-[12px] border border-[#dfe6f2] bg-white px-4">
+              <select
+                value={selectedOrder}
+                onChange={(event) => setSelectedOrder(event.target.value)}
+                className="h-full w-full bg-transparent text-[15px] text-ink-700 outline-none"
+              >
+                <option>#CE-90210 - Jonathan Harker</option>
+                <option>#CE-93882 - Mina Stewart</option>
+                <option>#CE-92119 - Lucy Crawford</option>
+              </select>
+            </label>
+          </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".pdf,application/pdf"
+            multiple
+            className="hidden"
+            onChange={(event) => {
+              if (event.target.files?.length) appendFiles(event.target.files);
+              event.target.value = "";
+            }}
+          />
+
+          <div
+            className={`rounded-[20px] border border-dashed px-8 py-12 text-center transition-colors ${
+              isDragActive ? "border-brand-300 bg-[#f5f9ff]" : "border-[#dfe6f2] bg-white"
+            }`}
+            onDragOver={(event) => {
+              event.preventDefault();
+              setIsDragActive(true);
+            }}
+            onDragLeave={(event) => {
+              event.preventDefault();
+              setIsDragActive(false);
+            }}
+            onDrop={handleDrop}
+          >
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#eaf0ff] text-brand-600">
+              <CloudUpload className="h-7 w-7" />
+            </div>
+            <div className="mt-6 text-[34px] font-extrabold tracking-[-0.04em] text-ink-900">
+              Drag & Drop Scanbacks
+            </div>
+            <div className="mx-auto mt-3 max-w-[420px] text-[16px] leading-[1.7] text-ink-500">
+              Drop your PDF files here or click to browse your computer.
+            </div>
+            <Button
+              type="button"
+              variant="outline"
+              className="mt-7 h-[42px] rounded-[12px] border-[#dfe6f2] px-5 text-[15px] font-semibold text-brand-600"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <Plus className="mr-2 h-4 w-4" />
+              Browse Files
+            </Button>
+          </div>
+
+          {uploadedFiles.map((file, index) => (
+            <Surface
+              key={`${file.name}-${index}`}
+              className="rounded-[18px] border border-[#e4ebf5] bg-white p-5 shadow-[0_12px_30px_rgba(20,48,112,0.05)]"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#fff3f3] text-danger-600">
+                    <FileText className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <div className="text-[16px] font-semibold text-ink-900">{file.name}</div>
+                    <div className="mt-1 text-[13px] text-ink-500">4.2 MB • Ready to Submit</div>
+                  </div>
+                </div>
+                <button type="button" onClick={() => removeFile(index)} className="text-ink-400 hover:text-danger-600">
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="mt-5 h-[4px] rounded-full bg-[#dff3e8]">
+                <div className="h-[4px] w-full rounded-full bg-[#1fc27e]" />
+              </div>
+              <div className="mt-3 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.08em] text-[#1fc27e]">
+                <span>Verification Complete</span>
+                <span>100%</span>
+              </div>
+            </Surface>
+          ))}
         </div>
-        <Surface className="h-fit p-6">
-          <div className="text-sm font-extrabold uppercase tracking-[0.18em] text-ink-500">Submission Guide</div>
-          <div className="mt-5 space-y-5 text-sm leading-6 text-ink-500">
-            <div><strong className="block text-ink-900">Legibility</strong>Ensure all text is sharp and readable for the title officer.</div>
-            <div><strong className="block text-ink-900">Order of Pages</strong>Keep the stack in the original order provided in the packet.</div>
-            <div><strong className="block text-ink-900">Full Stack</strong>Include all pages, even if they only contain boilerplate text.</div>
+
+        <Surface className="h-fit rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+          <div className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-ink-500">Submission Guide</div>
+          <div className="mt-5 space-y-5 text-[14px] leading-[1.7] text-ink-500">
+            {[
+              ["Legibility", "Ensure all text is sharp and readable for the title officer."],
+              ["Order of Pages", "Keep the stack in the original order provided in the packet."],
+              ["Full Stack", "Include all pages, even if they only contain boilerplate text."],
+            ].map(([title, body]) => (
+              <div key={title} className="flex gap-3">
+                <div className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full border border-brand-200 text-brand-600">
+                  <CheckCircle2 className="h-3 w-3" />
+                </div>
+                <div>
+                  <strong className="block text-ink-900">{title}</strong>
+                  {body}
+                </div>
+              </div>
+            ))}
           </div>
         </Surface>
       </div>
+
       <div className="flex items-center justify-between">
-        <div className="text-sm text-emerald-600">All systems operational</div>
-        <Button>Upload & Submit</Button>
+        <div className="inline-flex items-center gap-2 text-[14px] font-medium text-[#1aa468]">
+          <CheckCircle2 className="h-4 w-4" />
+          All systems operational
+        </div>
+        <Button className="h-[52px] rounded-[12px] px-7 text-[16px] font-semibold">
+          Upload & Submit
+          <ChevronRight className="ml-2 h-5 w-5" />
+        </Button>
       </div>
       <FooterBand />
     </div>
@@ -201,73 +680,120 @@ export function NotaryUploadDocumentsPage() {
 }
 
 export function NotarySettingsPage() {
+  const [emailNotifications, setEmailNotifications] = useState(true);
+  const [orderUpdates, setOrderUpdates] = useState(true);
+  const [documentUpdates, setDocumentUpdates] = useState(false);
+  const notificationItems = [
+    { label: "Email Notifications", body: "Receive global summary emails", active: emailNotifications, setActive: setEmailNotifications },
+    { label: "Order Updates", body: "Real-time alerts for escrow changes", active: orderUpdates, setActive: setOrderUpdates },
+    { label: "Document Updates", body: "Alerts when new documents are signed", active: documentUpdates, setActive: setDocumentUpdates },
+  ];
+
   return (
-    <div className="space-y-6">
-      <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
-        <Surface className="p-8">
-          <div className="mb-6 flex items-center gap-4">
-            <div className="h-18 w-18 rounded-[20px] bg-[linear-gradient(135deg,#172742,#6d4d63)]" />
-            <div>
-              <div className="flex items-center gap-3">
-                <div className="text-2xl font-extrabold tracking-[-0.04em] text-ink-900">Sarah Miller</div>
-                <Badge status="Verified" />
-              </div>
-              <div className="text-sm text-ink-500">sarah.miller@title-experts.com</div>
+    <div className="space-y-7">
+      <div className="flex flex-wrap items-start gap-6">
+        <div className="relative flex h-[92px] w-[92px] items-center justify-center rounded-[20px] bg-[linear-gradient(135deg,#101622,#2a3449)] text-white shadow-[0_18px_38px_rgba(20,48,112,0.14)]">
+          <span className="text-[28px] font-bold">SM</span>
+          <button className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_10px_24px_rgba(24,90,188,0.2)]">
+            <Camera className="h-4 w-4" />
+          </button>
+        </div>
+        <div>
+          <div className="flex flex-wrap items-center gap-4">
+            <h1 className="text-[44px] font-extrabold leading-[1.02] tracking-[-0.045em] text-ink-900">
+              Sarah Miller
+            </h1>
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#d9f8e7] px-4 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.14em] text-[#138e59]">
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              Verified Notary
             </div>
           </div>
-          <Button variant="outline">Edit Profile</Button>
-        </Surface>
-        <Surface className="p-8">
-          <div className="text-lg font-extrabold text-ink-900">Security Settings</div>
-          <div className="mt-6 space-y-4">
-            <Input label="Current Password" placeholder={'""""""""'} className="bg-white" />
-            <Input label="New Password" placeholder={'""""""""'} className="bg-white" />
-            <Input label="Confirm New Password" placeholder={'""""""""'} className="bg-white" />
-            <Button variant="outline">Update Password</Button>
-          </div>
-        </Surface>
+          <div className="mt-3 text-[16px] text-ink-500">sarah.miller@title-experts.com</div>
+          <Button
+            variant="outline"
+            className="mt-5 h-[44px] rounded-[12px] border-[#dfe6f2] px-5 text-[14px] font-semibold text-brand-600"
+          >
+            Edit Profile
+          </Button>
+        </div>
       </div>
-      <div className="grid gap-6 xl:grid-cols-[1.1fr_0.9fr]">
+
+      <div className="grid gap-6 xl:grid-cols-[1.12fr_0.48fr]">
         <div className="space-y-6">
-          <Surface className="p-8">
-            <div className="text-lg font-extrabold text-ink-900">Personal Information</div>
-            <div className="mt-6 grid gap-5 md:grid-cols-2">
-              <Input label="Full Name" placeholder="Sarah Miller" className="bg-white" />
-              <Input label="Phone Number" placeholder="+1 (512) 555-0123" className="bg-white" />
-              <Input label="Email Address" placeholder="sarah.miller@title-experts.com" className="bg-white md:col-span-2" />
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <UserRound className="h-5 w-5 text-brand-600" />
+              <div className="text-[24px] font-extrabold tracking-[-0.03em] text-ink-900">Personal Information</div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              <Input label="FULL NAME" placeholder="Sarah Miller" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <Input label="PHONE NUMBER" placeholder="+1 (512) 555-0123" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <Input label="EMAIL ADDRESS" placeholder="sarah.miller@title-experts.com" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px] md:col-span-2" />
             </div>
           </Surface>
-          <Surface className="p-8">
-            <div className="text-lg font-extrabold text-ink-900">Professional Details</div>
-            <div className="mt-6 grid gap-5 md:grid-cols-2">
-              <Input label="License Number" placeholder="TX-992031-NM" className="bg-white" />
-              <Input label="Commission Expiry" placeholder="08/14/2026" className="bg-white" />
-              <Input label="Service Area" placeholder="Austin, TX & surrounding Travis County" className="bg-white md:col-span-2" />
+
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <FileText className="h-5 w-5 text-brand-600" />
+              <div className="text-[24px] font-extrabold tracking-[-0.03em] text-ink-900">Professional Details</div>
+            </div>
+            <div className="grid gap-5 md:grid-cols-2">
+              <Input label="LICENSE NUMBER" placeholder="TX-992031-NM" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <div>
+                <span className="mb-2 block text-sm font-semibold text-ink-900">COMMISSION EXPIRY</span>
+                <div className="flex h-[48px] items-center justify-between rounded-[12px] border border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px] text-ink-700">
+                  <span>08/14/2026</span>
+                  <CalendarDays className="h-4 w-4 text-ink-400" />
+                </div>
+              </div>
+              <div className="md:col-span-2">
+                <span className="mb-2 block text-sm font-semibold text-ink-900">SERVICE AREA</span>
+                <div className="flex h-[48px] items-center gap-3 rounded-[12px] border border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px] text-ink-700">
+                  <MapPin className="h-4 w-4 text-ink-400" />
+                  Austin, TX & surrounding Travis County
+                </div>
+              </div>
             </div>
           </Surface>
         </div>
-        <Surface className="p-8">
-          <div className="text-lg font-extrabold text-ink-900">Notification Preferences</div>
-          <div className="mt-6 space-y-6">
-            {[
-              ["Email Notifications", "Receive global summary emails", true],
-              ["Order Updates", "Real-time alerts for escrow changes", true],
-              ["Document Updates", "Alerts when new documents are signed", false],
-            ].map(([label, body, active]) => (
-              <div key={`${label}`}>
-                <div className="flex items-center justify-between">
+
+        <div className="space-y-6">
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[24px] font-extrabold tracking-[-0.03em] text-ink-900">Security Settings</div>
+            <div className="mt-6 space-y-5">
+              <Input label="CURRENT PASSWORD" placeholder="••••••••" type="password" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <Input label="NEW PASSWORD" placeholder="••••••••" type="password" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <Input label="CONFIRM NEW PASSWORD" placeholder="••••••••" type="password" className="h-[48px] rounded-[12px] border-[#e2e8f3] bg-[#f7f9fd] px-4 text-[14px]" />
+              <Button
+                variant="outline"
+                className="h-[44px] w-full rounded-[12px] border-[#dfe6f2] text-[14px] font-semibold text-brand-600"
+              >
+                Update Password
+              </Button>
+            </div>
+          </Surface>
+
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="text-[24px] font-extrabold tracking-[-0.03em] text-ink-900">Notification Preferences</div>
+            <div className="mt-6 space-y-6">
+              {notificationItems.map(({ label, body, active, setActive }) => (
+                <div key={`${label}`} className="flex items-center justify-between gap-4">
                   <div>
-                    <div className="font-semibold text-ink-900">{label}</div>
-                    <div className="text-sm text-ink-500">{body}</div>
+                    <div className="text-[15px] font-semibold text-ink-900">{label}</div>
+                    <div className="mt-1 text-[13px] leading-[1.6] text-ink-500">{body}</div>
                   </div>
-                  <div className={`h-7 w-12 rounded-full p-1 ${active ? "bg-brand-600" : "bg-ink-200"}`}>
-                    <div className={`h-5 w-5 rounded-full bg-white ${active ? "ml-5" : ""}`} />
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setActive((current) => !current)}
+                    className={`flex h-7 w-12 shrink-0 rounded-full p-1 transition-colors ${active ? "bg-brand-600" : "bg-[#dbe2ec]"}`}
+                  >
+                    <div className={`h-5 w-5 rounded-full bg-white shadow-sm ${active ? "ml-5" : ""}`} />
+                  </button>
                 </div>
-              </div>
-            ))}
-          </div>
-        </Surface>
+              ))}
+            </div>
+          </Surface>
+        </div>
       </div>
       <FooterBand />
     </div>
@@ -275,84 +801,270 @@ export function NotarySettingsPage() {
 }
 
 export function NotaryCredentialsPage() {
+  const [showOnlyVerified, setShowOnlyVerified] = useState(false);
+  const filteredCredentialHistory = credentialHistory.filter((row) =>
+    showOnlyVerified ? row.action === "Auto-Verified" : true,
+  );
+
   return (
-    <div className="space-y-6">
-      <SectionTitle title="Notary Credentials" subtitle="View your license and verification details" />
-      <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
-        <Surface className="p-8">
-          <div className="mb-4"><Badge status="Verified" /></div>
-          <div className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Primary Commission</div>
-          <div className="mt-5 text-sm text-ink-500">California Secretary of State</div>
-          <div className="mt-5 grid gap-5 md:grid-cols-2">
-            <div><div className="text-ink-400">License Number</div><div className="mt-1 font-semibold text-ink-900">CA-8829-2024</div></div>
-            <div><div className="text-ink-400">Commission Expiry</div><div className="mt-1 font-semibold text-ink-900">Nov 14, 2027</div></div>
-            <div><div className="text-ink-400">E&O Coverage</div><div className="mt-1 font-semibold text-ink-900">$100,000.00</div></div>
+    <div className="space-y-7">
+      <div className="flex flex-wrap items-start justify-between gap-5">
+        <div>
+          <h1 className="text-[44px] font-extrabold leading-[1.02] tracking-[-0.045em] text-ink-900">
+            Notary Credentials
+          </h1>
+          <p className="mt-2 text-[18px] leading-[1.7] text-ink-500">
+            View your license and verification details
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Button
+            variant="outline"
+            className="h-[48px] rounded-[14px] border-[#dfe6f2] px-5 text-[15px] font-semibold text-ink-700"
+          >
+            <Pencil className="mr-2 h-4 w-4" />
+            Update information
+          </Button>
+          <Button className="h-[48px] rounded-[14px] px-5 text-[15px] font-semibold shadow-[0_14px_32px_rgba(24,90,188,0.18)]">
+            <Plus className="mr-2 h-4 w-4" />
+            Upload new credential
+          </Button>
+        </div>
+      </div>
+
+      <div className="grid gap-6 xl:grid-cols-[1.08fr_0.52fr]">
+        <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+          <div className="flex items-start justify-between gap-6">
+            <div className="flex items-start gap-5">
+              <div className="flex h-14 w-14 items-center justify-center rounded-[18px] bg-[#eaf0ff] text-brand-600">
+                <ShieldCheck className="h-7 w-7" />
+              </div>
+              <div>
+                <div className="text-[38px] font-extrabold tracking-[-0.04em] text-ink-900">Primary Commission</div>
+                <div className="mt-2 text-[18px] text-ink-500">California Secretary of State</div>
+              </div>
+            </div>
+            <Badge status="Verified" />
           </div>
-          <div className="mt-6 flex gap-3">
-            <Button variant="outline">Update information</Button>
-            <Button>Upload new credential</Button>
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <Detail label="LICENSE NUMBER" value="CA-8829-2024" />
+            <Detail label="COMMISSION EXPIRY" value="Nov 14, 2027" />
+            <Detail label="E&O COVERAGE" value="$100,000.00" />
           </div>
         </Surface>
-        <Surface className="p-8">
-          <div className="mb-4"><Badge status="Pending" /></div>
-          <div className="text-2xl font-extrabold tracking-[-0.04em] text-ink-900">Background Screening</div>
-          <div className="mt-3 text-sm leading-6 text-ink-500">Under review by the compliance department.<br />Estimated completion: 48 hours.</div>
+
+        <Surface className="rounded-[18px] border border-[#e4ebf5] bg-[#f5f7fb] p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+          <div className="mb-5 flex items-center justify-between">
+            <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-[#fff4eb] text-[#b65d18]">
+              <FileBadge2 className="h-5 w-5" />
+            </div>
+            <Badge status="Pending" />
+          </div>
+          <div className="text-[30px] font-extrabold tracking-[-0.03em] text-ink-900">Background Screening</div>
+          <div className="mt-4 text-[16px] leading-[1.8] text-ink-500">
+            Under review by the compliance department.
+            <br />
+            Estimated completion: 48 hours.
+          </div>
         </Surface>
       </div>
-      <div className="flex items-center justify-between">
-        <div className="text-2xl font-extrabold tracking-[-0.04em] text-ink-900">Credential History</div>
-        <Button variant="ghost">Filter</Button>
-      </div>
-      <Table headers={["Document Name", "Issuer", "Upload Date", "Action"]} footer={<div className="text-sm font-semibold text-brand-600">Load More Ledger Entries</div>}>
-        {credentialHistory.map((row) => (
-          <tr key={row.documentName} className="border-t border-ink-100">
-            <td className="px-6 py-5 font-semibold text-ink-900">{row.documentName}</td>
-            <td className="px-6 py-5">{row.issuer}</td>
-            <td className="px-6 py-5">{row.uploadDate}</td>
-            <td className="px-6 py-5"><Badge status={row.action === "Auto-Verified" ? "Verified" : "Pending"} /></td>
-          </tr>
-        ))}
-      </Table>
+
+      <Surface className="overflow-hidden rounded-[18px] border border-[#e4ebf5] bg-white shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="flex items-center justify-between px-6 py-6">
+          <div className="text-[34px] font-extrabold tracking-[-0.04em] text-ink-900">Credential History</div>
+          <button
+            type="button"
+            onClick={() => setShowOnlyVerified((current) => !current)}
+            className="inline-flex items-center gap-2 text-[16px] font-medium text-ink-600"
+          >
+            <Filter className="h-4 w-4" />
+            Filter
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-left">
+            <thead>
+              <tr className="bg-[#fbfcff] text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-300">
+                {["Document Name", "Issuer", "Upload Date", "Verification", "Action"].map((header) => (
+                  <th key={header} className="px-6 py-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredCredentialHistory.map((row) => (
+                <tr key={row.documentName} className="border-t border-[#edf1f7]">
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#eef4ff] text-brand-600">
+                        {row.action === "Auto-Verified" ? <ShieldCheck className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
+                      </div>
+                      <span className="text-[16px] font-semibold text-ink-900">{row.documentName}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-5 text-[15px] text-ink-600">{row.issuer}</td>
+                  <td className="px-6 py-5 text-[15px] text-ink-600">{row.uploadDate}</td>
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-2 text-[15px] text-ink-700">
+                      <span className={`h-2 w-2 rounded-full ${row.action === "Auto-Verified" ? "bg-brand-600" : "bg-[#b96716]"}`} />
+                      {row.action === "Auto-Verified" ? "Auto-Verified" : "Manual Review"}
+                    </div>
+                  </td>
+                  <td className="px-6 py-5 text-[20px] text-ink-500">•••</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="px-6 py-6 text-center text-[20px] font-extrabold uppercase tracking-[0.12em] text-brand-600">
+          Load More Ledger Entries
+        </div>
+      </Surface>
       <FooterBand />
     </div>
   );
 }
 
 export function NotaryCommunicationsPage() {
+  const [messages, setMessages] = useState(chatMessages);
+  const [draftMessage, setDraftMessage] = useState("");
+
+  const sendMessage = () => {
+    if (!draftMessage.trim()) return;
+    setMessages((current) => [
+      ...current,
+      {
+        sender: "You (Notary)",
+        role: "you",
+        time: "Now",
+        body: draftMessage.trim(),
+      },
+    ]);
+    setDraftMessage("");
+  };
+
   return (
-    <div className="grid gap-6 xl:grid-cols-[320px_1fr]">
-      <Surface className="p-6">
-        <div className="mb-4 flex items-center justify-between">
-          <div className="text-lg font-extrabold text-ink-900">Active File Context</div>
-          <Button variant="ghost">New Chat</Button>
+    <div className="grid gap-6 xl:grid-cols-[1.28fr_0.34fr]">
+      <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-0 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="border-b border-[#edf1f7] px-8 py-7">
+          <div className="text-[44px] font-extrabold tracking-[-0.045em] text-ink-900">Communication Center</div>
+          <div className="mt-2 text-[18px] leading-[1.7] text-ink-500">Chat with Closing Engage team regarding active files.</div>
         </div>
-        <div className="space-y-4 text-sm">
-          <div><div className="text-ink-400">File Number</div><div className="mt-1 font-semibold text-ink-900">CE-99283-SL</div></div>
-          <div><div className="text-ink-400">Live Support</div><div className="mt-1 font-semibold text-ink-900">Online</div></div>
-          <div><div className="text-ink-400">Principal Signer</div><div className="mt-1 font-semibold text-ink-900">Robert J. Smith</div></div>
-          <div><div className="text-ink-400">Current Status</div><div className="mt-1"><Badge status="Pending Review" /></div></div>
-        </div>
-        <Button variant="outline" className="mt-6 w-full">VIEW FULL DOSSIER</Button>
-      </Surface>
-      <Surface className="p-6">
-        <div className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Communication Center</div>
-        <div className="mt-2 text-sm text-ink-500">Chat with Closing Engage team regarding active files.</div>
-        <div className="mt-8 space-y-5">
-          <div className="text-xs font-extrabold uppercase tracking-[0.18em] text-ink-300">Today</div>
-          {chatMessages.map((message) => (
-            <div key={`${message.sender}-${message.time}`} className={message.role === "you" ? "ml-auto max-w-[82%]" : "max-w-[82%]"}>
-              <div className="mb-2 text-sm font-semibold text-ink-900">{message.sender} <span className="ml-2 text-xs font-normal text-ink-400">{message.time}</span></div>
-              <div className={`rounded-[22px] px-5 py-4 text-sm leading-6 ${message.role === "you" ? "bg-brand-600 text-white" : "bg-ink-50 text-ink-700"}`}>{message.body}</div>
+
+        <div className="px-8 py-8">
+          <div className="mb-8 flex justify-center">
+            <div className="rounded-full bg-[#eef2f8] px-4 py-1.5 text-[12px] font-extrabold uppercase tracking-[0.14em] text-ink-500">
+              Today
             </div>
-          ))}
+          </div>
+
+          <div className="space-y-8">
+            {messages.map((message) => (
+              <div key={`${message.sender}-${message.time}-${message.body.slice(0, 16)}`} className={message.role === "you" ? "ml-auto max-w-[76%]" : "max-w-[68%]"}>
+                <div className={`mb-3 flex items-end gap-3 ${message.role === "you" ? "justify-end" : ""}`}>
+                  {message.role === "admin" ? (
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#e6eeff] text-[11px] font-bold text-brand-600">
+                      AD
+                    </div>
+                  ) : null}
+                  <div className={`text-[14px] font-semibold text-ink-900 ${message.role === "you" ? "text-right" : ""}`}>
+                    {message.sender}
+                    <span className="ml-2 text-[12px] font-normal text-ink-400">{message.time}</span>
+                  </div>
+                  {message.role === "you" ? (
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#6ea8ff] text-[11px] font-bold text-white">
+                      ME
+                    </div>
+                  ) : null}
+                </div>
+                <div className={`rounded-[20px] px-5 py-4 text-[16px] leading-[1.7] ${
+                  message.role === "you"
+                    ? "bg-brand-600 text-white shadow-[0_18px_38px_rgba(24,90,188,0.18)]"
+                    : "bg-[#f3f6fb] text-ink-700"
+                }`}>
+                  {message.body}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex items-center gap-2 text-[14px] text-ink-500">
+            <span className="flex gap-1">
+              <span className="h-2 w-2 rounded-full bg-[#9eb9f8]" />
+              <span className="h-2 w-2 rounded-full bg-[#9eb9f8]" />
+              <span className="h-2 w-2 rounded-full bg-[#9eb9f8]" />
+            </span>
+            Sarah is typing...
+          </div>
         </div>
-        <div className="mt-6 text-sm text-brand-600">Sarah is typing...</div>
-        <div className="mt-4 flex items-center gap-4 rounded-2xl border border-ink-100 bg-white px-5 py-4">
-          <input className="flex-1 outline-none" placeholder="Type a message..." />
-          <Button>Send</Button>
+
+        <div className="border-t border-[#edf1f7] px-8 py-6">
+          <div className="flex items-center gap-4 rounded-[18px] border border-[#dfe6f2] bg-[#f7f9fd] px-5 py-4">
+            <Paperclip className="h-5 w-5 text-ink-500" />
+            <input
+              value={draftMessage}
+              onChange={(event) => setDraftMessage(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") sendMessage();
+              }}
+              className="flex-1 bg-transparent text-[16px] text-ink-700 outline-none placeholder:text-ink-400"
+              placeholder="Type a message..."
+            />
+            <button
+              type="button"
+              onClick={sendMessage}
+              className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-brand-600 text-white shadow-[0_12px_24px_rgba(24,90,188,0.18)]"
+              aria-label="Send message"
+            >
+              <SendHorizontal className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="mt-4 flex items-center gap-2 text-[13px] text-ink-500">
+            <ShieldCheck className="h-4 w-4" />
+            Your messages are encrypted end-to-end.
+          </div>
         </div>
-        <div className="mt-4 text-sm text-ink-400">Your messages are encrypted end-to-end.</div>
       </Surface>
+
+      <Surface className="sticky top-[112px] h-fit self-start rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="text-[12px] font-extrabold uppercase tracking-[0.18em] text-brand-600">
+          Active File Context
+        </div>
+        <div className="mt-4 h-px bg-[#edf1f7]" />
+        <div className="mt-5 space-y-5 text-[14px]">
+          <div>
+            <div className="text-ink-400">File Number</div>
+            <div className="mt-1 text-[18px] font-semibold text-ink-900">CE-99283-SL</div>
+          </div>
+          <div>
+            <div className="text-ink-400">Principal Signer</div>
+            <div className="mt-1 text-[18px] font-semibold text-ink-900">Robert J. Smith</div>
+          </div>
+          <div>
+            <div className="text-ink-400">Current Status</div>
+            <div className="mt-2"><Badge status="Pending Review" /></div>
+          </div>
+        </div>
+        <Button variant="outline" className="mt-8 h-[44px] w-full rounded-[12px] border-[#bfd1f6] text-[14px] font-semibold text-brand-600">
+          View Full Dossier
+        </Button>
+      </Surface>
+    </div>
+  );
+}
+
+function Detail({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">{label}</div>
+      <div className="mt-2 text-[16px] font-semibold text-ink-900">{value}</div>
     </div>
   );
 }
