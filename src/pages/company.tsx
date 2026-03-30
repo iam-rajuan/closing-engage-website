@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { CalendarDays, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDot, Download, FileText, FolderKanban, Hourglass, MapPin, Plus, Search, ShieldCheck, SlidersHorizontal, Trash2 } from "lucide-react";
+import { CalendarDays, CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, CircleDot, Download, Eye, FileText, FolderKanban, Hourglass, Info, MapPin, Plus, Printer, RotateCw, Search, ShieldCheck, SlidersHorizontal, Trash2, ZoomIn, ZoomOut } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Badge, Button, Input, SectionTitle, Select, Surface, Table, Textarea } from "@/components/common";
 import { companyDocuments, companyOrders, teamMembers } from "@/data/mock-data";
@@ -828,89 +828,285 @@ export function CompanyOrderDetailsPage() {
 
 export function CompanyDocumentsPage() {
   return (
-    <div className="space-y-6">
-      <SectionTitle title="Documents" subtitle="Access and download your approved files" />
-      <Surface className="p-5">
-        <div className="grid gap-4 lg:grid-cols-4">
-          <Select options={["All Orders"]} />
-          <Input placeholder="mm/dd/yyyy" />
-          <Select options={["PDF Only"]} />
-          <Button variant="ghost">Clear</Button>
+    <div className="space-y-7">
+      <div>
+        <h1 className="text-[44px] font-extrabold leading-[1.02] tracking-[-0.045em] text-ink-900">
+          Documents
+        </h1>
+        <p className="mt-2 text-[18px] leading-[1.7] text-ink-500">
+          Access and download your approved files
+        </p>
+      </div>
+
+      <div className="grid gap-6 lg:grid-cols-[1fr_1fr_0.9fr] xl:grid-cols-[1.05fr_1.05fr_0.62fr_0.26fr] xl:items-end">
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            Filter By Order
+          </div>
+          <Select options={["All Orders"]} className="h-[48px] rounded-[12px] border-[#dfe6f2] bg-white" />
+        </div>
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            Filter By Date
+          </div>
+          <div className="flex h-[48px] items-center justify-between rounded-[12px] border border-[#dfe6f2] bg-white px-4 text-[15px] text-ink-500">
+            <span>mm/dd/yyyy</span>
+            <CalendarDays className="h-4 w-4 text-ink-400" />
+          </div>
+        </div>
+        <div>
+          <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-ink-500">
+            File Type
+          </div>
+          <button className="flex h-[48px] w-full items-center justify-center gap-2 rounded-[12px] bg-brand-600 px-4 text-[15px] font-semibold text-white shadow-[0_14px_30px_rgba(24,90,188,0.18)]">
+            <FileText className="h-4 w-4" />
+            PDF Only
+          </button>
+        </div>
+        <button className="h-[48px] rounded-[12px] bg-[#e9edf3] px-5 text-[15px] font-semibold text-ink-700 transition-colors hover:bg-[#dfe5ee]">
+          Clear
+        </button>
+      </div>
+
+      <Surface className="overflow-hidden rounded-[18px] border border-[#e4ebf5] bg-white shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="overflow-x-auto">
+          <table className="min-w-full text-left">
+            <thead>
+              <tr className="text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-300">
+                {["File Name", "Order ID", "Uploaded Date", "File Size", "Status", "Actions"].map((header) => (
+                  <th key={header} className="px-6 py-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {companyDocuments.map((doc) => (
+                <tr key={doc.id} className="border-t border-[#edf1f7]">
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-4">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-[12px] bg-[#fff3f3] text-danger-600">
+                        <FileText className="h-4 w-4" />
+                      </div>
+                      <span className="text-[16px] font-semibold text-ink-900">{doc.name}</span>
+                    </div>
+                  </td>
+                  <td className="px-6 py-5 text-[15px] text-ink-600">{doc.orderId.replace("ORD-", "ORD-")}</td>
+                  <td className="px-6 py-5 text-[15px] text-ink-600">{doc.uploadDate}</td>
+                  <td className="px-6 py-5 text-[15px] text-ink-600">{doc.size}</td>
+                  <td className="px-6 py-5"><Badge status={doc.status} /></td>
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-5 text-brand-600">
+                      <Link to="/company/documents/closing-disclosure-final" aria-label={`View ${doc.name}`}>
+                        <Eye className="h-5 w-5" />
+                      </Link>
+                      <button type="button" aria-label={`Download ${doc.name}`}>
+                        <Download className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="flex items-center justify-between border-t border-[#edf1f7] px-6 py-5 text-sm text-ink-500">
+          <span>Showing 4 of 24 documents</span>
+          <div className="flex items-center gap-4">
+            <button className="text-ink-500">
+              <ChevronLeft className="h-4 w-4" />
+            </button>
+            <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-brand-600 font-semibold text-white">1</span>
+            <span className="font-medium text-ink-700">2</span>
+            <span className="font-medium text-ink-700">3</span>
+            <button className="text-ink-500">
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
       </Surface>
-      <Table
-        headers={["File Name", "Order ID", "Uploaded Date", "File Size", "Status", "Actions"]}
-        footer={<div className="flex items-center justify-between text-sm text-ink-500"><span>Showing 4 of 24 documents</span><div className="flex gap-4"><span className="font-semibold text-brand-600">1</span><span>2</span><span>3</span></div></div>}
-      >
-        {companyDocuments.map((doc) => (
-          <tr key={doc.id} className="border-t border-ink-100">
-            <td className="px-6 py-5 font-semibold text-ink-900">{doc.name}</td>
-            <td className="px-6 py-5">{doc.orderId}</td>
-            <td className="px-6 py-5">{doc.uploadDate}</td>
-            <td className="px-6 py-5">{doc.size}</td>
-            <td className="px-6 py-5"><Badge status={doc.status} /></td>
-            <td className="px-6 py-5"><Link to="/company/documents/closing-disclosure-final" className="font-semibold text-brand-600">View</Link></td>
-          </tr>
-        ))}
-      </Table>
     </div>
   );
 }
 
 export function CompanyDocumentsDetailPage() {
   return (
-    <div className="grid gap-6 xl:grid-cols-[1fr_320px]">
-      <Surface className="overflow-hidden">
-        <div className="border-b border-ink-100 px-6 py-5">
-          <div className="mb-3 text-sm font-semibold text-brand-600">Back to Documents</div>
-          <div className="flex flex-wrap items-center gap-3">
-            <h1 className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Closing_Disclosure_Final.pdf</h1>
-            <span className="text-sm text-ink-400">Order ID: ORD-99281-TX</span>
-            <Badge status="Approved" />
+    <div className="space-y-6">
+      <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-8 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div>
+            <Link to="/company/documents" className="inline-flex items-center gap-2 text-[14px] font-semibold text-brand-600">
+              <ChevronLeft className="h-4 w-4" />
+              Back to Documents
+            </Link>
+            <div className="mt-5 flex flex-wrap items-center gap-4">
+              <h1 className="text-[44px] font-extrabold tracking-[-0.045em] text-ink-900">
+                Closing_Disclosure_Final.pdf
+              </h1>
+              <Badge status="Approved" />
+            </div>
+            <div className="mt-4 flex items-center gap-2 text-[16px] text-ink-500">
+              <FileText className="h-4 w-4" />
+              Order ID: ORD-99281-TX
+            </div>
           </div>
-        </div>
-        <div className="p-6">
-          <div className="flex items-center justify-between">
-            <div className="rounded-full bg-ink-50 px-4 py-2 text-sm font-semibold">100%</div>
-            <div className="text-sm text-ink-400">Page 1 of 5</div>
-          </div>
-          <div className="mt-6 flex min-h-[760px] items-center justify-center rounded-[28px] border border-dashed border-ink-200 bg-[linear-gradient(135deg,#f6f8fc,#eef3ff)] text-ink-400">
-            PDF document preview placeholder
+          <div className="flex flex-wrap gap-3">
+            <Button variant="outline" className="h-[50px] rounded-[12px] border-[#dfe6f2] px-6 text-[15px] font-semibold">
+              <Printer className="mr-2 h-4 w-4" />
+              Print
+            </Button>
+            <Button className="h-[50px] rounded-[12px] px-6 text-[15px] font-semibold">
+              <Download className="mr-2 h-4 w-4" />
+              Download
+            </Button>
           </div>
         </div>
       </Surface>
-      <div className="space-y-6">
-        <Surface className="p-6">
-          <h3 className="text-lg font-extrabold text-ink-900">File Details</h3>
-          <div className="mt-5 space-y-4 text-sm">
-            <Detail label="File Name" value="Closing_Disclosure_Final.pdf" />
-            <Detail label="Size" value="2.4 MB" />
-            <Detail label="Status" value="Approved" />
-            <Detail label="Upload Date" value="Feb 24, 2026" />
-            <Detail label="Uploaded By" value="Notary Sarah Jones" />
+
+      <div className="grid gap-6 xl:grid-cols-[1fr_320px]">
+        <div className="space-y-6">
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="flex items-center justify-between text-[15px] text-ink-600">
+              <div className="flex items-center gap-6">
+                <button className="flex items-center gap-2 font-semibold text-ink-700">
+                  <ZoomOut className="h-4 w-4" />
+                  100%
+                </button>
+                <button className="text-ink-500">
+                  <ZoomIn className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="flex items-center gap-5">
+                <button className="text-ink-500">
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <div className="flex items-center gap-3">
+                  <span>Page</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#f4f7fc] font-semibold text-ink-900">1</span>
+                  <span>of 5</span>
+                </div>
+                <button className="text-ink-500">
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+              <div className="flex items-center gap-6">
+                <button className="text-ink-500">
+                  <Search className="h-4 w-4" />
+                </button>
+                <button className="text-ink-500">
+                  <RotateCw className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </Surface>
+
+          <Surface className="rounded-[22px] border border-[#dfe6f2] bg-[#edf2f8] p-10 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mx-auto min-h-[1180px] max-w-[820px] bg-white px-12 py-12 shadow-[0_18px_38px_rgba(20,48,112,0.08)]">
+              <div className="relative overflow-hidden">
+                <div className="mb-12 flex justify-between">
+                  <div className="h-10 w-40 rounded-[2px] bg-[#edf2f8]" />
+                  <div className="space-y-3">
+                    <div className="h-4 w-32 rounded-[2px] bg-[#edf2f8]" />
+                    <div className="h-4 w-28 rounded-[2px] bg-[#f3f6fb]" />
+                  </div>
+                </div>
+                <div className="h-8 w-[52%] rounded-[2px] bg-[#e7edf6]" />
+                <div className="mt-8 space-y-3">
+                  <div className="h-3 w-full rounded-[2px] bg-[#eff3f9]" />
+                  <div className="h-3 w-full rounded-[2px] bg-[#eff3f9]" />
+                  <div className="h-3 w-[84%] rounded-[2px] bg-[#eff3f9]" />
+                </div>
+                <div className="mt-14 flex gap-8">
+                  <div className="h-4 w-24 rounded-[2px] bg-[#e8edf6]" />
+                  <div className="h-4 w-24 rounded-[2px] bg-[#e8edf6]" />
+                </div>
+                <div className="mt-4 grid gap-8 md:grid-cols-2">
+                  <div className="h-20 rounded-[4px] border border-dashed border-[#dbe4f1] bg-[#fbfdff]" />
+                  <div className="h-20 rounded-[4px] border border-dashed border-[#dbe4f1] bg-[#fbfdff]" />
+                </div>
+                <div className="mt-14 h-36 rounded-[4px] bg-[#f1f5fa]" />
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+                  <div className="rotate-[-52deg] text-[112px] font-extrabold tracking-[0.06em] text-[rgba(20,48,112,0.05)]">
+                    CONFIDENTIAL
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Surface>
+        </div>
+
+        <div className="space-y-6">
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <Info className="h-5 w-5 text-brand-600" />
+              <div className="text-[28px] font-extrabold tracking-[-0.03em] text-ink-900">File Details</div>
+            </div>
+            <div className="space-y-6">
+              <Detail label="FILE NAME" value="Closing_Disclosure_Final.pdf" />
+              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-2">
+                <Detail label="SIZE" value="2.4 MB" />
+                <Detail label="STATUS" value="Approved" valueClassName="text-brand-600" />
+              </div>
+              <Detail label="UPLOAD DATE" value="Feb 24, 2026" />
+              <div>
+                <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">UPLOADED BY</div>
+                <div className="mt-3 flex items-center gap-3">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#eef4ff] text-[11px] font-bold text-brand-600">
+                    SJ
+                  </div>
+                  <div className="text-[16px] font-semibold text-ink-900">Notary Sarah Jones</div>
+                </div>
+              </div>
+            </div>
+          </Surface>
+
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <FolderKanban className="h-5 w-5 text-brand-600" />
+              <div className="text-[28px] font-extrabold tracking-[-0.03em] text-ink-900">Order Information</div>
+            </div>
+            <div className="space-y-6">
+              <Detail label="CLIENT NAME" value="Robert & Martha Henderson" />
+              <Detail label="PROPERTY ADDRESS" value="123 Blue Oak Lane, Austin, TX 78701" />
+            </div>
+          </Surface>
+
+          <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+            <div className="mb-6 flex items-center gap-3">
+              <RotateCw className="h-5 w-5 text-brand-600" />
+              <div className="text-[28px] font-extrabold tracking-[-0.03em] text-ink-900">Recent Activity</div>
+            </div>
+            <div className="space-y-6">
+              <div className="flex items-start gap-3">
+                <div className="mt-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-brand-600 text-brand-600">
+                  <CheckCircle2 className="h-4 w-4" />
+                </div>
+                <div>
+                  <div className="text-[16px] font-bold text-ink-900">Approved by Admin</div>
+                  <div className="mt-1 text-[13px] text-ink-500">Oct 25, 2023 • 10:15 AM</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="mt-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#d2d8e5] text-ink-400">
+                  <FileText className="h-3.5 w-3.5" />
+                </div>
+                <div>
+                  <div className="text-[16px] font-bold text-ink-900">Uploaded by Notary</div>
+                  <div className="mt-1 text-[13px] text-ink-500">Oct 24, 2023 • 04:30 PM</div>
+                </div>
+              </div>
+            </div>
+          </Surface>
+
+          <div className="rounded-[18px] border border-[#cfdcf9] bg-[#edf3ff] px-6 py-5 text-[14px] leading-[1.7] text-brand-700 shadow-[0_12px_30px_rgba(20,48,112,0.04)]">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0" />
+              <div>
+                This document is available only after admin approval. Securely encrypted and stored according to industry standards.
+              </div>
+            </div>
           </div>
-        </Surface>
-        <Surface className="p-6">
-          <h3 className="text-lg font-extrabold text-ink-900">Order Information</h3>
-          <div className="mt-5 space-y-4 text-sm">
-            <Detail label="Client Name" value="Robert & Martha Henderson" />
-            <Detail label="Property Address" value="123 Blue Oak Lane, Austin, TX 78701" />
-          </div>
-        </Surface>
-        <Surface className="p-6">
-          <h3 className="text-lg font-extrabold text-ink-900">Recent Activity</h3>
-          <div className="mt-5 space-y-4 text-sm text-ink-500">
-            <div>Approved by Admin<br /><span className="text-xs text-ink-300">Oct 25, 2023 • 10:15 AM</span></div>
-            <div>Uploaded by Notary<br /><span className="text-xs text-ink-300">Oct 24, 2023 • 04:30 PM</span></div>
-          </div>
-          <p className="mt-5 text-sm leading-6 text-ink-500">
-            This document is available only after admin approval. Securely encrypted and stored according to industry standards.
-          </p>
-          <div className="mt-6 flex gap-3">
-            <Button variant="outline">Print</Button>
-            <Button><Download className="mr-2 h-4 w-4" />Download</Button>
-          </div>
-        </Surface>
+        </div>
       </div>
     </div>
   );
@@ -1061,11 +1257,19 @@ export function CompanySettingsPage() {
   );
 }
 
-function Detail({ label, value }: { label: string; value: string }) {
+function Detail({
+  label,
+  value,
+  valueClassName,
+}: {
+  label: string;
+  value: string;
+  valueClassName?: string;
+}) {
   return (
     <div>
-      <div className="text-ink-400">{label}</div>
-      <div className="mt-1 font-semibold text-ink-900">{value}</div>
+      <div className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-400">{label}</div>
+      <div className={`mt-2 text-[16px] font-semibold text-ink-900 ${valueClassName ?? ""}`}>{value}</div>
     </div>
   );
 }
