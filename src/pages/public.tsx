@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Lock, Mail, MapPin, Phone, Shield } from "lucide-react";
+import { ArrowRight, BarChart3, CheckCircle2, FileText, Lock, Mail, MapPin, Phone, Shield, UserRound } from "lucide-react";
 import {
   HomeAudienceSection,
   HomeCTASection,
@@ -360,27 +360,26 @@ export function ContactPage() {
           </div>
         </div>
       </section>
-      <section className="pb-24">
-        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
-          <div
-            className="relative overflow-hidden rounded-[34px] px-8 py-14 text-center text-white shadow-[0_20px_50px_rgba(24,90,188,0.18)] md:px-12 md:py-16"
-            style={{
-              backgroundImage: "url('/branding/services-cta-bg.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            <h2 className="mx-auto max-w-[780px] text-[34px] font-extrabold leading-[1.18] tracking-[-0.035em] text-white md:text-[50px]">
-              Ready to Simplify Your Closing Workflow?
-            </h2>
-            <div className="mt-8 flex justify-center">
-              <Button
-                className="min-w-[150px] rounded-xl bg-white px-8 py-3.5 text-[15px] font-bold text-brand-600 hover:bg-[#f4f7ff]"
-                onClick={() => window.location.assign("/signup/role-selection")}
-              >
-                Get Started
-              </Button>
+      <section className="w-full overflow-hidden pb-24">
+        <div className="relative">
+          <img
+            src="/branding/about-cta-fullwidth.png"
+            alt="Contact page call to action background"
+            className="block h-auto w-full"
+          />
+          <div className="absolute inset-0 flex items-center justify-center px-6">
+            <div className="text-center text-white">
+              <h2 className="text-[34px] font-extrabold leading-[1.12] tracking-[-0.04em] md:text-[56px]">
+                Ready to Simplify Your Closing Workflow?
+              </h2>
+              <div className="mt-8 flex justify-center">
+                <Button
+                  className="min-w-[150px] rounded-xl bg-white px-8 py-3.5 text-[15px] font-bold text-brand-600 hover:bg-[#f4f7ff]"
+                  onClick={() => window.location.assign("/signup/role-selection")}
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -392,76 +391,153 @@ export function ContactPage() {
 export function PrivacyPolicyPage() {
   return (
     <>
-      <section className="py-18">
-        <div className="container-custom">
-          <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-            <SectionTitle
-              title="Privacy Policy"
-              subtitle="Learn how Closing Engage collects, uses, and protects your information. Our architecture is built on the foundation of trust and technical transparency."
-            />
-            <Surface className="bg-[linear-gradient(135deg,#dfe9ff,#eef4ff)] p-8">
-              <div className="flex h-18 w-18 items-center justify-center rounded-[22px] bg-white text-brand-600 shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
-                <Shield className="h-9 w-9" />
+      <section className="overflow-hidden bg-white pt-0">
+        <div
+          className="relative w-full overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(circle at 100% 36%, rgba(220,232,249,0.95) 0%, rgba(236,243,252,0.86) 20%, rgba(247,250,255,0.46) 38%, rgba(255,255,255,0) 58%)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-10">
+            <div className="mx-auto max-w-[1440px] py-16 md:py-20">
+              <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+                <div className="max-w-[620px]">
+                  <h1 className="text-[48px] font-extrabold leading-[1.06] tracking-[-0.045em] text-ink-900 md:text-[62px]">
+                    Privacy Policy
+                  </h1>
+                  <p className="mt-5 text-[17px] leading-[1.8] text-ink-600">
+                    Learn how Closing Engage collects, uses, and protects your
+                    information. Our architecture is built on the foundation of
+                    trust and technical transparency.
+                  </p>
+                </div>
+                <div className="justify-self-end rounded-[26px] border border-[#d8e1f0] bg-[linear-gradient(135deg,#dfe8ff,#edf3ff)] p-8 shadow-[0_12px_32px_rgba(20,48,112,0.06)]">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-[22px] bg-white text-brand-600 shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
+                    <Shield className="h-10 w-10" />
+                  </div>
+                  <div className="mt-6 rounded-[18px] bg-white/88 px-5 py-4">
+                    <div className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-brand-600">
+                      Security Protocol 402.b
+                    </div>
+                    <div className="mt-2 text-[13px] text-ink-500">
+                      Active Encryption Layers: AES-256
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="mt-5 rounded-2xl bg-white/80 px-5 py-4">
-                <div className="text-xs font-extrabold uppercase tracking-[0.2em] text-brand-600">Security Protocol 402.b</div>
-                <div className="mt-2 text-sm text-ink-500">Active Encryption Layers: AES-256</div>
-              </div>
-            </Surface>
+            </div>
           </div>
         </div>
       </section>
-      <section className="pb-8">
-        <div className="container-custom">
-          <div className="mb-8 border-t border-ink-100 pt-8">
-            <div className="mb-3 text-xs font-extrabold uppercase tracking-[0.2em] text-brand-600">Introduction</div>
-            <p className="max-w-5xl text-sm leading-7 text-ink-500">
-              At Closing Engage, your privacy is not an afterthought; it is our primary engineering requirement. We are committed to maintaining the highest standards of data integrity and protection, ensuring that your sensitive legal and financial information remains confidential and secure throughout the closing process.
+      <section className="bg-[#f7f7fd] py-16 md:py-18">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="mb-10 border-t border-[#dbe3f0] pt-8">
+            <div className="mb-3 text-[11px] font-extrabold uppercase tracking-[0.24em] text-brand-600">
+              Introduction
+            </div>
+            <p className="max-w-[980px] text-[14px] leading-[1.9] text-ink-500">
+              At Closing Engage, your privacy is not an afterthought; it is our
+              primary engineering requirement. We are committed to maintaining the
+              highest standards of data integrity and protection, ensuring that your
+              sensitive legal and financial information remains confidential and
+              secure throughout the closing process.
             </p>
           </div>
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-5 md:grid-cols-2">
             {[
-              ["Personal Information", "Name, contact details, and identifiers required for legal verification."],
-              ["Account Info", "Login credentials and profile settings necessary for your secure workspace."],
-              ["Documents", "Financial records and legal contracts processed through our secure vault."],
-              ["Usage Data", "Technical metadata to improve performance and ensure platform security."],
-            ].map(([title, body]) => (
-              <Surface key={title} className="p-6">
-                <Lock className="h-5 w-5 text-brand-600" />
-                <div className="mt-4 text-lg font-extrabold tracking-[-0.03em] text-ink-900">{title}</div>
-                <div className="mt-3 text-sm leading-6 text-ink-500">{body}</div>
+              [UserRound, "Personal Information", "Name, contact details, and identifiers required for legal verification."],
+              [Lock, "Account Info", "Login credentials and profile settings necessary for your secure workspace."],
+              [FileText, "Documents", "Financial records and legal contracts processed through our secure vault."],
+              [BarChart3, "Usage Data", "Technical metadata to improve performance and ensure platform security."],
+            ].map(([Icon, title, body]) => (
+              <Surface
+                key={title as string}
+                className="rounded-[18px] border border-[#dbe3f0] bg-white p-6 shadow-[0_8px_24px_rgba(20,48,112,0.05)]"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="mt-4 text-[18px] font-extrabold tracking-[-0.02em] text-ink-900">
+                  {title}
+                </div>
+                <div className="mt-2 text-[14px] leading-[1.75] text-ink-500">
+                  {body}
+                </div>
               </Surface>
             ))}
           </div>
         </div>
       </section>
-      <section className="py-12">
-        <div className="container-custom">
-          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="bg-white py-18 md:py-20">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
             <div>
-              <SectionTitle title="How We Use Information" />
-              <div className="space-y-5 text-sm leading-6 text-ink-500">
-                <div><strong className="mr-3 text-brand-600">01</strong><span className="font-bold text-ink-900">Account Management</span><br />Facilitating access to your closing dashboard and secure files.</div>
-                <div><strong className="mr-3 text-brand-600">02</strong><span className="font-bold text-ink-900">Processing Orders</span><br />Executing transactions and legal filings on your behalf.</div>
-                <div><strong className="mr-3 text-brand-600">03</strong><span className="font-bold text-ink-900">Communication</span><br />Sending critical updates, security alerts, and support responses.</div>
+              <h2 className="text-[34px] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink-900">
+                How We Use Information
+              </h2>
+              <div className="mt-8 space-y-5">
+                {[
+                  ["01", "Account Management", "Facilitating access to your closing dashboard and secure files."],
+                  ["02", "Processing Orders", "Executing transactions and legal filings on your behalf."],
+                  ["03", "Communication", "Sending critical updates, security alerts, and support responses."],
+                ].map(([number, title, body]) => (
+                  <div key={title} className="flex items-start gap-4">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#eef4ff] text-[12px] font-extrabold text-brand-600">
+                      {number}
+                    </div>
+                    <div>
+                      <div className="text-[16px] font-bold text-ink-900">{title}</div>
+                      <div className="mt-1 text-[14px] leading-[1.75] text-ink-500">{body}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <PrivacyArchitectureCard />
+            <div className="overflow-hidden rounded-[22px] bg-brand-600 p-8 text-white shadow-[0_18px_38px_rgba(24,90,188,0.18)]">
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <div className="text-[28px] font-extrabold tracking-[-0.03em]">
+                    Data Security Architecture
+                  </div>
+                  <p className="mt-4 max-w-[460px] text-[14px] leading-[1.8] text-white/82">
+                    We employ bank-grade security protocols to ensure your data is
+                    never compromised.
+                  </p>
+                </div>
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
+                  <Lock className="h-9 w-9" />
+                </div>
+              </div>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {["Cloud Storage", "SSL Encryption", "Role-based Access"].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[13px] font-semibold text-white"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
-      <section className="pb-20">
-        <div className="container-custom">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+      <section className="pb-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-5 md:grid-cols-2">
             {[
               ["Data Sharing", "We share information only with trusted third-party partners necessary for operations (e.g., payment processors, legal filing systems) or when legally mandated by government authorities."],
               ["User Rights", "Access your personal data records\nRequest correction of inaccuracies\nRequest deletion of non-legal records"],
               ["Periodic Updates", "Our privacy policy is reviewed quarterly. Users will be notified via email regarding any significant material changes."],
               ["Contact Privacy Team", "privacy@closingengage.com\nResponse time: within 24 business hours."],
             ].map(([title, body]) => (
-              <Surface key={title} className="p-6">
-                <div className="text-lg font-extrabold tracking-[-0.03em] text-ink-900">{title}</div>
-                <div className="mt-3 whitespace-pre-line text-sm leading-6 text-ink-500">{body}</div>
+              <Surface
+                key={title}
+                className="rounded-[18px] border border-[#dbe3f0] bg-white p-6 shadow-[0_8px_24px_rgba(20,48,112,0.05)]"
+              >
+                <div className="text-[18px] font-extrabold tracking-[-0.02em] text-ink-900">{title}</div>
+                <div className="mt-3 whitespace-pre-line text-[14px] leading-[1.8] text-ink-500">{body}</div>
               </Surface>
             ))}
           </div>
