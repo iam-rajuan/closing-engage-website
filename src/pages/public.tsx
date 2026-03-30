@@ -1,4 +1,5 @@
-import { ArrowRight, BarChart3, CheckCircle2, FileText, Lock, Mail, MapPin, Phone, Shield, UserRound } from "lucide-react";
+import { BarChart3, FileText, Lock, Mail, MapPin, Phone, Shield, UserRound } from "lucide-react";
+import { Navigate, useSearchParams } from "react-router-dom";
 import {
   HomeAudienceSection,
   HomeCTASection,
@@ -10,12 +11,14 @@ import {
 } from "@/components/homepage";
 import {
   AuthShell,
+  ForgotPasswordForm,
   LoginForm,
-  PrivacyArchitectureCard,
+  OtpVerificationForm,
   RoleCard,
+  SignupFlowForm,
   ServicesGrid,
 } from "@/components/marketing";
-import { Button, Input, SectionTitle, Surface, Textarea } from "@/components/common";
+import { Button, Input, Surface, Textarea } from "@/components/common";
 
 export function HomePage() {
   return (
@@ -171,13 +174,6 @@ export function ServicesPage() {
 }
 
 export function AboutPage() {
-  const team = [
-    ["Dyarramo", "Founder & CEO", "Former real estate attorney passionate about digital transformation in the legal industry."],
-    ["Sarah Miller", "COO", "Operations expert with 15 years experience scaling fintech platforms across North America."],
-    ["Marcus Thorne", "CTO", "Cybersecurity specialist focused on building unbreakable document workflow environments."],
-    ["Elena Rodriguez", "Head of Product", "Driving user-centric design that simplifies complex legal compliance tasks."],
-  ];
-
   return (
     <>
       <section className="relative overflow-hidden">
@@ -412,16 +408,18 @@ export function PrivacyPolicyPage() {
                     trust and technical transparency.
                   </p>
                 </div>
-                <div className="justify-self-end rounded-[26px] border border-[#d8e1f0] bg-[linear-gradient(135deg,#dfe8ff,#edf3ff)] p-8 shadow-[0_12px_32px_rgba(20,48,112,0.06)]">
-                  <div className="flex h-20 w-20 items-center justify-center rounded-[22px] bg-white text-brand-600 shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
-                    <Shield className="h-10 w-10" />
-                  </div>
-                  <div className="mt-6 rounded-[18px] bg-white/88 px-5 py-4">
-                    <div className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-brand-600">
-                      Security Protocol 402.b
+                <div className="justify-self-end rounded-[30px] border border-[#d8e1f0] bg-[linear-gradient(135deg,#dfe8ff,#edf3ff)] px-10 py-9 shadow-[0_12px_32px_rgba(20,48,112,0.06)]">
+                  <div className="flex min-w-[260px] flex-col items-center justify-center text-center">
+                    <div className="flex h-22 w-22 items-center justify-center rounded-[24px] bg-white text-brand-600 shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
+                      <Shield className="h-10 w-10" />
                     </div>
-                    <div className="mt-2 text-[13px] text-ink-500">
-                      Active Encryption Layers: AES-256
+                    <div className="mt-7 w-full rounded-[18px] bg-white/92 px-6 py-5">
+                      <div className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-brand-600">
+                        Security Protocol 402.b
+                      </div>
+                      <div className="mt-2 text-[13px] leading-[1.6] text-ink-500">
+                        Active Encryption Layers: AES-256
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -446,13 +444,29 @@ export function PrivacyPolicyPage() {
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {[
-              [UserRound, "Personal Information", "Name, contact details, and identifiers required for legal verification."],
-              [Lock, "Account Info", "Login credentials and profile settings necessary for your secure workspace."],
-              [FileText, "Documents", "Financial records and legal contracts processed through our secure vault."],
-              [BarChart3, "Usage Data", "Technical metadata to improve performance and ensure platform security."],
-            ].map(([Icon, title, body]) => (
+              {
+                icon: UserRound,
+                title: "Personal Information",
+                body: "Name, contact details, and identifiers required for legal verification.",
+              },
+              {
+                icon: Lock,
+                title: "Account Info",
+                body: "Login credentials and profile settings necessary for your secure workspace.",
+              },
+              {
+                icon: FileText,
+                title: "Documents",
+                body: "Financial records and legal contracts processed through our secure vault.",
+              },
+              {
+                icon: BarChart3,
+                title: "Usage Data",
+                body: "Technical metadata to improve performance and ensure platform security.",
+              },
+            ].map(({ icon: Icon, title, body }) => (
               <Surface
-                key={title as string}
+                key={title}
                 className="rounded-[18px] border border-[#dbe3f0] bg-white p-6 shadow-[0_8px_24px_rgba(20,48,112,0.05)]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
@@ -555,30 +569,65 @@ export function LoginPage() {
   );
 }
 
+export function ForgotPasswordPage() {
+  return (
+    <AuthShell
+      title="Forgot Password?"
+      subtitle="Enter your email and we will send you a verification code."
+    >
+      <ForgotPasswordForm />
+    </AuthShell>
+  );
+}
+
+export function OtpVerificationPage() {
+  return (
+    <AuthShell
+      title="Verify Your Email"
+      subtitle="Use the one-time verification code sent to your email address."
+    >
+      <OtpVerificationForm />
+    </AuthShell>
+  );
+}
+
 export function RoleSelectionPage() {
   return (
-    <AuthShell title="Welcome" subtitle="To get started, tell us a little about who you are...">
+    <AuthShell title="Choose Your Role" subtitle="Start by selecting the workspace that best matches how you use Closing Engage.">
       <div className="mx-auto max-w-[720px] space-y-5">
-        <RoleCard title="I REQUIRE SIGNING SERVICES" subtitle="For Title Companies and Businesses" />
-        <RoleCard title="I AM A NOTARY OR ATTORNEY" subtitle="For Notaries and Signing Agents" />
+        <RoleCard
+          to="/signup?role=company"
+          title="I Require Signing Services"
+          subtitle="Title Companies & Businesses"
+          description="Create a company workspace to place orders, manage teams, coordinate closings, and track document workflows end to end."
+        />
+        <RoleCard
+          to="/signup?role=notary"
+          title="I Am A Notary Signing Agent"
+          subtitle="Notaries & Independent Signing Agents"
+          description="Create a notary workspace to receive assignments, manage credentials, upload documents, and stay current on every order."
+        />
       </div>
     </AuthShell>
   );
 }
 
 export function SignupPage() {
+  const [searchParams] = useSearchParams();
+  const role = searchParams.get("role");
+
+  if (role !== "company" && role !== "notary") {
+    return <Navigate to="/signup/role-selection" replace />;
+  }
+
   return (
-    <AuthShell title="Welcome" subtitle="To get started, tell us a little about who you are...">
-      <div className="mx-auto max-w-[720px] rounded-[24px] border border-brand-100 bg-brand-50 px-6 py-8 text-center">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-brand-600" />
-        <div className="mt-5 text-2xl font-extrabold tracking-[-0.03em] text-ink-900">Select a role to continue</div>
-        <p className="mt-3 text-sm leading-6 text-ink-500">
-          Use the role selection page to continue with either I REQUIRE SIGNING SERVICES or I AM A NOTARY OR ATTORNEY.
-        </p>
-        <Button className="mt-6" onClick={() => window.location.assign("/signup/role-selection")}>
-          Continue <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </div>
+    <AuthShell
+      title={role === "company" ? "Create Your Company Account" : "Create Your Notary Account"}
+      subtitle={role === "company"
+        ? "Complete your signing-service registration and continue into the company dashboard."
+        : "Complete your notary registration and continue into the notary dashboard."}
+    >
+      <SignupFlowForm role={role} />
     </AuthShell>
   );
 }

@@ -4,8 +4,10 @@ import { PublicLayout } from "@/components/layout/PublicLayout";
 import {
   AboutPage,
   ContactPage,
+  ForgotPasswordPage,
   HomePage,
   LoginPage,
+  OtpVerificationPage,
   PrivacyPolicyPage,
   RoleSelectionPage,
   ServicesPage,
@@ -44,6 +46,8 @@ export default function App() {
       </Route>
 
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+      <Route path="/verify-email-otp" element={<OtpVerificationPage />} />
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/signup/role-selection" element={<RoleSelectionPage />} />
 

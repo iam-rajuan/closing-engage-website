@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import { ArrowRight, CheckCircle2, ChevronRight, Lock, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Building2, CheckCircle2, ChevronRight, KeyRound, Lock, Mail, MapPin, Phone, ShieldCheck, UserRound } from "lucide-react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import clsx from "clsx";
-import { BrandMark, Button, Input, SectionTitle, Surface } from "@/components/common";
+import { Button, Input, SectionTitle, Surface } from "@/components/common";
 import { publicNav, reliabilityCards, serviceCards } from "@/data/mock-data";
 import { placeholderAction } from "@/lib/utils";
 import { themeTokens } from "@/theme/tokens";
@@ -393,17 +393,24 @@ export function AuthShell({
   children: ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-white px-5 py-14">
-      <div className="w-full max-w-[920px]">
-        <Surface className="p-8 md:p-12">
-          <div className="mb-8 flex justify-center">
-            <BrandMark />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#ffffff_0%,#f7f9fe_100%)] px-5 py-12 md:px-8 md:py-16">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[340px] bg-[radial-gradient(circle_at_top,rgba(220,232,249,0.52)_0%,rgba(255,255,255,0)_68%)]" />
+      <div className="relative w-full max-w-[980px]">
+        <Surface className="rounded-[30px] border border-[#e5ebf5] bg-white px-8 py-10 shadow-[0_26px_60px_rgba(20,48,112,0.08)] md:px-16 md:py-14">
+          <div className="mb-9 flex justify-center">
+            <img
+              src="/branding/closing-engage-logo.svg"
+              alt="Closing Engage"
+              className="h-12 w-auto object-contain md:h-16"
+            />
           </div>
-          <h1 className="text-center text-5xl font-extrabold tracking-[-0.04em] text-ink-900">{title}</h1>
-          <p className="mt-3 text-center text-base text-ink-500">{subtitle}</p>
-          <div className="mt-10">{children}</div>
+          <h1 className="text-center text-[48px] font-extrabold leading-[0.98] tracking-[-0.05em] text-ink-900 md:text-[64px]">
+            {title}
+          </h1>
+          <p className="mt-4 text-center text-[17px] leading-[1.7] text-ink-500">{subtitle}</p>
+          <div className="mt-12">{children}</div>
         </Surface>
-        <div className="mt-10 border-t border-ink-100 pt-6 text-center text-xs font-semibold uppercase tracking-[0.18em] text-ink-300">
+        <div className="mt-10 border-t border-[#dbe4f1] pt-6 text-center text-xs font-semibold uppercase tracking-[0.22em] text-ink-500">
           {themeTokens.footer}
         </div>
       </div>
@@ -464,22 +471,27 @@ export function PrivacyArchitectureCard() {
 }
 
 export function RoleCard({
+  to,
   title,
   subtitle,
+  description,
 }: {
+  to: string;
   title: string;
   subtitle: string;
+  description: string;
 }) {
   return (
     <Link
-      to="/signup"
-      className="flex items-center justify-between rounded-[22px] bg-[linear-gradient(135deg,#2f6ad6,#4c8ef7)] px-5 py-6 text-white shadow-[0_16px_38px_rgba(20,48,112,0.08)]"
+      to={to}
+      className="flex items-center justify-between gap-6 rounded-[24px] bg-[linear-gradient(135deg,#2f6ad6,#4c8ef7)] px-6 py-7 text-white shadow-[0_16px_38px_rgba(20,48,112,0.08)] transition-transform hover:-translate-y-0.5"
     >
       <div>
-        <div className="text-2xl font-extrabold tracking-[-0.03em]">{title}</div>
-        <div className="mt-2 text-sm text-white/80">{subtitle}</div>
+        <div className="text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em]">{title}</div>
+        <div className="mt-2 text-sm font-semibold uppercase tracking-[0.16em] text-white/72">{subtitle}</div>
+        <div className="mt-4 max-w-[480px] text-[15px] leading-[1.75] text-white/82">{description}</div>
       </div>
-      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10">
+      <div className="flex h-13 w-13 items-center justify-center rounded-full bg-white/12">
         <ChevronRight className="h-5 w-5" />
       </div>
     </Link>
@@ -488,13 +500,194 @@ export function RoleCard({
 
 export function LoginForm() {
   return (
-    <div className="mx-auto max-w-[680px] space-y-5">
-      <Input label="Email" icon={<Mail className="h-5 w-5 text-ink-400" />} placeholder="Username" />
-      <Input label="Password" icon={<ShieldCheck className="h-5 w-5 text-ink-400" />} placeholder="Enter password" />
-      <div className="text-right text-sm font-semibold text-brand-600">Forgot Password?</div>
-      <Button className="h-14 w-full text-2xl" onClick={placeholderAction("Login")}>
+    <div className="mx-auto max-w-[680px] space-y-6">
+      <Input
+        label="Email"
+        icon={<Mail className="h-5 w-5 text-ink-400" />}
+        placeholder="Username"
+        className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+      />
+      <Input
+        label="Password"
+        icon={<ShieldCheck className="h-5 w-5 text-ink-400" />}
+        placeholder="Enter password"
+        type="password"
+        className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+      />
+      <div className="text-right">
+        <Link to="/forgot-password" className="text-[15px] font-semibold text-brand-600 transition-colors hover:text-brand-700">
+          Forgot Password?
+        </Link>
+      </div>
+      <Button
+        className="mt-2 h-[60px] w-full rounded-[16px] text-[22px] font-bold shadow-[0_18px_36px_rgba(24,90,188,0.2)]"
+        onClick={placeholderAction("Login")}
+      >
         Login
       </Button>
+    </div>
+  );
+}
+
+export function ForgotPasswordForm() {
+  return (
+    <div className="mx-auto max-w-[680px] space-y-6">
+      <Input
+        label="Email"
+        icon={<Mail className="h-5 w-5 text-ink-400" />}
+        placeholder="Enter your email address"
+        className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+      />
+      <p className="text-[15px] leading-[1.8] text-ink-500">
+        We will send a six-digit verification code to your email so you can securely continue the password reset process.
+      </p>
+      <Button
+        className="h-[60px] w-full rounded-[16px] text-[20px] font-bold shadow-[0_18px_36px_rgba(24,90,188,0.2)]"
+        onClick={() => window.location.assign("/verify-email-otp")}
+      >
+        Send Verification Code
+      </Button>
+      <div className="text-center text-[15px] text-ink-500">
+        Remember your password?{" "}
+        <Link to="/login" className="font-semibold text-brand-600 transition-colors hover:text-brand-700">
+          Back to Login
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export function OtpVerificationForm() {
+  return (
+    <div className="mx-auto max-w-[680px] space-y-6">
+      <Input
+        label="Verification Code"
+        icon={<KeyRound className="h-5 w-5 text-ink-400" />}
+        placeholder="Enter 6-digit code"
+        inputMode="numeric"
+        className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+      />
+      <p className="text-[15px] leading-[1.8] text-ink-500">
+        Enter the code sent to your email address to verify your identity and continue resetting your password.
+      </p>
+      <Button
+        className="h-[60px] w-full rounded-[16px] text-[20px] font-bold shadow-[0_18px_36px_rgba(24,90,188,0.2)]"
+        onClick={placeholderAction("Verify OTP")}
+      >
+        Verify Email
+      </Button>
+      <div className="flex items-center justify-between gap-4 text-[15px] text-ink-500">
+        <Link to="/forgot-password" className="font-semibold text-brand-600 transition-colors hover:text-brand-700">
+          Change Email
+        </Link>
+        <button
+          type="button"
+          className="font-semibold text-brand-600 transition-colors hover:text-brand-700"
+          onClick={placeholderAction("Resend verification code")}
+        >
+          Resend Code
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export function SignupFlowForm({ role }: { role: "company" | "notary" }) {
+  const navigate = useNavigate();
+  const isCompany = role === "company";
+
+  const handleSubmit = () => {
+    navigate(isCompany ? "/company/dashboard" : "/notary/dashboard");
+  };
+
+  return (
+    <div className="mx-auto max-w-[760px]">
+      <div className="mb-8 rounded-[20px] border border-[#d9e4f3] bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_100%)] px-5 py-4 md:px-6">
+        <div className="text-[12px] font-extrabold uppercase tracking-[0.22em] text-brand-600">
+          {isCompany ? "Signing Services For Title Companies & Businesses" : "Notary Signing Agent Registration"}
+        </div>
+        <p className="mt-2 text-[15px] leading-[1.75] text-ink-500">
+          {isCompany
+            ? "Set up your company account to manage orders, documents, team coordination, and closing workflows from one secure workspace."
+            : "Create your notary account to receive assignments, manage credentials, track orders, and complete document tasks in one place."}
+        </p>
+      </div>
+
+      <div className="grid gap-5 md:grid-cols-2">
+        <Input
+          label="Full Name"
+          icon={<UserRound className="h-5 w-5 text-ink-400" />}
+          placeholder={isCompany ? "Operations Manager" : "Licensed Notary Name"}
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label="Email"
+          icon={<Mail className="h-5 w-5 text-ink-400" />}
+          placeholder={isCompany ? "name@company.com" : "name@email.com"}
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label={isCompany ? "Company Name" : "Business / Signing Name"}
+          icon={<Building2 className="h-5 w-5 text-ink-400" />}
+          placeholder={isCompany ? "Acme Title Group" : "Your Signing Business"}
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label="Phone Number"
+          icon={<Phone className="h-5 w-5 text-ink-400" />}
+          placeholder="(555) 123-4567"
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label={isCompany ? "Business Address" : "Primary Service Area"}
+          icon={<MapPin className="h-5 w-5 text-ink-400" />}
+          placeholder={isCompany ? "101 Financial District, Suite 500" : "City, State"}
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label={isCompany ? "Team Size" : "Commission / License Number"}
+          icon={<ShieldCheck className="h-5 w-5 text-ink-400" />}
+          placeholder={isCompany ? "25 team members" : "Enter license number"}
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label="Password"
+          icon={<Lock className="h-5 w-5 text-ink-400" />}
+          placeholder="Create password"
+          type="password"
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+        <Input
+          label="Confirm Password"
+          icon={<Lock className="h-5 w-5 text-ink-400" />}
+          placeholder="Confirm password"
+          type="password"
+          className="h-[58px] rounded-[16px] border-[#e3eaf4] bg-[#f8fbff] px-5 text-[15px]"
+        />
+      </div>
+
+      <div className="mt-8 rounded-[18px] border border-[#e3eaf4] bg-[#f8fbff] px-5 py-4 text-[14px] leading-[1.75] text-ink-500">
+        By continuing, you are creating a secure {isCompany ? "company" : "notary"} workspace in Closing Engage. You can update profile and compliance details after entering the dashboard.
+      </div>
+
+      <div className="mt-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <Link to="/signup/role-selection" className="text-[15px] font-semibold text-brand-600 transition-colors hover:text-brand-700">
+          Change Role
+        </Link>
+        <Button
+          className="h-[60px] min-w-[260px] rounded-[16px] px-8 text-[20px] font-bold shadow-[0_18px_36px_rgba(24,90,188,0.2)]"
+          onClick={handleSubmit}
+        >
+          Create Account
+        </Button>
+      </div>
+
+      <div className="mt-6 text-center text-[15px] text-ink-500">
+        Already have an account?{" "}
+        <Link to="/login" className="font-semibold text-brand-600 transition-colors hover:text-brand-700">
+          Login
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,85 +1,180 @@
-import { ChevronLeft, ChevronRight, Download, FileText, Filter, Plus, Search, Trash2 } from "lucide-react";
+import { CheckCircle2, ChevronLeft, ChevronRight, CircleDot, Download, FileText, Filter, FolderKanban, Hourglass, Plus, Search, ShieldCheck, Trash2 } from "lucide-react";
 import { Link, useParams } from "react-router-dom";
-import { Badge, Button, Input, MetricCards, SectionTitle, Select, Surface, Table, Textarea, UploadZone } from "@/components/common";
-import { companyDocuments, companyMetrics, companyOrders, recentActivities, teamMembers } from "@/data/mock-data";
+import { Badge, Button, Input, SectionTitle, Select, Surface, Table, Textarea, UploadZone } from "@/components/common";
+import { companyDocuments, companyOrders, teamMembers } from "@/data/mock-data";
 
 export function CompanyDashboardPage() {
+  const dashboardStats = [
+    { title: "Total Orders", value: "1,248", icon: FileText, tone: "brand" },
+    { title: "Active Orders", value: "342", icon: FolderKanban, tone: "brand" },
+    { title: "Pending Review", value: "56", icon: Hourglass, tone: "warning" },
+    { title: "Completed Orders", value: "850", icon: CheckCircle2, tone: "success" },
+  ] as const;
+
+  const recentOrders = [
+    { id: "#89210", client: "John Smith", notary: "Robert Wilson", initials: "RW", accent: "from-[#1d2d48] to-[#8d6557]", status: "Assigned" as const, date: "Mar 24, 2026" },
+    { id: "#89209", client: "Sarah Jones", notary: "Emily Davis", initials: "ED", accent: "from-[#6a4f62] to-[#d0a177]", status: "Under Review" as const, date: "Mar 23, 2026" },
+    { id: "#89208", client: "Michael Brown", notary: "David Clark", initials: "DC", accent: "from-[#17384a] to-[#4e9b8f]", status: "Completed" as const, date: "Mar 22, 2026" },
+  ];
+
+  const statusRows = [
+    { label: "Received", value: "100%", width: "100%" },
+    { label: "Assigned", value: "85%", width: "85%" },
+    { label: "Under Review", value: "60%", width: "60%" },
+    { label: "Approved", value: "45%", width: "45%" },
+    { label: "Completed", value: "30%", width: "30%" },
+  ];
+
+  const activityItems = [
+    {
+      title: "Order assigned to notary",
+      description: "Robert Wilson took #89210",
+      time: "2 mins ago",
+      icon: CircleDot,
+      tone: "brand",
+    },
+    {
+      title: "Status updated for #89210",
+      description: "Moved to Under Review",
+      time: "45 mins ago",
+      icon: Hourglass,
+      tone: "warning",
+    },
+    {
+      title: "Document approved by client",
+      description: "Sarah Jones verified all files",
+      time: "2 hours ago",
+      icon: ShieldCheck,
+      tone: "success",
+    },
+  ] as const;
+
   return (
-    <div className="space-y-6">
-      <MetricCards items={companyMetrics} />
-      <div className="grid gap-6 xl:grid-cols-[1.45fr_0.55fr]">
-        <Surface className="p-6">
-          <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Recent Orders</h2>
-            <Link to="/company/orders" className="text-sm font-semibold text-brand-600">View All Orders</Link>
-          </div>
-          <Table headers={["Order ID", "Client Name", "Notary", "Status", "Date", "Action"]}>
-            {[
-              ["#89210", "John Smith", "Robert Wilson", "Assigned", "Mar 24, 2026"],
-              ["#89209", "Sarah Jones", "Emily Davis", "Under Review", "Mar 23, 2026"],
-              ["#89208", "Michael Brown", "David Clark", "Completed", "Mar 22, 2026"],
-            ].map(([id, client, notary, status, date]) => (
-              <tr key={id} className="border-t border-ink-100">
-                <td className="px-6 py-5 font-bold text-ink-900">{id}</td>
-                <td className="px-6 py-5">{client}</td>
-                <td className="px-6 py-5">{notary}</td>
-                <td className="px-6 py-5"><Badge status={status} /></td>
-                <td className="px-6 py-5">{date}</td>
-                <td className="px-6 py-5"><Link to="/company/orders/ce-9421" className="font-semibold text-brand-600">View</Link></td>
-              </tr>
-            ))}
-          </Table>
-        </Surface>
-        <div className="space-y-6">
-          <Surface className="p-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Order Status Overview</h2>
-              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-300">Monthly Progress</div>
+    <div className="space-y-8">
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {dashboardStats.map(({ title, value, icon: Icon, tone }) => (
+          <Surface
+            key={title}
+            className="rounded-[18px] border border-[#e4ebf5] bg-white p-6 shadow-[0_12px_30px_rgba(20,48,112,0.05)]"
+          >
+            <div
+              className={`mb-9 flex h-12 w-12 items-center justify-center rounded-[14px] ${
+                tone === "warning"
+                  ? "bg-[#fff5e8] text-[#f0a11d]"
+                  : tone === "success"
+                    ? "bg-[#edf9f2] text-[#3ab86b]"
+                    : "bg-[#eef4ff] text-brand-600"
+              }`}
+            >
+              <Icon className="h-5 w-5" />
             </div>
-            <div className="mt-8 space-y-6">
-              {[
-                ["Received", "100%"],
-                ["Assigned", "85%"],
-                ["Under Review", "60%"],
-                ["Approved", "45%"],
-                ["Completed", "30%"],
-              ].map(([label, value], index) => (
-                <div key={label}>
-                  <div className="mb-2 flex items-center justify-between text-sm font-semibold text-ink-700">
-                    <span>{label}</span>
-                    <span>{value}</span>
-                  </div>
-                  <div className="h-2 rounded-full bg-ink-100">
-                    <div className="h-2 rounded-full bg-brand-600" style={{ width: `${100 - index * 15}%` }} />
-                  </div>
-                </div>
-              ))}
+            <div className="text-[13px] font-semibold text-ink-400">{title}</div>
+            <div className="mt-2 text-[46px] font-extrabold leading-none tracking-[-0.05em] text-ink-900">
+              {value}
             </div>
           </Surface>
-          <Surface className="p-6">
-            <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-ink-900">Recent Activities</h2>
-            <div className="mt-6 space-y-5">
-              {recentActivities.map((item) => (
-                <div key={item.title} className="flex gap-4">
-                  <div className="mt-1 h-11 w-11 rounded-full bg-brand-50" />
-                  <div>
-                    <div className="font-bold text-ink-900">{item.title}</div>
-                    <div className="text-sm text-ink-500">{item.description}</div>
-                    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-ink-300">{item.time}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <button className="mt-8 h-12 w-full rounded-xl border border-ink-100 bg-white text-sm font-semibold text-ink-500">
-              Clear Notifications
-            </button>
-          </Surface>
-        </div>
+        ))}
       </div>
-      <div className="fixed bottom-7 left-7 hidden lg:block">
-        <Link to="/company/orders/new">
-          <Button><Plus className="mr-2 h-4 w-4" />Create New Order</Button>
-        </Link>
+
+      <Surface className="overflow-hidden rounded-[18px] border border-[#e4ebf5] bg-white shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+        <div className="flex items-center justify-between px-7 py-6">
+          <h2 className="text-[30px] font-extrabold tracking-[-0.04em] text-ink-900">Recent Orders</h2>
+          <Link to="/company/orders" className="text-sm font-semibold text-brand-600">
+            View All Orders
+          </Link>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="min-w-full">
+            <thead>
+              <tr className="border-t border-[#edf1f7] text-left text-[11px] font-extrabold uppercase tracking-[0.14em] text-ink-300">
+                {["Order ID", "Client Name", "Notary", "Status", "Date", "Action"].map((header) => (
+                  <th key={header} className="px-7 py-4">
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {recentOrders.map((order) => (
+                <tr key={order.id} className="border-t border-[#edf1f7]">
+                  <td className="px-7 py-5 text-[15px] font-bold text-ink-900">{order.id}</td>
+                  <td className="px-7 py-5 text-[15px] font-medium text-ink-600">{order.client}</td>
+                  <td className="px-7 py-5">
+                    <div className="flex items-center gap-3">
+                      <div className={`flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br ${order.accent} text-[10px] font-bold text-white`}>
+                        {order.initials}
+                      </div>
+                      <span className="text-[15px] font-medium text-ink-600">{order.notary}</span>
+                    </div>
+                  </td>
+                  <td className="px-7 py-5">
+                    <Badge status={order.status} />
+                  </td>
+                  <td className="px-7 py-5 text-[15px] font-medium text-ink-500">{order.date}</td>
+                  <td className="px-7 py-5">
+                    <Link
+                      to="/company/orders/ce-9421"
+                      className="inline-flex h-9 items-center justify-center rounded-[10px] bg-[#eef1ff] px-4 text-[13px] font-semibold text-brand-600 transition-colors hover:bg-[#e7ecff]"
+                    >
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Surface>
+
+      <div className="grid gap-6 xl:grid-cols-[1.45fr_0.7fr]">
+        <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-7 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+          <div className="flex items-center justify-between">
+            <h2 className="text-[30px] font-extrabold tracking-[-0.04em] text-ink-900">Order Status Overview</h2>
+            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-300">Monthly Progress</div>
+          </div>
+          <div className="mt-9 space-y-7">
+            {statusRows.map((row) => (
+              <div key={row.label}>
+                <div className="mb-2.5 flex items-center justify-between text-[14px] font-semibold text-ink-600">
+                  <span>{row.label}</span>
+                  <span>{row.value}</span>
+                </div>
+                <div className="h-[9px] rounded-full bg-[#eef2f8]">
+                  <div className="h-[9px] rounded-full bg-brand-600" style={{ width: row.width }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </Surface>
+
+        <Surface className="rounded-[18px] border border-[#e4ebf5] bg-white p-7 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+          <h2 className="text-[30px] font-extrabold tracking-[-0.04em] text-ink-900">Recent Activities</h2>
+          <div className="mt-7 space-y-6">
+            {activityItems.map(({ title, description, time, icon: Icon, tone }) => (
+              <div key={title} className="flex items-start gap-4">
+                <div
+                  className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${
+                    tone === "warning"
+                      ? "bg-[#fff7ea] text-[#f0a11d]"
+                      : tone === "success"
+                        ? "bg-[#edf9f2] text-[#38b36b]"
+                        : "bg-[#eef4ff] text-brand-600"
+                  }`}
+                >
+                  <Icon className="h-4.5 w-4.5" />
+                </div>
+                <div>
+                  <div className="text-[15px] font-bold leading-[1.45] text-ink-900">{title}</div>
+                  <div className="mt-1 text-[14px] leading-[1.6] text-ink-500">{description}</div>
+                  <div className="mt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">{time}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="mt-9 h-[48px] w-full rounded-[12px] border border-[#e4ebf5] bg-white text-[14px] font-semibold text-ink-500 transition-colors hover:bg-[#f8fafe]">
+            Clear Notifications
+          </button>
+        </Surface>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import {
   CheckCircle2,
   FileText,
-  Lock,
   Shield,
   ShieldCheck,
   Users,
