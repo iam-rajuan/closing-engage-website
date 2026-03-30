@@ -35,48 +35,99 @@ export function HomePage() {
 export function ServicesPage() {
   return (
     <>
-      <section className="py-18">
-        <div className="container-custom">
-          <SectionTitle
-            title="Our Services"
-            subtitle="Closing Engage provides professional-grade tools to manage closing orders and document workflows securely, connecting title companies and notaries in one unified environment."
-          />
+      <section className="overflow-hidden bg-white pt-0">
+        <div
+          className="relative w-full overflow-hidden"
+          style={{
+            background:
+              "radial-gradient(circle at 100% 36%, rgba(220,232,249,0.95) 0%, rgba(236,243,252,0.86) 20%, rgba(247,250,255,0.46) 38%, rgba(255,255,255,0) 58%)",
+          }}
+        >
+          <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
+            <div className="max-w-[540px] py-14 md:py-16">
+              <h1 className="text-[40px] font-extrabold leading-[1.08] tracking-[-0.04em] text-ink-900 md:text-[54px]">
+                Our Services
+              </h1>
+              <p className="mt-5 text-[15px] leading-[1.8] text-ink-600">
+                Closing Engage provides professional-grade tools to manage closing orders
+                and document workflows securely, connecting title companies and notaries in
+                one unified environment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="bg-[#f7f7fd] py-12 md:py-14">
+        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
           <ServicesGrid />
         </div>
       </section>
       <section className="pb-18">
-        <div className="container-custom">
-          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
-              <SectionTitle title="Built for Performance" />
-              <div className="space-y-5 text-sm leading-6 text-ink-500">
-                <p><strong>Large File Upload Support</strong><br />Handle 150+ page PDFs with ease, optimized for high-volume document environments.</p>
-                <p><strong>Secure Cloud Document Storage</strong><br />Redundant, encrypted storage that meets rigorous legal and financial security standards.</p>
-                <p><strong>Role-Based Access Control</strong><br />Granular permissions for teams, ensuring individuals only see the data they need.</p>
-                <p><strong>Audit Logs for Transparency</strong><br />Complete history of every action taken on an order, providing a bulletproof audit trail.</p>
+        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="max-w-[540px]">
+              <h2 className="text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink-900 md:text-[28px]">
+                Built for Performance
+              </h2>
+              <div className="mt-7 space-y-5">
+                {[
+                  ["Large File Upload Support", "Handle 150+ page PDFs with ease, optimized for high-volume document environments."],
+                  ["Secure Cloud Document Storage", "Redundant, encrypted storage that meets rigorous legal and financial security standards."],
+                  ["Role-Based Access Control", "Granular permissions for teams, ensuring individuals only see the data they need."],
+                  ["Audit Logs for Transparency", "Complete history of every action taken on an order, providing a bulletproof audit trail."],
+                ].map(([title, body]) => (
+                  <div key={title} className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#edf4ff] text-brand-600">
+                      <div className="h-2.5 w-2.5 rounded-full bg-brand-600" />
+                    </div>
+                    <div>
+                      <div className="text-[14px] font-bold text-ink-900">{title}</div>
+                      <p className="mt-1 text-[12.5px] leading-[1.7] text-ink-500">{body}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-            <Surface className="flex min-h-[360px] items-end justify-start bg-[linear-gradient(135deg,#dae7da,#d6edf7)] p-7">
-              <div className="rounded-[20px] bg-brand-600 px-6 py-5 text-white shadow-[0_16px_38px_rgba(20,48,112,0.08)]">
-                <div className="text-3xl font-extrabold">99.9%</div>
-                <div className="mt-1 text-sm text-white/80">uptime reliability for critical closing operations.</div>
+            <div className="relative max-w-[540px] pb-10 pl-8">
+              <div className="rounded-[34px] bg-white p-4 shadow-[0_12px_30px_rgba(20,48,112,0.05)] md:p-5">
+                <div className="overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#e7f3ee,#ccdfd7)]">
+                  <img
+                    src="/branding/services-performance-dashboard.png"
+                    alt="Secure financial dashboard interface"
+                    className="block h-auto w-full object-cover"
+                  />
+                </div>
               </div>
-            </Surface>
+              <div className="absolute bottom-0 left-0 rounded-[22px] bg-brand-600 px-7 py-5 text-white shadow-[0_22px_40px_rgba(24,90,188,0.26)]">
+                <div className="text-[18px] font-extrabold leading-none md:text-[22px]">99.9%</div>
+                <div className="mt-2 max-w-[190px] text-[11px] leading-[1.5] text-white/82 md:text-[12px]">
+                  Uptime reliability for critical closing operations.
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
       <section className="pb-20">
-        <div className="container-custom">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-            <Surface className="min-h-[330px] bg-[linear-gradient(135deg,#103e49,#8ed0d8)]">
-              <div />
-            </Surface>
-            <div>
-              <SectionTitle title="Engineered for Efficiency" />
-              <p className="text-sm leading-7 text-ink-500">
+        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+            <div className="max-w-[430px] rounded-[24px] bg-[#eef0fb] p-5 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+              <div className="flex items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#0f5053,#83c3cb)] p-0">
+                <img
+                  src="/branding/services-efficiency-workflow.png"
+                  alt="Workflow efficiency diagram"
+                  className="block h-auto w-full rounded-[18px] object-cover"
+                />
+              </div>
+            </div>
+            <div className="max-w-[560px]">
+              <h2 className="text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink-900 md:text-[28px]">
+                Engineered for Efficiency
+              </h2>
+              <p className="mt-5 text-[14px] leading-[1.85] text-ink-500">
                 Closing Engage eliminates the friction inherent in traditional real estate transactions. By centralizing communication, we remove the need for manual emails and constant phone tag.
               </p>
-              <p className="mt-4 text-sm leading-7 text-ink-500">
+              <p className="mt-5 text-[14px] leading-[1.85] text-ink-500">
                 Our platform replaces disparate spreadsheets with a single source of truth, creating a direct and secure line between title agents and notaries. This architectural approach ensures data integrity while accelerating closing times by up to 40%.
               </p>
             </div>
