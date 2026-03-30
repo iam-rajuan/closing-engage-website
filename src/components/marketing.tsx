@@ -413,19 +413,19 @@ export function AuthShell({
 
 export function ServicesGrid() {
   return (
-    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
       {serviceCards.map(({ title, body, icon: Icon }) => (
         <Surface
           key={title}
-          className="rounded-[18px] border border-[#dbe3f0] bg-white p-5 shadow-[0_6px_20px_rgba(20,48,112,0.05)]"
+          className="min-h-[190px] rounded-[20px] border border-[#dbe3f0] bg-white p-7 shadow-[0_8px_24px_rgba(20,48,112,0.05)]"
         >
-          <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
-            <Icon className="h-4.5 w-4.5" />
+          <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
+            <Icon className="h-5 w-5" />
           </div>
-          <div className="text-[15px] font-extrabold leading-[1.35] tracking-[-0.02em] text-ink-900">
+          <div className="text-[18px] font-extrabold leading-[1.3] tracking-[-0.02em] text-ink-900">
             {title}
           </div>
-          <div className="mt-2 text-[12px] leading-[1.7] text-ink-500">{body}</div>
+          <div className="mt-3 text-[14px] leading-[1.75] text-ink-500">{body}</div>
         </Surface>
       ))}
     </div>

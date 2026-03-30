@@ -43,52 +43,54 @@ export function ServicesPage() {
               "radial-gradient(circle at 100% 36%, rgba(220,232,249,0.95) 0%, rgba(236,243,252,0.86) 20%, rgba(247,250,255,0.46) 38%, rgba(255,255,255,0) 58%)",
           }}
         >
-          <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
-            <div className="max-w-[540px] py-14 md:py-16">
-              <h1 className="text-[40px] font-extrabold leading-[1.08] tracking-[-0.04em] text-ink-900 md:text-[54px]">
+          <div className="mx-auto w-full max-w-[1600px] px-6 lg:px-10">
+            <div className="mx-auto max-w-[1440px] py-18 md:py-22">
+              <div className="max-w-[680px]">
+              <h1 className="text-[52px] font-extrabold leading-[1.04] tracking-[-0.045em] text-ink-900 md:text-[68px]">
                 Our Services
               </h1>
-              <p className="mt-5 text-[15px] leading-[1.8] text-ink-600">
+              <p className="mt-6 text-[18px] leading-[1.8] text-ink-600">
                 Closing Engage provides professional-grade tools to manage closing orders
                 and document workflows securely, connecting title companies and notaries in
                 one unified environment.
               </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <section className="bg-[#f7f7fd] py-12 md:py-14">
-        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
+      <section className="bg-[#f7f7fd] py-16 md:py-18">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
           <ServicesGrid />
         </div>
       </section>
-      <section className="pb-18">
-        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
-          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div className="max-w-[540px]">
-              <h2 className="text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink-900 md:text-[28px]">
+      <section className="py-20 md:py-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-16 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div className="max-w-[620px]">
+              <h2 className="text-[34px] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink-900 md:text-[42px]">
                 Built for Performance
               </h2>
-              <div className="mt-7 space-y-5">
+              <div className="mt-9 space-y-6">
                 {[
                   ["Large File Upload Support", "Handle 150+ page PDFs with ease, optimized for high-volume document environments."],
                   ["Secure Cloud Document Storage", "Redundant, encrypted storage that meets rigorous legal and financial security standards."],
                   ["Role-Based Access Control", "Granular permissions for teams, ensuring individuals only see the data they need."],
                   ["Audit Logs for Transparency", "Complete history of every action taken on an order, providing a bulletproof audit trail."],
                 ].map(([title, body]) => (
-                  <div key={title} className="flex items-start gap-3">
-                    <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#edf4ff] text-brand-600">
-                      <div className="h-2.5 w-2.5 rounded-full bg-brand-600" />
+                  <div key={title} className="flex items-start gap-4">
+                    <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#edf4ff] text-brand-600">
+                      <div className="h-3 w-3 rounded-full bg-brand-600" />
                     </div>
                     <div>
-                      <div className="text-[14px] font-bold text-ink-900">{title}</div>
-                      <p className="mt-1 text-[12.5px] leading-[1.7] text-ink-500">{body}</p>
+                      <div className="text-[18px] font-bold text-ink-900">{title}</div>
+                      <p className="mt-1.5 text-[14px] leading-[1.8] text-ink-500">{body}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="relative max-w-[540px] pb-10 pl-8">
+            <div className="relative max-w-[620px] pb-14 pl-10">
               <div className="rounded-[34px] bg-white p-4 shadow-[0_12px_30px_rgba(20,48,112,0.05)] md:p-5">
                 <div className="overflow-hidden rounded-[28px] bg-[linear-gradient(135deg,#e7f3ee,#ccdfd7)]">
                   <img
@@ -98,9 +100,9 @@ export function ServicesPage() {
                   />
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 rounded-[22px] bg-brand-600 px-7 py-5 text-white shadow-[0_22px_40px_rgba(24,90,188,0.26)]">
-                <div className="text-[18px] font-extrabold leading-none md:text-[22px]">99.9%</div>
-                <div className="mt-2 max-w-[190px] text-[11px] leading-[1.5] text-white/82 md:text-[12px]">
+              <div className="absolute bottom-0 left-0 rounded-[22px] bg-brand-600 px-8 py-6 text-white shadow-[0_22px_40px_rgba(24,90,188,0.26)]">
+                <div className="text-[26px] font-extrabold leading-none">99.9%</div>
+                <div className="mt-2 max-w-[210px] text-[12px] leading-[1.55] text-white/82">
                   Uptime reliability for critical closing operations.
                 </div>
               </div>
@@ -108,10 +110,10 @@ export function ServicesPage() {
           </div>
         </div>
       </section>
-      <section className="pb-20">
-        <div className="mx-auto w-full max-w-[1600px] px-8 lg:px-12">
-          <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
-            <div className="max-w-[430px] rounded-[24px] bg-[#eef0fb] p-5 shadow-[0_12px_30px_rgba(20,48,112,0.05)]">
+      <section className="pb-24 md:pb-28">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div className="grid gap-16 lg:grid-cols-[0.84fr_1.16fr] lg:items-center">
+            <div className="max-w-[500px] rounded-[24px] bg-[#eef0fb] p-5 shadow-[0_12px_30px_rgba(20,48,112,0.05)] md:p-6">
               <div className="flex items-center justify-center overflow-hidden rounded-[18px] bg-[linear-gradient(135deg,#0f5053,#83c3cb)] p-0">
                 <img
                   src="/branding/services-efficiency-workflow.png"
@@ -120,16 +122,47 @@ export function ServicesPage() {
                 />
               </div>
             </div>
-            <div className="max-w-[560px]">
-              <h2 className="text-[24px] font-extrabold leading-[1.15] tracking-[-0.03em] text-ink-900 md:text-[28px]">
+            <div className="max-w-[680px]">
+              <h2 className="text-[34px] font-extrabold leading-[1.08] tracking-[-0.035em] text-ink-900 md:text-[42px]">
                 Engineered for Efficiency
               </h2>
-              <p className="mt-5 text-[14px] leading-[1.85] text-ink-500">
+              <p className="mt-6 text-[16px] leading-[1.9] text-ink-500">
                 Closing Engage eliminates the friction inherent in traditional real estate transactions. By centralizing communication, we remove the need for manual emails and constant phone tag.
               </p>
-              <p className="mt-5 text-[14px] leading-[1.85] text-ink-500">
+              <p className="mt-6 text-[16px] leading-[1.9] text-ink-500">
                 Our platform replaces disparate spreadsheets with a single source of truth, creating a direct and secure line between title agents and notaries. This architectural approach ensures data integrity while accelerating closing times by up to 40%.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="pb-24">
+        <div className="mx-auto w-full max-w-[1440px] px-6 lg:px-10">
+          <div
+            className="relative overflow-hidden rounded-[34px] px-8 py-12 text-center text-white shadow-[0_20px_50px_rgba(24,90,188,0.18)] md:px-12 md:py-14"
+            style={{
+              backgroundImage: "url('/branding/services-cta-bg.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <h2 className="mx-auto max-w-[980px] text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-white md:text-[40px]">
+              Start Managing Closing Orders with Confidence
+            </h2>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <Button
+                className="min-w-[140px] rounded-xl bg-white px-8 py-3.5 text-[15px] font-bold text-brand-600 hover:bg-[#f4f7ff]"
+                onClick={() => window.location.assign("/signup/role-selection")}
+              >
+                Get Started
+              </Button>
+              <Button
+                variant="outline"
+                className="min-w-[140px] rounded-xl border-white/30 bg-white/8 px-8 py-3.5 text-[15px] font-bold text-white hover:bg-white/14"
+              >
+                Request Demo
+              </Button>
             </div>
           </div>
         </div>
