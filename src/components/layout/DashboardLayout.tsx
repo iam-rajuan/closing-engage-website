@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Bell, ChevronDown, Plus, Repeat2 } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { Button, SearchField, SidebarNav } from "@/components/common";
 import { companyNav, notaryNav } from "@/data/mock-data";
 import { themeTokens } from "@/theme/tokens";
 
 export function DashboardLayout({ variant }: { variant: "company" | "notary" }) {
+  const location = useLocation();
   const items = variant === "company" ? companyNav : notaryNav;
   const profile = themeTokens[variant];
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
   const switchTarget = variant === "company"
     ? { href: "/notary/dashboard", label: "Switch to Notary Dashboard", helper: "Open your notary workspace" }
     : { href: "/company/dashboard", label: "Switch to Title Company Dashboard", helper: "Open your company workspace" };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handlePointerDown = (event: MouseEvent) => {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => document.removeEventListener("mousedown", handlePointerDown);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen bg-[#f8f8fe]">
@@ -48,7 +67,7 @@ export function DashboardLayout({ variant }: { variant: "company" | "notary" }) 
               <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[#e5ebf5] bg-white text-ink-500">
                 <Bell className="h-4 w-4" />
               </button>
-              <div className="relative hidden sm:block">
+              <div ref={menuRef} className="relative hidden sm:block">
               <button
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
@@ -67,24 +86,24 @@ export function DashboardLayout({ variant }: { variant: "company" | "notary" }) 
               </button>
 
               {menuOpen ? (
-                <div className="absolute right-0 top-[calc(100%+12px)] z-30 w-[290px] overflow-hidden rounded-[20px] border border-[#dfe6f2] bg-white p-3 shadow-[0_24px_50px_rgba(20,48,112,0.12)]">
-                  <div className="mb-2 rounded-[16px] bg-[#f7f9fe] px-4 py-3">
-                    <div className="text-sm font-extrabold text-ink-900">{profile.name}</div>
-                    <div className="mt-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-400">
+                <div className="absolute right-0 top-[calc(100%+10px)] z-30 w-[252px] overflow-hidden rounded-[18px] border border-[#dfe6f2] bg-white p-2.5 shadow-[0_18px_38px_rgba(20,48,112,0.11)]">
+                  <div className="mb-2 rounded-[14px] bg-[#f7f9fe] px-3.5 py-3">
+                    <div className="text-[13px] font-extrabold text-ink-900">{profile.name}</div>
+                    <div className="mt-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink-400">
                       {profile.label}
                     </div>
                   </div>
                   <Link
                     to={switchTarget.href}
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-start gap-3 rounded-[16px] px-4 py-3 text-left transition-colors hover:bg-[#f6f8fd]"
+                    className="flex items-start gap-3 rounded-[14px] px-3.5 py-3 text-left transition-colors hover:bg-[#f6f8fd]"
                   >
-                    <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#eef4ff] text-brand-600">
-                      <Repeat2 className="h-5 w-5" />
+                    <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-[12px] bg-[#eef4ff] text-brand-600">
+                      <Repeat2 className="h-4.5 w-4.5" />
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-ink-900">{switchTarget.label}</div>
-                      <div className="mt-1 text-[13px] leading-[1.65] text-ink-500">{switchTarget.helper}</div>
+                      <div className="text-[13px] font-bold leading-[1.4] text-ink-900">{switchTarget.label}</div>
+                      <div className="mt-1 text-[12px] leading-[1.55] text-ink-500">{switchTarget.helper}</div>
                     </div>
                   </Link>
                 </div>
